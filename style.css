@@ -259,9 +259,11 @@ body {
 }
 
 /* ── CONTACT ── */
-.contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 64px; align-items: start; }
-.contact-info h2 { font-size: clamp(24px, 3vw, 36px); font-weight: 800; margin-bottom: 16px; }
-.contact-info > p { color: rgba(255,255,255,0.6); margin-bottom: 32px; }
+.contact-grid { display: flex; justify-content: center; }
+.contact-cta { max-width: 600px; width: 100%; }
+.contact-cta h2 { font-size: clamp(24px, 3vw, 36px); font-weight: 800; margin-bottom: 16px; }
+.contact-cta > p { color: rgba(255,255,255,0.6); margin-bottom: 32px; }
+.contact-btns { display: flex; gap: 16px; margin-top: 32px; flex-wrap: wrap; }
 .contact-items { display: flex; flex-direction: column; gap: 20px; }
 .contact-item { display: flex; align-items: flex-start; gap: 16px; }
 .contact-icon {
