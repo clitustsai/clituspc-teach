@@ -102,6 +102,75 @@ const EMAILJS_TEMPLATE_ID = 'template_ijjdyma';
 const EMAILJS_PUBLIC_KEY  = 'Rg4WUf0eDWXIAhPW_';
 ```
 
+## 📊 Analytics & Tracking
+
+### Vercel Analytics
+
+Vercel Analytics đã được tích hợp sẵn. Để xem dữ liệu:
+
+1. Vào [Vercel Dashboard](https://vercel.com/dashboard)
+2. Chọn project `clituspc-tech`
+3. Tab **Analytics** → xem traffic, page views, top pages
+4. Tab **Speed Insights** → xem Core Web Vitals
+
+**Metrics được track:**
+- Page views & unique visitors
+- Top pages & referrers
+- Device & browser breakdown
+- Core Web Vitals (LCP, FID, CLS)
+
+### Microsoft Clarity (Heatmap & Session Recording)
+
+Clarity đã được tích hợp nhưng cần setup Project ID:
+
+1. Vào [clarity.microsoft.com](https://clarity.microsoft.com)
+2. Đăng nhập bằng Microsoft account
+3. **New Project** → nhập tên "Clitus PC Website"
+4. Copy **Project ID** (dạng `abc123xyz`)
+5. Mở `index.html`, tìm `CLARITY_PROJECT_ID` và thay bằng ID thật
+6. Push lên GitHub → Vercel tự deploy
+
+**Clarity cung cấp:**
+- 🎥 Session recordings (xem video khách hàng dùng website)
+- 🔥 Heatmaps (click, scroll, move)
+- 📊 Rage clicks (khách bực mình click liên tục)
+- ⚡ Dead clicks (click vào element không có tác dụng)
+- 📱 Mobile vs Desktop behavior
+
+### Custom Events Tracked
+
+Website tự động track các sự kiện quan trọng:
+
+| Event | Khi nào trigger | Data |
+|-------|----------------|------|
+| `demo_viewed` | Khách xem demo dự án | `{ project: 'ecommerce' }` |
+| `blog_read` | Khách đọc bài blog | `{ article: 'ai-2025' }` |
+| `phone_clicked` | Click số điện thoại | - |
+| `email_clicked` | Click email | - |
+| `zalo_clicked` | Click nút Zalo | - |
+| `messenger_clicked` | Click nút Messenger | - |
+| `newsletter_signup` | Đăng ký newsletter | `{ email: 'domain.com' }` |
+| `scroll_depth` | Scroll 25%, 50%, 75%, 100% | `{ percent: 50 }` |
+| `time_on_page` | Rời khỏi trang | `{ seconds: 120 }` |
+
+### Xem Analytics Data
+
+**Vercel Analytics:**
+```
+Dashboard → clituspc-tech → Analytics
+```
+
+**Microsoft Clarity:**
+```
+clarity.microsoft.com → Clitus PC Website → Dashboard
+```
+
+**Console Logs (Development):**
+```javascript
+// Mở DevTools Console để xem events real-time
+// Mỗi event sẽ log: 📊 Event tracked: event_name { data }
+```
+
 ## 🌐 Deployment
 
 Website tự động deploy khi push lên GitHub main branch thông qua Vercel.

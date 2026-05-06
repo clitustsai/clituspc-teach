@@ -449,3 +449,72 @@ function closeBlog() {
 document.getElementById('blogModal').addEventListener('click', (e) => {
   if (e.target === document.getElementById('blogModal')) closeBlog();
 });
+
+// Analytics tracking helper
+function trackEvent(eventName, data = {}) {
+  // Vercel Analytics
+  if (window.va) {
+    window.va('event', eventName, data);
+  }
+  // Microsoft Clarity custom tags
+  if (window.clarity) {
+    window.clarity('set', eventName, JSON.stringify(data));
+  }
+  console.log('📊 Event tracked:', eventName, data);
+}
+
+// Track important user actions
+document.addEventListener('DOMContentLoaded', () => {
+  // Track demo views
+  const originalOpenDemo = window.openDemo;
+  window.openDemo = function(key) {
+    trackEvent('demo_viewed', { project: key });
+    return originalOpenDemo(key);
+  };
+
+  // Track blog reads
+  const originalOpenBlog = window.openBlog;
+  window.openBlog = function(key) {
+    trackEvent('blog_read', { article: key });
+    return originalOpenBlog(key);
+  };
+
+  // Track contact button clicks
+  document.querySelectorAll('a[href^="tel:"]').forEach(el => {
+    el.addEventListener('click', () => trackEvent('phone_clicked'));
+  });
+  document.querySelectorAll('a[href^="mailto:"]').forEach(el => {
+    el.addEventListener('click', () => trackEvent('email_clicked'));
+  });
+
+  // Track Zalo/Messenger clicks
+  document.querySelectorAll('.zalo-btn').forEach(el => {
+    el.addEventListener('click', () => trackEvent('zalo_clicked'));
+  });
+  document.querySelectorAll('.messenger-btn').forEach(el => {
+    el.addEventListener('click', () => trackEvent('messenger_clicked'));
+  });
+
+  // Track newsletter signups
+  const originalNewsletterSubmit = document.getElementById('newsletterForm').onsubmit;
+  document.getElementById('newsletterForm').addEventListener('submit', (e) => {
+    trackEvent('newsletter_signup', { email: e.target.querySelector('input').value.split('@')[1] });
+  });
+
+  // Track scroll depth
+  let maxScroll = 0;
+  window.addEventListener('scroll', () => {
+    const scrollPercent = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+    if (scrollPercent > maxScroll && scrollPercent % 25 === 0) {
+      maxScroll = scrollPercent;
+      trackEvent('scroll_depth', { percent: scrollPercent });
+    }
+  });
+
+  // Track time on page
+  let startTime = Date.now();
+  window.addEventListener('beforeunload', () => {
+    const timeSpent = Math.round((Date.now() - startTime) / 1000);
+    trackEvent('time_on_page', { seconds: timeSpent });
+  });
+});
