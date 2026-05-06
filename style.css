@@ -807,3 +807,63 @@ body {
 }
 .back-to-top.visible { opacity: 1; pointer-events: all; transform: translateY(0); }
 .back-to-top:hover { background: var(--blue-light); }
+
+/* ── BLOG ── */
+.blog { background: var(--dark); }
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.blog-card--featured {
+  grid-column: span 3;
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+}
+.blog-card {
+  background: var(--dark2);
+  border: 1px solid var(--border);
+  border-radius: 16px; overflow: hidden;
+  transition: transform 0.2s, border-color 0.2s;
+  display: flex; flex-direction: column;
+}
+.blog-card:hover { transform: translateY(-5px); border-color: rgba(26,86,219,0.4); }
+.blog-img {
+  position: relative; min-height: 180px;
+  display: flex; align-items: center; justify-content: center;
+}
+.blog-card--featured .blog-img { min-height: 100%; }
+.blog-cat {
+  position: absolute; top: 14px; left: 14px;
+  background: rgba(0,0,0,0.45); backdrop-filter: blur(6px);
+  color: #fff; font-size: 11px; font-weight: 700;
+  padding: 4px 12px; border-radius: 100px;
+  border: 1px solid rgba(255,255,255,0.15);
+  text-transform: uppercase; letter-spacing: 1px;
+}
+.blog-img-icon { font-size: 52px; opacity: 0.35; }
+.blog-body { padding: 20px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.blog-meta { display: flex; gap: 12px; font-size: 12px; color: var(--gray); }
+.blog-meta span::before { content: ''; }
+.blog-meta span + span::before { content: '·'; margin-right: 12px; }
+.blog-body h3 { font-size: 16px; font-weight: 700; line-height: 1.4; color: #fff; }
+.blog-card--featured .blog-body h3 { font-size: 20px; }
+.blog-body p { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.6; flex: 1; }
+.blog-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+.blog-tags span {
+  background: rgba(26,86,219,0.12);
+  border: 1px solid rgba(26,86,219,0.25);
+  color: var(--blue-light);
+  font-size: 11px; font-weight: 600;
+  padding: 3px 10px; border-radius: 6px;
+}
+
+@media (max-width: 1024px) {
+  .blog-grid { grid-template-columns: repeat(2, 1fr); }
+  .blog-card--featured { grid-column: span 2; grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 768px) {
+  .blog-grid { grid-template-columns: 1fr; }
+  .blog-card--featured { grid-column: span 1; grid-template-columns: 1fr; }
+  .blog-card--featured .blog-img { min-height: 180px; }
+}
