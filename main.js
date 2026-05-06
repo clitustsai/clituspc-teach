@@ -7,8 +7,16 @@ window.addEventListener('scroll', () => {
 // Hamburger menu
 const hamburger = document.getElementById('hamburger');
 const navLinks = document.querySelector('.nav-links');
-hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
-navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+hamburger.addEventListener('click', () => {
+  const isOpen = navLinks.classList.toggle('open');
+  hamburger.innerHTML = isOpen ? '✕' : '&#9776;';
+  document.body.style.overflow = isOpen ? 'hidden' : '';
+});
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  navLinks.classList.remove('open');
+  hamburger.innerHTML = '&#9776;';
+  document.body.style.overflow = '';
+}));
 
 // Project filter
 const filterBtns = document.querySelectorAll('.filter-btn');
