@@ -539,7 +539,7 @@
       </div>
       <div class="blog-grid">
 
-        <article class="blog-card blog-card--featured">
+        <article class="blog-card blog-card--featured" onclick="openBlog('ai-2025')" style="cursor:pointer">
           <div class="blog-img" style="background:linear-gradient(135deg,#1a56db,#7c3aed)">
             <span class="blog-cat">Xu hướng</span>
             <div class="blog-img-icon">🤖</div>
@@ -552,7 +552,7 @@
           </div>
         </article>
 
-        <article class="blog-card">
+        <article class="blog-card" onclick="openBlog('website-slow')" style="cursor:pointer">
           <div class="blog-img" style="background:linear-gradient(135deg,#0891b2,#1a56db)">
             <span class="blog-cat">Hướng dẫn</span>
             <div class="blog-img-icon">⚡</div>
@@ -565,7 +565,7 @@
           </div>
         </article>
 
-        <article class="blog-card">
+        <article class="blog-card" onclick="openBlog('rn-vs-flutter')" style="cursor:pointer">
           <div class="blog-img" style="background:linear-gradient(135deg,#059669,#0891b2)">
             <span class="blog-cat">Kinh nghiệm</span>
             <div class="blog-img-icon">📱</div>
@@ -578,7 +578,7 @@
           </div>
         </article>
 
-        <article class="blog-card">
+        <article class="blog-card" onclick="openBlog('security')" style="cursor:pointer">
           <div class="blog-img" style="background:linear-gradient(135deg,#1e293b,#1a56db)">
             <span class="blog-cat">Bảo mật</span>
             <div class="blog-img-icon">🔒</div>
@@ -591,7 +591,7 @@
           </div>
         </article>
 
-        <article class="blog-card">
+        <article class="blog-card" onclick="openBlog('vps-vs-hosting')" style="cursor:pointer">
           <div class="blog-img" style="background:linear-gradient(135deg,#7c3aed,#0891b2)">
             <span class="blog-cat">Cloud</span>
             <div class="blog-img-icon">☁️</div>
@@ -604,7 +604,7 @@
           </div>
         </article>
 
-        <article class="blog-card">
+        <article class="blog-card" onclick="openBlog('sme-digital')" style="cursor:pointer">
           <div class="blog-img" style="background:linear-gradient(135deg,#b45309,#1a56db)">
             <span class="blog-cat">Kinh doanh</span>
             <div class="blog-img-icon">📊</div>
@@ -879,6 +879,14 @@
       <p>© 2024 Công ty TNHH Công Nghệ Clitus PC. All rights reserved.</p>
     </div>
   </footer>
+
+  <!-- BLOG READER MODAL -->
+  <div class="blog-modal" id="blogModal">
+    <div class="blog-modal-inner">
+      <button class="blog-close" onclick="closeBlog()">✕</button>
+      <article class="blog-article" id="blogArticle"></article>
+    </div>
+  </div>
 
   <!-- FLOATING BUTTONS -->
   <div class="floating-btns">

@@ -272,3 +272,180 @@ document.getElementById('newsletterForm').addEventListener('submit', (e) => {
     btn.style.background = '';
   }, 3000);
 });
+
+// Blog articles
+const blogPosts = {
+  'ai-2025': {
+    title: 'AI sẽ thay đổi ngành phát triển phần mềm như thế nào vào năm 2025?',
+    date: '15 Tháng 4, 2025', read: '8 phút đọc', cat: '🤖 Xu hướng',
+    content: `
+      <div class="highlight-box"><p>AI không thay thế lập trình viên — AI giúp lập trình viên làm việc nhanh gấp 3-5 lần. Đây là cơ hội, không phải mối đe dọa.</p></div>
+      <h2>1. GitHub Copilot và sự thay đổi cách viết code</h2>
+      <p>GitHub Copilot, được hỗ trợ bởi OpenAI Codex, đã trở thành công cụ không thể thiếu với hàng triệu lập trình viên toàn cầu. Thay vì gõ từng dòng code, developer chỉ cần viết comment mô tả ý định và AI sẽ tự động gợi ý đoạn code hoàn chỉnh.</p>
+      <p>Theo khảo sát của GitHub năm 2024, các lập trình viên sử dụng Copilot hoàn thành task nhanh hơn <strong>55%</strong> so với không dùng AI.</p>
+      <h2>2. AI trong kiểm thử và debug</h2>
+      <p>Các công cụ như Devin, Cursor AI không chỉ viết code mà còn tự động phát hiện bug, đề xuất fix và viết unit test. Điều này giúp giảm đáng kể thời gian QA và tăng chất lượng sản phẩm.</p>
+      <ul>
+        <li>Tự động sinh test case từ code hiện có</li>
+        <li>Phát hiện security vulnerability trong real-time</li>
+        <li>Gợi ý refactor code để tối ưu hiệu năng</li>
+        <li>Tự động viết documentation</li>
+      </ul>
+      <h2>3. Tác động đến doanh nghiệp Việt Nam</h2>
+      <p>Với các SME Việt Nam, AI mang lại cơ hội tiếp cận công nghệ cao với chi phí thấp hơn. Một team 3-5 người với AI tools có thể làm được công việc của team 10-15 người trước đây.</p>
+      <h2>4. Kỹ năng cần có trong kỷ nguyên AI</h2>
+      <p>Lập trình viên cần tập trung vào: tư duy giải quyết vấn đề, hiểu business logic, kỹ năng prompt engineering và khả năng review/validate code do AI sinh ra.</p>
+      <div class="highlight-box"><p>💡 <strong>Lời khuyên từ Clitus PC:</strong> Đừng sợ AI. Hãy học cách làm việc cùng AI để tăng năng suất và tạo ra sản phẩm tốt hơn cho khách hàng.</p></div>
+    `
+  },
+  'website-slow': {
+    title: '5 lý do website doanh nghiệp của bạn load chậm và cách khắc phục',
+    date: '8 Tháng 4, 2025', read: '5 phút đọc', cat: '⚡ Hướng dẫn',
+    content: `
+      <div class="highlight-box"><p>53% người dùng rời bỏ website nếu trang load quá 3 giây. Tốc độ website ảnh hưởng trực tiếp đến doanh thu và thứ hạng Google.</p></div>
+      <h2>1. Hình ảnh chưa được tối ưu</h2>
+      <p>Đây là nguyên nhân phổ biến nhất. Nhiều website upload ảnh gốc 5-10MB thay vì nén xuống còn 100-200KB. Giải pháp: sử dụng định dạng WebP, nén ảnh với TinyPNG, và lazy loading.</p>
+      <h2>2. Hosting chất lượng thấp</h2>
+      <p>Shared hosting giá rẻ thường có server response time cao (>500ms). Nâng cấp lên VPS hoặc cloud hosting có thể giảm TTFB xuống còn 50-100ms.</p>
+      <h2>3. Không sử dụng CDN</h2>
+      <p>CDN (Content Delivery Network) phân phối nội dung từ server gần người dùng nhất. Với khách hàng ở Việt Nam, sử dụng CDN có datacenter tại Singapore hoặc Hồng Kông sẽ giảm latency đáng kể.</p>
+      <h2>4. Quá nhiều plugin/script</h2>
+      <p>Mỗi plugin WordPress hay script bên thứ 3 đều thêm HTTP request. Audit và loại bỏ những gì không cần thiết, bundle và minify JS/CSS.</p>
+      <h2>5. Không có caching</h2>
+      <p>Caching giúp browser và server không phải tải lại nội dung đã có. Cấu hình browser cache, server-side cache (Redis/Memcached) và page cache.</p>
+      <div class="highlight-box"><p>🎯 <strong>Mục tiêu:</strong> Google PageSpeed Score 90+, LCP dưới 2.5s, FID dưới 100ms, CLS dưới 0.1.</p></div>
+    `
+  },
+  'rn-vs-flutter': {
+    title: 'React Native vs Flutter 2025: Nên chọn gì để phát triển app di động?',
+    date: '1 Tháng 4, 2025', read: '6 phút đọc', cat: '📱 Kinh nghiệm',
+    content: `
+      <div class="highlight-box"><p>Không có câu trả lời tuyệt đối. Lựa chọn phụ thuộc vào team, dự án và mục tiêu kinh doanh của bạn.</p></div>
+      <h2>React Native — Sức mạnh của JavaScript</h2>
+      <p>React Native do Meta phát triển, sử dụng JavaScript/TypeScript. Ưu điểm lớn nhất là tái sử dụng code với web (nếu dùng React), cộng đồng lớn và nhiều thư viện sẵn có.</p>
+      <ul>
+        <li>✅ Cộng đồng lớn, nhiều tài liệu</li>
+        <li>✅ Dễ tuyển dụng developer JS</li>
+        <li>✅ Hot reload nhanh</li>
+        <li>❌ Hiệu năng kém hơn Flutter với animation phức tạp</li>
+        <li>❌ Bridge architecture gây overhead</li>
+      </ul>
+      <h2>Flutter — Hiệu năng native thực sự</h2>
+      <p>Flutter do Google phát triển, dùng ngôn ngữ Dart. Compile trực tiếp sang native code, không qua bridge, cho hiệu năng vượt trội.</p>
+      <ul>
+        <li>✅ Hiệu năng cao, animation mượt</li>
+        <li>✅ UI nhất quán trên mọi platform</li>
+        <li>✅ Hỗ trợ iOS, Android, Web, Desktop</li>
+        <li>❌ Dart ít phổ biến hơn JS</li>
+        <li>❌ App size lớn hơn</li>
+      </ul>
+      <h2>Kết luận</h2>
+      <p><strong>Chọn React Native</strong> nếu team đã có kinh nghiệm JavaScript, cần tích hợp nhiều thư viện JS, hoặc muốn share code với web app.</p>
+      <p><strong>Chọn Flutter</strong> nếu cần UI phức tạp, animation mượt, hoặc muốn build cho nhiều platform (mobile + web + desktop) từ một codebase.</p>
+    `
+  },
+  'security': {
+    title: '10 lỗ hổng bảo mật phổ biến nhất trong web app và cách phòng tránh',
+    date: '25 Tháng 3, 2025', read: '7 phút đọc', cat: '🔒 Bảo mật',
+    content: `
+      <div class="highlight-box"><p>Theo OWASP, 90% các vụ tấn công web đến từ 10 lỗ hổng phổ biến có thể phòng tránh được nếu developer có kiến thức đúng.</p></div>
+      <h2>Top 5 lỗ hổng nguy hiểm nhất</h2>
+      <h3>1. SQL Injection</h3>
+      <p>Attacker chèn SQL code vào input để truy cập hoặc xóa database. Phòng tránh: luôn dùng parameterized queries, không bao giờ nối chuỗi SQL trực tiếp.</p>
+      <h3>2. Cross-Site Scripting (XSS)</h3>
+      <p>Chèn JavaScript độc hại vào trang web để đánh cắp cookie, session. Phòng tránh: escape output, dùng Content Security Policy (CSP).</p>
+      <h3>3. Broken Authentication</h3>
+      <p>Session token yếu, không có rate limiting, lưu password plain text. Phòng tránh: bcrypt/argon2 cho password, JWT với expiry ngắn, 2FA.</p>
+      <h3>4. Insecure Direct Object Reference (IDOR)</h3>
+      <p>User A có thể truy cập data của User B bằng cách thay đổi ID trong URL. Phòng tránh: luôn kiểm tra authorization ở server-side.</p>
+      <h3>5. CSRF (Cross-Site Request Forgery)</h3>
+      <p>Trick user thực hiện action không mong muốn. Phòng tránh: CSRF token, SameSite cookie attribute.</p>
+      <h2>Checklist bảo mật cơ bản</h2>
+      <ul>
+        <li>✅ HTTPS cho toàn bộ website</li>
+        <li>✅ Cập nhật dependencies thường xuyên</li>
+        <li>✅ Validate và sanitize mọi input</li>
+        <li>✅ Principle of least privilege cho database</li>
+        <li>✅ Log và monitor suspicious activity</li>
+      </ul>
+    `
+  },
+  'vps-vs-hosting': {
+    title: 'VPS vs Shared Hosting: Doanh nghiệp nên chọn loại hosting nào?',
+    date: '18 Tháng 3, 2025', read: '5 phút đọc', cat: '☁️ Cloud',
+    content: `
+      <div class="highlight-box"><p>Hosting phù hợp có thể giúp website của bạn load nhanh hơn 5-10 lần và tiết kiệm chi phí đáng kể về lâu dài.</p></div>
+      <h2>Shared Hosting — Phù hợp cho ai?</h2>
+      <p>Shared hosting là nhiều website cùng chia sẻ tài nguyên trên một server. Chi phí thấp (50-200k/tháng) nhưng hiệu năng không ổn định.</p>
+      <ul>
+        <li>✅ Chi phí thấp, dễ quản lý</li>
+        <li>✅ Phù hợp website mới, traffic thấp</li>
+        <li>❌ Bị ảnh hưởng bởi website khác trên cùng server</li>
+        <li>❌ Giới hạn tài nguyên, không scale được</li>
+      </ul>
+      <h2>VPS — Sức mạnh thực sự</h2>
+      <p>VPS (Virtual Private Server) cung cấp tài nguyên riêng biệt, toàn quyền kiểm soát server. Chi phí 300k-2tr/tháng tùy cấu hình.</p>
+      <ul>
+        <li>✅ Tài nguyên riêng, hiệu năng ổn định</li>
+        <li>✅ Toàn quyền cài đặt phần mềm</li>
+        <li>✅ Scale up/down linh hoạt</li>
+        <li>❌ Cần kiến thức quản trị Linux</li>
+      </ul>
+      <h2>Khi nào nên nâng cấp lên VPS?</h2>
+      <p>Nâng cấp khi: traffic vượt 10,000 lượt/ngày, cần cài phần mềm đặc biệt, website bị chậm dù đã tối ưu, hoặc cần chạy nhiều website/ứng dụng.</p>
+      <div class="highlight-box"><p>💡 Clitus PC cung cấp dịch vụ VPS và hỗ trợ migration từ shared hosting sang VPS hoàn toàn miễn phí khi đăng ký gói dài hạn.</p></div>
+    `
+  },
+  'sme-digital': {
+    title: 'Chuyển đổi số cho SME: Bắt đầu từ đâu khi ngân sách hạn chế?',
+    date: '10 Tháng 3, 2025', read: '4 phút đọc', cat: '📊 Kinh doanh',
+    content: `
+      <div class="highlight-box"><p>Chuyển đổi số không có nghĩa là phải đầu tư hàng tỷ đồng ngay lập tức. Bắt đầu nhỏ, đo lường kết quả, rồi mở rộng dần.</p></div>
+      <h2>Bước 1: Số hóa quy trình cốt lõi trước</h2>
+      <p>Xác định 1-2 quy trình tốn nhiều thời gian nhất (quản lý đơn hàng, kế toán, chăm sóc khách hàng) và số hóa chúng trước. ROI sẽ rõ ràng và nhanh chóng.</p>
+      <h2>Bước 2: Website và hiện diện online</h2>
+      <p>Website chuyên nghiệp là nền tảng. Chi phí 5-15 triệu cho website chuẩn SEO sẽ mang lại khách hàng liên tục trong nhiều năm.</p>
+      <h2>Bước 3: Phần mềm quản lý phù hợp</h2>
+      <p>Không cần ERP đắt tiền ngay từ đầu. Bắt đầu với phần mềm quản lý bán hàng đơn giản (POS), sau đó mở rộng khi cần.</p>
+      <h2>Bước 4: Tự động hóa marketing</h2>
+      <p>Email marketing, chatbot Facebook/Zalo, Google Ads — những công cụ này có thể bắt đầu với ngân sách 2-5 triệu/tháng và mang lại ROI rõ ràng.</p>
+      <h2>Lộ trình 12 tháng thực tế</h2>
+      <ul>
+        <li>Tháng 1-3: Website + Google Business Profile</li>
+        <li>Tháng 4-6: Phần mềm quản lý bán hàng</li>
+        <li>Tháng 7-9: CRM + Email marketing</li>
+        <li>Tháng 10-12: Đánh giá và mở rộng</li>
+      </ul>
+      <div class="highlight-box"><p>🤝 Clitus PC tư vấn lộ trình chuyển đổi số miễn phí cho SME. Liên hệ ngay để được hỗ trợ.</p></div>
+    `
+  }
+};
+
+function openBlog(key) {
+  const post = blogPosts[key];
+  if (!post) return;
+  document.getElementById('blogArticle').innerHTML = `
+    <h1>${post.title}</h1>
+    <div class="art-meta">
+      <span>📅 ${post.date}</span>
+      <span>⏱ ${post.read}</span>
+      <span>${post.cat}</span>
+    </div>
+    ${post.content}
+    <div class="art-footer">
+      <span style="color:var(--gray);font-size:13px;">Bài viết bởi <strong style="color:var(--blue-light)">Clitus PC</strong></span>
+      <a href="tel:0906857331" class="btn btn-primary" style="font-size:13px;padding:10px 20px;">📞 Tư vấn miễn phí</a>
+    </div>
+  `;
+  document.getElementById('blogModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeBlog() {
+  document.getElementById('blogModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('blogModal').addEventListener('click', (e) => {
+  if (e.target === document.getElementById('blogModal')) closeBlog();
+});
