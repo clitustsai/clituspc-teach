@@ -906,3 +906,14 @@ body {
 }
 .blog-article .highlight-box p { margin: 0; color: rgba(255,255,255,0.85); }
 .blog-article .art-footer { margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; flex-wrap: gap; gap: 12px; }
+
+/* ── FOOTER MAP ── */
+.footer-map {
+  padding: 0 24px 32px;
+  max-width: 1200px; margin: 0 auto;
+}
+.footer-map iframe {
+  opacity: 0.85;
+  transition: opacity 0.2s;
+}
+.footer-map iframe:hover { opacity: 1; }
