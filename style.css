@@ -479,3 +479,85 @@ body {
 
 @media (max-width: 1024px) { .testi-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 768px) { .testi-grid { grid-template-columns: 1fr; } }
+
+/* ── PARTNERS ── */
+.partners { background: var(--dark2); overflow: hidden; }
+.partners-track-wrap {
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  margin-bottom: 40px;
+}
+.partners-track {
+  display: flex; align-items: center; gap: 48px;
+  width: max-content;
+  animation: scrollTrack 28s linear infinite;
+}
+.partners-track:hover { animation-play-state: paused; }
+@keyframes scrollTrack {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.partner-item {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 24px;
+  display: flex; align-items: center;
+  white-space: nowrap;
+  transition: border-color 0.2s;
+  flex-shrink: 0;
+}
+.partner-item:hover { border-color: rgba(26,86,219,0.4); }
+
+.certs-grid {
+  display: flex; flex-wrap: wrap; gap: 16px; justify-content: center;
+}
+.cert-item {
+  display: flex; align-items: center; gap: 14px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  border-radius: 12px; padding: 16px 24px;
+  min-width: 220px;
+  transition: border-color 0.2s;
+}
+.cert-item:hover { border-color: rgba(26,86,219,0.4); }
+.cert-icon { font-size: 28px; }
+.cert-item strong { display: block; font-size: 14px; font-weight: 700; }
+.cert-item span { font-size: 12px; color: var(--gray); }
+
+/* ── WORKFLOW ── */
+.workflow { background: var(--dark); }
+.workflow-steps {
+  display: flex; align-items: flex-start; gap: 0;
+  position: relative;
+}
+.workflow-step {
+  flex: 1;
+  background: var(--dark2);
+  border: 1px solid var(--border);
+  border-radius: 16px; padding: 28px 24px;
+  text-align: center;
+  transition: border-color 0.2s, transform 0.2s;
+  position: relative;
+}
+.workflow-step:hover { border-color: var(--blue); transform: translateY(-4px); }
+.ws-icon { font-size: 36px; margin-bottom: 12px; }
+.ws-num {
+  position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+  background: var(--blue);
+  color: #fff; font-size: 12px; font-weight: 800;
+  width: 28px; height: 28px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+}
+.workflow-step h3 { font-size: 16px; font-weight: 700; margin-bottom: 10px; }
+.workflow-step p { color: rgba(255,255,255,0.6); font-size: 13px; line-height: 1.6; }
+.workflow-arrow {
+  font-size: 24px; color: var(--blue-light);
+  padding: 0 8px; margin-top: 60px; flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .workflow-steps { flex-direction: column; gap: 24px; }
+  .workflow-arrow { transform: rotate(90deg); margin: 0 auto; }
+}
