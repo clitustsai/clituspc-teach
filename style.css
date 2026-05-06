@@ -243,13 +243,21 @@ body {
 }
 
 /* ── TECH STACK ── */
-.tech-grid { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+.tech-categories { display: flex; flex-direction: column; gap: 36px; }
+.tech-category {}
+.tech-cat-label {
+  font-size: 13px; font-weight: 700; letter-spacing: 1px;
+  color: var(--blue-light);
+  margin-bottom: 14px;
+  text-transform: uppercase;
+}
+.tech-grid { display: flex; flex-wrap: wrap; gap: 10px; }
 .tech-item {
   background: var(--dark2);
   border: 1px solid var(--border);
   color: rgba(255,255,255,0.7);
-  font-size: 14px; font-weight: 600;
-  padding: 10px 20px; border-radius: 10px;
+  font-size: 13px; font-weight: 600;
+  padding: 8px 16px; border-radius: 8px;
   transition: all 0.2s;
 }
 .tech-item:hover {
