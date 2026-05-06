@@ -251,3 +251,24 @@ function toggleFaq(btn) {
   document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
   if (!isOpen) item.classList.add('open');
 }
+
+// Back to top
+const backToTop = document.getElementById('backToTop');
+window.addEventListener('scroll', () => {
+  backToTop.classList.toggle('visible', window.scrollY > 400);
+});
+backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+// Newsletter form
+document.getElementById('newsletterForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const btn = e.target.querySelector('.btn-newsletter');
+  const input = e.target.querySelector('input');
+  btn.textContent = '✓ Đã đăng ký!';
+  btn.style.background = '#16a34a';
+  input.value = '';
+  setTimeout(() => {
+    btn.textContent = 'Đăng ký';
+    btn.style.background = '';
+  }, 3000);
+});
