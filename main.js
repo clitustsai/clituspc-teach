@@ -66,9 +66,9 @@ const demos = {
         </div>
         <table class="demo-table"><thead><tr><th>Mã đơn</th><th>Khách hàng</th><th>Sản phẩm</th><th>Tổng tiền</th><th>Trạng thái</th></tr></thead>
         <tbody>
-          <tr><td>#DH00142</td><td>Nguyễn Văn A</td><td>iPhone 15 Pro</td><td>₫ 28,990,000</td><td><span class="demo-badge green">Đã giao</span></td></tr>
-          <tr><td>#DH00141</td><td>Trần Thị B</td><td>MacBook Air M2</td><td>₫ 32,500,000</td><td><span class="demo-badge blue">Đang giao</span></td></tr>
-          <tr><td>#DH00140</td><td>Lê Văn C</td><td>AirPods Pro</td><td>₫ 6,490,000</td><td><span class="demo-badge yellow">Chờ xác nhận</span></td></tr>
+          <tr><td>#DH00142</td><td>Nguyễn Minh Tuấn</td><td>iPhone 15 Pro</td><td>₫ 28,990,000</td><td><span class="demo-badge green">Đã giao</span></td></tr>
+          <tr><td>#DH00141</td><td>Trần Thị Lan Anh</td><td>MacBook Air M2</td><td>₫ 32,500,000</td><td><span class="demo-badge blue">Đang giao</span></td></tr>
+          <tr><td>#DH00140</td><td>Lê Quốc Hùng</td><td>AirPods Pro</td><td>₫ 6,490,000</td><td><span class="demo-badge yellow">Chờ xác nhận</span></td></tr>
         </tbody></table>
       </div></div>`
   },
@@ -104,8 +104,8 @@ const demos = {
         </div>
         <table class="demo-table"><thead><tr><th>Đơn hàng</th><th>Món ăn</th><th>Tài xế</th><th>Khoảng cách</th><th>Trạng thái</th></tr></thead>
         <tbody>
-          <tr><td>#F0892</td><td>Bún bò Huế x2</td><td>Minh Tuấn</td><td>1.2 km</td><td><span class="demo-badge blue">Đang giao</span></td></tr>
-          <tr><td>#F0891</td><td>Cơm tấm sườn x1</td><td>Hoàng Nam</td><td>0.8 km</td><td><span class="demo-badge green">Đã giao</span></td></tr>
+          <tr><td>#F0892</td><td>Bún bò Huế x2</td><td>Phạm Văn Đức</td><td>1.2 km</td><td><span class="demo-badge blue">Đang giao</span></td></tr>
+          <tr><td>#F0891</td><td>Cơm tấm sườn x1</td><td>Nguyễn Thanh Bình</td><td>0.8 km</td><td><span class="demo-badge green">Đã giao</span></td></tr>
           <tr><td>#F0890</td><td>Phở bò tái x3</td><td>Đang tìm</td><td>2.1 km</td><td><span class="demo-badge yellow">Chờ tài xế</span></td></tr>
         </tbody></table>
       </div></div>`
@@ -142,9 +142,9 @@ const demos = {
         </div>
         <table class="demo-table"><thead><tr><th>Bệnh nhân</th><th>Bác sĩ</th><th>Chuyên khoa</th><th>Giờ hẹn</th><th>Trạng thái</th></tr></thead>
         <tbody>
-          <tr><td>Nguyễn Thị Lan</td><td>BS. Minh Khoa</td><td>Nội tổng quát</td><td>08:30</td><td><span class="demo-badge green">Đã khám</span></td></tr>
-          <tr><td>Trần Văn Bình</td><td>BS. Thu Hà</td><td>Tim mạch</td><td>09:00</td><td><span class="demo-badge blue">Đang khám</span></td></tr>
-          <tr><td>Lê Minh Châu</td><td>BS. Quốc Hùng</td><td>Nhi khoa</td><td>09:30</td><td><span class="demo-badge yellow">Chờ khám</span></td></tr>
+          <tr><td>Nguyễn Thị Lan Hương</td><td>BS. Minh Khoa</td><td>Nội tổng quát</td><td>08:30</td><td><span class="demo-badge green">Đã khám</span></td></tr>
+          <tr><td>Trần Văn Bình Minh</td><td>BS. Thu Hà</td><td>Tim mạch</td><td>09:00</td><td><span class="demo-badge blue">Đang khám</span></td></tr>
+          <tr><td>Lê Thị Minh Châu</td><td>BS. Quốc Hùng</td><td>Nhi khoa</td><td>09:30</td><td><span class="demo-badge yellow">Chờ khám</span></td></tr>
         </tbody></table>
       </div></div>`
   },
@@ -180,8 +180,8 @@ const demos = {
         </div>
         <table class="demo-table"><thead><tr><th>Phòng</th><th>Khách hàng</th><th>Check-in</th><th>Check-out</th><th>Trạng thái</th></tr></thead>
         <tbody>
-          <tr><td>Deluxe 201</td><td>Nguyễn Hoàng</td><td>06/05/2025</td><td>08/05/2025</td><td><span class="demo-badge blue">Đang ở</span></td></tr>
-          <tr><td>Suite 301</td><td>Trần Gia Bảo</td><td>07/05/2025</td><td>10/05/2025</td><td><span class="demo-badge yellow">Sắp đến</span></td></tr>
+          <tr><td>Deluxe 201</td><td>Nguyễn Hoàng Phúc</td><td>06/05/2025</td><td>08/05/2025</td><td><span class="demo-badge blue">Đang ở</span></td></tr>
+          <tr><td>Suite 301</td><td>Trần Gia Bảo Châu</td><td>07/05/2025</td><td>10/05/2025</td><td><span class="demo-badge yellow">Sắp đến</span></td></tr>
           <tr><td>Standard 105</td><td>—</td><td>—</td><td>—</td><td><span class="demo-badge green">Trống</span></td></tr>
         </tbody></table>
       </div></div>`
