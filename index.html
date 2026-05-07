@@ -1099,27 +1099,27 @@
           <div class="chatbot-svc-card" onclick="consultService('website-ban-hang')">
             <span class="svc-icon">🛒</span>
             <strong>Website bán hàng</strong>
-            <span>Từ 8 triệu</span>
+            
           </div>
           <div class="chatbot-svc-card" onclick="consultService('portfolio')">
             <span class="svc-icon">🎨</span>
             <strong>Portfolio / Giới thiệu</strong>
-            <span>Từ 5 triệu</span>
+            
           </div>
           <div class="chatbot-svc-card" onclick="consultService('landing-page')">
             <span class="svc-icon">🚀</span>
             <strong>Landing Page</strong>
-            <span>Từ 3 triệu</span>
+            
           </div>
           <div class="chatbot-svc-card" onclick="consultService('app-di-dong')">
             <span class="svc-icon">📱</span>
             <strong>App Di Động</strong>
-            <span>Từ 15 triệu</span>
+            
           </div>
           <div class="chatbot-svc-card" onclick="consultService('ai-chatbot')">
             <span class="svc-icon">🤖</span>
             <strong>AI Chatbot</strong>
-            <span>Báo giá theo yêu cầu</span>
+            
           </div>
           <div class="chatbot-svc-card" onclick="consultService('erp-crm')">
             <span class="svc-icon">⚙️</span>
@@ -1129,12 +1129,12 @@
           <div class="chatbot-svc-card" onclick="consultService('vps-hosting')">
             <span class="svc-icon">☁️</span>
             <strong>VPS & Hosting</strong>
-            <span>Từ 300k/tháng</span>
+            
           </div>
           <div class="chatbot-svc-card" onclick="consultService('seo')">
             <span class="svc-icon">📈</span>
             <strong>SEO & Marketing</strong>
-            <span>Từ 3 triệu/tháng</span>
+            
           </div>
         </div>
         <div id="svcResult" class="chatbot-svc-result" style="display:none"></div>
@@ -1252,16 +1252,24 @@
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ messages: chatMessages })
     })
-    .then(function(r){ return r.json(); })
-    .then(function(d){
+    .then(function(r){
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return r.text();
+    })
+    .then(function(text){
       removeTyping();
-      var reply = d.reply || 'Xin lỗi, có lỗi xảy ra. Liên hệ <a href="tel:0906857331" style="color:#3b82f6">0906 857 331</a>.';
-      appendMessage('bot', reply);
-      chatMessages.push({ role: 'assistant', content: reply });
+      try {
+        var d = JSON.parse(text);
+        var reply = d.reply || 'Xin lỗi, tôi không thể trả lời lúc này.';
+        appendMessage('bot', reply);
+        chatMessages.push({ role: 'assistant', content: reply });
+      } catch(e) {
+        appendMessage('bot', 'Lỗi xử lý phản hồi. Vui lòng thử lại hoặc liên hệ <a href="tel:0906857331" style="color:#3b82f6">0906 857 331</a>.');
+      }
     })
     .catch(function(e){
       removeTyping();
-      appendMessage('bot', 'Lỗi: ' + (e && e.message ? e.message : 'Không thể kết nối') + '. Liên hệ <a href="tel:0906857331" style="color:#3b82f6">0906 857 331</a>.');
+      appendMessage('bot', 'Không thể kết nối. Vui lòng thử lại hoặc liên hệ <a href="tel:0906857331" style="color:#3b82f6">0906 857 331</a>.');
     })
     .finally(function(){ btn.disabled = false; input.disabled = false; input.focus(); });
   }
