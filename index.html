@@ -1127,7 +1127,7 @@
   function toggleBubbleChat(){bubbleOpen=!bubbleOpen;document.getElementById('aiBubbleChat').classList.toggle('open',bubbleOpen);document.getElementById('bubbleIconOpen').style.display=bubbleOpen?'none':'block';document.getElementById('bubbleIconClose').style.display=bubbleOpen?'block':'none';var b=document.querySelector('.ai-bubble-badge');if(b)b.style.display='none';if(bubbleOpen)document.getElementById('bubbleInput').focus();}
   function closeBubbleChat(){bubbleOpen=false;document.getElementById('aiBubbleChat').classList.remove('open');document.getElementById('bubbleIconOpen').style.display='block';document.getElementById('bubbleIconClose').style.display='none';}
 
-  var bubbleAnswers={'Clitus PC làm dịch vụ gì?':'Clitus PC cung cấp: Thiết kế Website, App Di Động, ERP/CRM, Cloud & DevOps, AI & Chatbot, VPS & Hosting. Bạn quan tâm dịch vụ nào?','Quy trình làm việc?':'Quy trình 4 bước: 1. Tiếp nhận yêu cầu → 2. Tư vấn & báo giá → 3. Triển khai Agile → 4. Bàn giao & bảo trì.','Liên hệ tư vấn':'Hotline: <a href="tel:0906857331" style="color:#3b82f6">0906 857 331</a> | Email: contact@clituspc.vn | Tư vấn miễn phí 24/7!'};
+  var bubbleAnswers={'Clitus PC làm dịch vụ gì?':'Clitus PC cung cấp: Thiết kế Website, App Di Động, ERP/CRM, Cloud & DevOps, AI & Chatbot, VPS & Hosting. Bạn quan tâm dịch vụ nào?','Quy trình làm việc?':'Quy trình 4 bước: 1. Tiếp nhận yêu cầu → 2. Tư vấn & báo giá → 3. Triển khai Agile → 4. Bàn giao & bảo trì.','Liên hệ tư vấn':'Hotline: <a href="tel:0906857331" style="color:#3b82f6">0906 857 331</a> | Email: infoclituspc@gmail.com | Tư vấn miễn phí 24/7!'};
 
   function bubbleAsk(text){var qr=document.getElementById('bubbleQuick');if(qr)qr.remove();addBubbleMsg('user',text);var ans=bubbleAnswers[text]||getFallbackReply(text);setTimeout(function(){addBubbleMsg('bot',ans);},600);}
 
@@ -1154,7 +1154,7 @@
     if(l.includes('giá')||l.includes('bao nhiêu'))return 'Gọi <a href="tel:0906857331" style="color:#3b82f6">0906 857 331</a> để được báo giá miễn phí trong 24h!';
     if(l.includes('ai')||l.includes('chatbot'))return 'Clitus PC tích hợp AI chatbot và tự động hóa quy trình. Liên hệ để demo miễn phí!';
     if(l.includes('vps')||l.includes('hosting'))return 'Dịch vụ VPS & Hosting tốc độ cao, uptime 99.9%. Gọi <a href="tel:0906857331" style="color:#3b82f6">0906 857 331</a>!';
-    return 'Hotline: <a href="tel:0906857331" style="color:#3b82f6">0906 857 331</a> | Email: contact@clituspc.vn | Tư vấn miễn phí 24/7!';
+    return 'Hotline: <a href="tel:0906857331" style="color:#3b82f6">0906 857 331</a> | Email: infoclituspc@gmail.com | Tư vấn miễn phí 24/7!';
   }
 
   function addBubbleMsg(role,html){var c=document.getElementById('bubbleMsgs'),div=document.createElement('div');div.className='bm '+role;div.innerHTML='<div class="bm-bubble">'+html+'</div>';c.appendChild(div);c.scrollTop=c.scrollHeight;}
