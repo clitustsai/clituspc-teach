@@ -991,3 +991,251 @@ function typewriterEffect(el, text, speed = 18) {
     addFeedItem();
   }
 })();
+
+// ── AI SALES AGENT ──
+(function() {
+  var salesStep = 0;
+  var salesData = {};
+  var salesStarted = false;
+
+  // Sales conversation flow
+  var flow = [
+    // Step 0: Greeting
+    {
+      stage: 'Chào hỏi', stageNum: 1, progress: 20,
+      luna: 'Xin chào! 👋 Tôi là <strong>Luna</strong>, chuyên viên tư vấn AI của <strong>Clitus PC</strong>.\n\nTôi thấy bạn đang tìm hiểu về giải pháp công nghệ. Để tư vấn chính xác nhất, cho tôi hỏi — bạn đang cần giải pháp gì?',
+      replies: ['Tôi cần làm website', 'Tôi cần app di động', 'Tôi cần phần mềm quản lý', 'Tôi cần tư vấn AI']
+    },
+    // Step 1: Discover need
+    {
+      stage: 'Khám phá nhu cầu', stageNum: 2, progress: 40,
+      luna: function(choice) {
+        var map = {
+          'Tôi cần làm website': 'Tuyệt vời! Website là nền tảng số quan trọng nhất. 🌐\n\nĐể tư vấn đúng gói, cho tôi biết — <strong>mục tiêu chính</strong> của website là gì?',
+          'Tôi cần app di động': 'App di động giúp bạn tiếp cận khách hàng 24/7! 📱\n\nBạn muốn app cho <strong>nền tảng nào</strong>?',
+          'Tôi cần phần mềm quản lý': 'Phần mềm quản lý giúp tăng hiệu suất lên 3-5 lần! ⚙️\n\nDoanh nghiệp bạn cần quản lý <strong>lĩnh vực nào</strong>?',
+          'Tôi cần tư vấn AI': 'AI đang thay đổi cách kinh doanh hoàn toàn! 🤖\n\nBạn muốn ứng dụng AI vào <strong>mảng nào</strong> của doanh nghiệp?'
+        };
+        return map[choice] || 'Rất hay! Cho tôi hỏi thêm để tư vấn chính xác hơn nhé.';
+      },
+      repliesMap: {
+        'Tôi cần làm website': ['Bán hàng online', 'Giới thiệu công ty', 'Landing page quảng cáo', 'Blog / Tin tức'],
+        'Tôi cần app di động': ['iOS & Android', 'Chỉ Android', 'Chỉ iOS', 'Web App (PWA)'],
+        'Tôi cần phần mềm quản lý': ['Quản lý bán hàng', 'Quản lý nhân sự', 'Quản lý kho', 'CRM khách hàng'],
+        'Tôi cần tư vấn AI': ['Chatbot tư vấn', 'Phân tích dữ liệu', 'Tự động hóa quy trình', 'AI Marketing']
+      }
+    },
+    // Step 2: Consult
+    {
+      stage: 'Tư vấn', stageNum: 3, progress: 60,
+      luna: function(prev, choice) {
+        return '✅ Hiểu rồi! Dựa trên nhu cầu của bạn, tôi đề xuất:\n\n<strong>Gói phù hợp nhất:</strong> ' + getSuggestedPackage(prev, choice) + '\n\n<strong>Thời gian:</strong> ' + getTimeline(prev) + '\n<strong>Bao gồm:</strong> ' + getIncludes(prev, choice) + '\n\nBạn có muốn tìm hiểu thêm về gói này không?';
+      },
+      replies: ['Có, tôi muốn biết thêm', 'Có gói nào khác không?', 'Tôi muốn xem demo', 'Nghe có vẻ phù hợp!']
+    },
+    // Step 3: Upsell
+    {
+      stage: 'Upsell', stageNum: 4, progress: 80,
+      luna: function(choice) {
+        var upsells = {
+          'Có, tôi muốn biết thêm': '🎯 Tuyệt! Ngoài gói cơ bản, nhiều khách hàng của chúng tôi còn chọn thêm:\n\n🤖 <strong>Tích hợp AI Chatbot</strong> — tự động tư vấn khách 24/7\n📈 <strong>Gói SEO 3 tháng</strong> — lên top Google nhanh hơn\n📊 <strong>Analytics Dashboard</strong> — theo dõi hiệu quả realtime\n\nThêm các tính năng này giúp ROI tăng 3-5 lần. Bạn quan tâm tính năng nào?',
+          'Có gói nào khác không?': '💡 Tất nhiên! Chúng tôi có 3 gói:\n\n⭐ <strong>Starter</strong> — Phù hợp startup, bàn giao nhanh\n🚀 <strong>Professional</strong> — Đầy đủ tính năng, tối ưu SEO\n💎 <strong>Enterprise</strong> — Tùy chỉnh hoàn toàn, hỗ trợ 24/7\n\nGói Professional được 70% khách hàng lựa chọn vì tính năng tốt nhất. Bạn muốn tư vấn gói nào?',
+          'Tôi muốn xem demo': '🎬 Tuyệt vời! Chúng tôi có demo trực tiếp cho bạn xem sản phẩm thực tế.\n\nNgoài ra, khi đặt lịch demo, bạn sẽ nhận được:\n✅ Báo giá chi tiết miễn phí\n✅ Tư vấn 1-1 với chuyên gia\n✅ Roadmap triển khai cụ thể\n\nBạn muốn đặt lịch demo vào thời gian nào?',
+          'Nghe có vẻ phù hợp!': '🎉 Tuyệt vời! Bạn đã chọn đúng hướng rồi!\n\nĐể đảm bảo dự án thành công nhất, tôi khuyên bạn nên thêm:\n🔒 <strong>Gói bảo trì 6 tháng</strong> — đảm bảo hệ thống luôn ổn định\n📱 <strong>Responsive mobile</strong> — 70% user dùng điện thoại\n\nChỉ cần thêm một chút, hiệu quả tăng gấp đôi. Bạn muốn tôi lên báo giá tổng thể không?'
+        };
+        return upsells[choice] || upsells['Nghe có vẻ phù hợp!'];
+      },
+      replies: ['Tôi muốn gói Professional', 'Thêm AI Chatbot', 'Đặt lịch demo ngay', 'Tôi muốn báo giá tổng thể']
+    },
+    // Step 4: Close
+    {
+      stage: 'Chốt đơn', stageNum: 5, progress: 100,
+      luna: '🎊 <strong>Tuyệt vời!</strong> Bạn đã đưa ra quyết định đúng đắn!\n\nĐể bắt đầu ngay, tôi sẽ kết nối bạn với chuyên gia của Clitus PC:\n\n📞 <strong>Hotline:</strong> <a href="tel:0906857331" style="color:#3b82f6">0906 857 331</a>\n📧 <strong>Email:</strong> infoclituspc@gmail.com\n\n⚡ Phản hồi trong <strong>30 phút</strong> — Tư vấn hoàn toàn <strong>miễn phí</strong>!\n\nCảm ơn bạn đã tin tưởng Clitus PC! 🙏',
+      replies: ['Gọi ngay cho tôi', 'Tôi sẽ điền form liên hệ', 'Cảm ơn Luna!']
+    }
+  ];
+
+  function getSuggestedPackage(service, type) {
+    var map = {
+      'Bán hàng online': 'E-Commerce Pro — Giỏ hàng, thanh toán online, quản lý đơn hàng',
+      'Giới thiệu công ty': 'Corporate Website — Thiết kế chuyên nghiệp, chuẩn SEO',
+      'Landing page quảng cáo': 'Landing Page Conversion — Tối ưu chuyển đổi, A/B testing',
+      'iOS & Android': 'Cross-Platform App — Flutter, một code chạy cả iOS & Android',
+      'Quản lý bán hàng': 'POS System — Bán hàng, kho, báo cáo realtime',
+      'Chatbot tư vấn': 'AI Chatbot Enterprise — Tích hợp website + Zalo + Facebook'
+    };
+    return map[type] || 'Custom Solution — Thiết kế riêng theo yêu cầu';
+  }
+
+  function getTimeline(service) {
+    var map = {
+      'Tôi cần làm website': '7-21 ngày làm việc',
+      'Tôi cần app di động': '30-90 ngày',
+      'Tôi cần phần mềm quản lý': '30-60 ngày',
+      'Tôi cần tư vấn AI': '14-30 ngày'
+    };
+    return map[service] || '14-30 ngày';
+  }
+
+  function getIncludes(service, type) {
+    return 'Thiết kế UI/UX · Responsive · SEO cơ bản · Bàn giao source code · Hỗ trợ 3 tháng';
+  }
+
+  // Init sales chat when section visible
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting && !salesStarted) {
+        salesStarted = true;
+        // Animate stats
+        setTimeout(function() {
+          animSalesNum('salesDeals', 24, 2000);
+          animSalesNum2('salesRate', 68, 2000);
+          animSalesNum('salesTime', 2, 1000);
+        }, 500);
+        // Start conversation
+        setTimeout(function() { startSalesConversation(); }, 800);
+        obs.disconnect();
+      }
+    });
+  }, { threshold: 0.3 });
+  var sec = document.getElementById('ai-sales');
+  if (sec) obs.observe(sec);
+
+  function animSalesNum(id, target, dur) {
+    var el = document.getElementById(id); if (!el) return;
+    var s = Date.now();
+    var raf = function() {
+      var v = Math.min(Math.round(((Date.now()-s)/dur)*target), target);
+      el.textContent = v;
+      if (v < target) requestAnimationFrame(raf);
+    };
+    requestAnimationFrame(raf);
+  }
+  function animSalesNum2(id, target, dur) {
+    var el = document.getElementById(id); if (!el) return;
+    var s = Date.now();
+    var raf = function() {
+      var v = Math.min(Math.round(((Date.now()-s)/dur)*target), target);
+      el.textContent = v + '%';
+      if (v < target) requestAnimationFrame(raf);
+    };
+    requestAnimationFrame(raf);
+  }
+
+  function startSalesConversation() {
+    salesStep = 0;
+    salesData = {};
+    var msgs = document.getElementById('salesMessages');
+    if (msgs) msgs.innerHTML = '';
+    showSalesStep(0);
+  }
+
+  function showSalesStep(stepIdx) {
+    var step = flow[stepIdx];
+    if (!step) return;
+    updateSalesProgress(step);
+    var lunaText = typeof step.luna === 'function'
+      ? step.luna(salesData.choice0, salesData.choice1)
+      : step.luna;
+    addSalesMsg('luna', lunaText, function() {
+      var replies = step.replies;
+      if (step.repliesMap && salesData.choice0) {
+        replies = step.repliesMap[salesData.choice0] || step.replies;
+      }
+      if (replies) showSalesReplies(replies, stepIdx);
+    });
+  }
+
+  function showSalesReplies(replies, stepIdx) {
+    var container = document.getElementById('salesQuickReplies');
+    if (!container) return;
+    container.innerHTML = '';
+    replies.forEach(function(r) {
+      var btn = document.createElement('button');
+      btn.className = 'asc-reply-btn';
+      btn.textContent = r;
+      btn.onclick = function() {
+        container.innerHTML = '';
+        addSalesMsg('user', r);
+        if (stepIdx === 0) salesData.choice0 = r;
+        if (stepIdx === 1) salesData.choice1 = r;
+        salesStep = stepIdx + 1;
+        if (r === 'Gọi ngay cho tôi') {
+          window.location.href = 'tel:0906857331';
+        } else if (r === 'Tôi sẽ điền form liên hệ') {
+          document.querySelector('#contact').scrollIntoView({behavior:'smooth'});
+        } else {
+          setTimeout(function() { showSalesStep(salesStep); }, 800);
+        }
+      };
+      container.appendChild(btn);
+    });
+  }
+
+  window.salesReply = function() {
+    var input = document.getElementById('salesInput');
+    var text = input.value.trim(); if (!text) return;
+    input.value = '';
+    var container = document.getElementById('salesQuickReplies');
+    if (container) container.innerHTML = '';
+    addSalesMsg('user', text);
+    salesStep = Math.min(salesStep + 1, flow.length - 1);
+    setTimeout(function() { showSalesStep(salesStep); }, 800);
+  };
+
+  function addSalesMsg(role, html, cb) {
+    var container = document.getElementById('salesMessages');
+    if (!container) return;
+    if (role === 'luna') {
+      // Show typing first
+      var typing = document.createElement('div');
+      typing.className = 'asc-msg luna';
+      typing.id = 'salesTyping';
+      typing.innerHTML = '<div class="asc-bubble"><div class="bm-typing"><span></span><span></span><span></span></div></div>';
+      container.appendChild(typing);
+      container.scrollTop = container.scrollHeight;
+      // Blink eyes while typing
+      var eyeL = document.getElementById('salesEyeL');
+      var eyeR = document.getElementById('salesEyeR');
+      setTimeout(function() {
+        var t = document.getElementById('salesTyping');
+        if (t) t.remove();
+        var div = document.createElement('div');
+        div.className = 'asc-msg luna';
+        div.innerHTML = '<div class="asc-luna-avatar">L</div><div class="asc-bubble">' + html.replace(/\n/g,'<br>') + '</div>';
+        container.appendChild(div);
+        container.scrollTop = container.scrollHeight;
+        if (cb) setTimeout(cb, 400);
+      }, 1000 + html.length * 8);
+    } else {
+      var div = document.createElement('div');
+      div.className = 'asc-msg user';
+      div.innerHTML = '<div class="asc-bubble">' + html + '</div>';
+      container.appendChild(div);
+      container.scrollTop = container.scrollHeight;
+    }
+  }
+
+  function updateSalesProgress(step) {
+    var fill = document.getElementById('salesProgressFill');
+    var label = document.getElementById('salesProgressLabel');
+    var badge = document.getElementById('salesStageBadge');
+    if (fill) fill.style.width = step.progress + '%';
+    if (label) label.textContent = 'Bước ' + step.stageNum + '/5';
+    if (badge) badge.textContent = step.stage;
+    for (var i = 1; i <= 5; i++) {
+      var el = document.getElementById('stage' + i);
+      if (el) {
+        el.classList.toggle('active', i <= step.stageNum);
+        el.classList.toggle('done', i < step.stageNum);
+      }
+    }
+  }
+
+  // Blink sales avatar eyes
+  setInterval(function() {
+    var eyes = document.querySelectorAll('.asa-eye');
+    eyes.forEach(function(e) { e.style.transform = 'scaleY(0.1)'; });
+    setTimeout(function() { eyes.forEach(function(e) { e.style.transform = 'scaleY(1)'; }); }, 100);
+  }, 4000);
+})();

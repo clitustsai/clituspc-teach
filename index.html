@@ -1207,6 +1207,101 @@
     </div>
   </section>
 
+    <!-- AI SALES AGENT -->
+  <section class="ai-sales-section section" id="ai-sales">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-tag ai-glow-tag">&#10022; AI Sales Agent</p>
+        <h2>Nhân viên bán hàng AI tự động</h2>
+        <p class="section-desc">Luna AI — chào khách, tư vấn nhu cầu, upsell và chốt đơn như sales thật. Hoạt động 24/7 không nghỉ.</p>
+      </div>
+      <div class="ai-sales-wrap">
+
+        <!-- Sales Agent Avatar -->
+        <div class="ai-sales-agent">
+          <div class="ai-sales-avatar-wrap">
+            <div class="ai-sales-avatar">
+              <div class="asa-glow-ring"></div>
+              <div class="asa-glow-ring asa-glow-ring--2"></div>
+              <div class="asa-face">
+                <div class="asa-hair"></div>
+                <div class="asa-eyes">
+                  <div class="asa-eye" id="salesEyeL"><div class="asa-pupil"></div></div>
+                  <div class="asa-eye" id="salesEyeR"><div class="asa-pupil"></div></div>
+                </div>
+                <div class="asa-smile"></div>
+              </div>
+              <div class="asa-body">
+                <div class="asa-badge">SALES AI</div>
+              </div>
+            </div>
+            <div class="asa-name">
+              <strong>Luna AI</strong>
+              <span><span class="ai-status-dot"></span> Sẵn sàng tư vấn</span>
+            </div>
+          </div>
+          <div class="ai-sales-stats">
+            <div class="ass-item">
+              <span class="ass-num" id="salesDeals">0</span>
+              <span>Đơn chốt hôm nay</span>
+            </div>
+            <div class="ass-item">
+              <span class="ass-num" id="salesRate">0%</span>
+              <span>Tỷ lệ chuyển đổi</span>
+            </div>
+            <div class="ass-item">
+              <span class="ass-num" id="salesTime">0s</span>
+              <span>Thời gian phản hồi</span>
+            </div>
+          </div>
+          <div class="ai-sales-features">
+            <div class="asf-item"><span>&#128075;</span> Chào hỏi cá nhân hóa</div>
+            <div class="asf-item"><span>&#128269;</span> Phân tích nhu cầu</div>
+            <div class="asf-item"><span>&#128200;</span> Upsell thông minh</div>
+            <div class="asf-item"><span>&#9989;</span> Chốt đơn tự động</div>
+            <div class="asf-item"><span>&#128222;</span> Kết nối hotline</div>
+            <div class="asf-item"><span>&#128337;</span> Hoạt động 24/7</div>
+          </div>
+        </div>
+
+        <!-- Sales Chat Demo -->
+        <div class="ai-sales-chat">
+          <div class="asc-header">
+            <div class="asc-avatar">L</div>
+            <div>
+              <strong>Luna AI · Sales Consultant</strong>
+              <span><span class="ai-status-dot"></span> Đang tư vấn</span>
+            </div>
+            <div class="asc-stage-badge" id="salesStageBadge">Khám phá nhu cầu</div>
+          </div>
+          <div class="asc-messages" id="salesMessages"></div>
+          <div class="asc-quick-replies" id="salesQuickReplies"></div>
+          <div class="asc-input-row">
+            <input type="text" id="salesInput" placeholder="Nhập câu trả lời..." onkeydown="if(event.key==='Enter')salesReply()" />
+            <button onclick="salesReply()">&#10148;</button>
+          </div>
+          <div class="asc-progress-bar">
+            <div class="asc-progress-label">
+              <span>Tiến trình tư vấn</span>
+              <span id="salesProgressLabel">Bước 1/5</span>
+            </div>
+            <div class="asc-progress-track">
+              <div class="asc-progress-fill" id="salesProgressFill" style="width:20%"></div>
+            </div>
+            <div class="asc-stages">
+              <span class="asc-stage active" id="stage1">Chào hỏi</span>
+              <span class="asc-stage" id="stage2">Nhu cầu</span>
+              <span class="asc-stage" id="stage3">Tư vấn</span>
+              <span class="asc-stage" id="stage4">Upsell</span>
+              <span class="asc-stage" id="stage5">Chốt đơn</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
     <!-- AI WEBSITE GENERATOR -->
   <section class="ai-gen-section section" id="ai-generator">
     <div class="container">
