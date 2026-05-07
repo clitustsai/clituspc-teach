@@ -681,7 +681,7 @@ function typewriterEffect(el, text, speed = 18) {
       minTime: 4000,
       icon: '✦',
       title: 'Muốn có website AI ngay hôm nay?',
-      desc: 'Clitus PC làm website thật chỉ từ 5 triệu, bàn giao trong 7 ngày.',
+      desc: 'Clitus PC làm website thật chỉ .',
       cta: 'Báo giá ngay',
       link: '#contact'
     },
