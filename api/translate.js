@@ -1,21 +1,18 @@
 const https = require('https');
 
-function httpsPost(url, data, headers) {
+function httpsPost(hostname, path, data) {
   return new Promise((resolve, reject) => {
     const body = JSON.stringify(data);
-    const urlObj = new URL(url);
     const options = {
-      hostname: urlObj.hostname,
-      path: urlObj.pathname,
-      method: 'POST',
-      headers: { ...headers, 'Content-Length': Buffer.byteLength(body) },
+      hostname, path, method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(body) },
     };
     const req = https.request(options, (res) => {
       let raw = '';
-      res.on('data', (chunk) => { raw += chunk; });
+      res.on('data', (c) => { raw += c; });
       res.on('end', () => {
         try { resolve({ status: res.statusCode, body: JSON.parse(raw) }); }
-        catch (e) { reject(new Error('JSON parse error')); }
+        catch (e) { reject(new Error('Parse error')); }
       });
     });
     req.on('error', reject);
@@ -32,40 +29,26 @@ module.exports = async (req, res) => {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
   const { text, targetLang } = req.body;
-  if (!text || !targetLang) return res.status(400).json({ error: 'Missing text or targetLang' });
+  if (!text || !targetLang) return res.status(400).json({ error: 'Missing params' });
 
-  const apiKey = process.env.OPENAI_API_KEY;
+  const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) return res.status(500).json({ error: 'API key not configured' });
+
+  const prompt = targetLang === 'en'
+    ? `Translate this Vietnamese text to English. Return ONLY the translation:\n${text}`
+    : `Translate this English text to Vietnamese. Return ONLY the translation:\n${text}`;
 
   try {
     const result = await httpsPost(
-      'https://api.openai.com/v1/chat/completions',
-      {
-        model: 'gpt-4o-mini',
-        messages: [
-          {
-            role: 'system',
-            content: `You are a professional translator. Translate to ${targetLang === 'en' ? 'English' : 'Vietnamese'}. Return ONLY the translated text.`
-          },
-          { role: 'user', content: text }
-        ],
-        max_tokens: 500,
-        temperature: 0.3,
-      },
-      {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${apiKey}`,
-      }
+      'generativelanguage.googleapis.com',
+      `/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`,
+      { contents: [{ role: 'user', parts: [{ text: prompt }] }], generationConfig: { maxOutputTokens: 500, temperature: 0.2 } }
     );
 
-    if (result.status !== 200) {
-      return res.status(500).json({ error: result.body?.error?.message || 'Translation failed' });
-    }
-
-    const translated = result.body?.choices?.[0]?.message?.content || text;
+    if (result.status !== 200) return res.status(500).json({ error: 'Translation failed' });
+    const translated = result.body?.candidates?.[0]?.content?.parts?.[0]?.text || text;
     return res.json({ translated });
   } catch (err) {
-    console.error(err.message);
-    return res.status(500).json({ error: 'Translation failed' });
+    return res.status(500).json({ error: err.message });
   }
 };
