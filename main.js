@@ -818,3 +818,176 @@ function typewriterEffect(el, text, speed = 18) {
     setTimeout(function() { if (popup.parentNode) popup.remove(); }, 15000);
   }
 })();
+
+// ── AI CODER TEAM ──
+(function() {
+  var feLines = [
+    '<span style="color:#a78bfa">import</span> React <span style="color:#a78bfa">from</span> <span style="color:#22c55e">\'react\'</span>',
+    '<span style="color:#a78bfa">const</span> <span style="color:#3b82f6">Hero</span> = () => {',
+    '  <span style="color:#a78bfa">return</span> (<span style="color:#f59e0b">&lt;div</span> <span style="color:#22c55e">className</span>=<span style="color:#22c55e">"hero"</span><span style="color:#f59e0b">&gt;</span>',
+    '    <span style="color:#f59e0b">&lt;h1&gt;</span>Clitus PC<span style="color:#f59e0b">&lt;/h1&gt;</span>',
+    '    <span style="color:#f59e0b">&lt;p&gt;</span>AI Solutions<span style="color:#f59e0b">&lt;/p&gt;</span>',
+    '  <span style="color:#f59e0b">&lt;/div&gt;</span>)',
+    '}',
+    '<span style="color:#a78bfa">export default</span> Hero'
+  ];
+  var beLines = [
+    '<span style="color:#a78bfa">const</span> express = <span style="color:#3b82f6">require</span>(<span style="color:#22c55e">\'express\'</span>)',
+    '<span style="color:#a78bfa">const</span> app = express()',
+    '<span style="color:#a78bfa">app</span>.<span style="color:#3b82f6">get</span>(<span style="color:#22c55e">\'/api/services\'</span>, (req, res) => {',
+    '  res.<span style="color:#3b82f6">json</span>({ services: [...] })',
+    '})',
+    '<span style="color:#a78bfa">app</span>.<span style="color:#3b82f6">listen</span>(<span style="color:#f59e0b">3000</span>)',
+    '<span style="color:#64748b">// Server running ✓</span>'
+  ];
+  var seoKeywords = ['clitus pc', 'thiết kế web', 'app mobile', 'AI chatbot', 'vps hosting', 'phần mềm erp'];
+  var mktPosts = [
+    '🚀 Clitus PC — Giải pháp công nghệ toàn diện cho doanh nghiệp Việt! Website · App · AI · Cloud. Liên hệ ngay để được tư vấn miễn phí! #CongNghe #AI #Website',
+    '💡 Bạn đang tìm đối tác công nghệ tin cậy? Clitus PC với 5+ năm kinh nghiệm, 50+ dự án thành công. Hãy để chúng tôi giúp bạn! #ClitusPC #Tech',
+    '🤖 AI không còn là tương lai — đó là hiện tại! Clitus PC tích hợp AI vào mọi sản phẩm. Chatbot · Analytics · Auto Content. #AI #Innovation'
+  ];
+
+  var started = false;
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting && !started) {
+        started = true;
+        startTeamAnimation();
+        obs.disconnect();
+      }
+    });
+  }, { threshold: 0.2 });
+  var sec = document.getElementById('ai-team');
+  if (sec) obs.observe(sec);
+
+  function startTeamAnimation() {
+    // FE: type code lines
+    typeCodeLines('feCode', feLines, 0);
+    animProgress('feBar', 'feProgress', 87, 3000);
+
+    // BE: type code lines with delay
+    setTimeout(function() { typeCodeLines('beCode', beLines, 0); }, 800);
+    animProgress('beBar', 'beProgress', 73, 3800);
+
+    // SEO: animate metrics
+    setTimeout(function() {
+      animNum('seoDA', 68, 2000);
+      animNum('seoKW', 142, 2500);
+      animNum('seoBL', 384, 3000);
+      animSeoKeywords();
+    }, 500);
+    animProgress('seoBar', 'seoProgress', 91, 4000);
+
+    // Marketing: type post
+    setTimeout(function() { typeMktPost(0); }, 1200);
+    animProgress('mktBar', 'mktProgress', 65, 5000);
+    setTimeout(function() {
+      animNum('mktLikes', 284, 3000);
+      animNum('mktComments', 47, 2500);
+      animNum('mktShares', 93, 2800);
+    }, 1500);
+
+    // Activity feed
+    startActivityFeed();
+  }
+
+  function typeCodeLines(elId, lines, idx) {
+    var el = document.getElementById(elId);
+    if (!el || idx >= lines.length) return;
+    var div = document.createElement('div');
+    div.className = 'ace-line';
+    div.innerHTML = '<span class="ace-ln">' + (idx + 1) + '</span>' + lines[idx];
+    el.appendChild(div);
+    setTimeout(function() { typeCodeLines(elId, lines, idx + 1); }, 300 + Math.random() * 200);
+  }
+
+  function animProgress(barId, labelId, target, duration) {
+    var bar = document.getElementById(barId);
+    var label = document.getElementById(labelId);
+    if (!bar || !label) return;
+    var start = Date.now();
+    var raf = function() {
+      var elapsed = Date.now() - start;
+      var pct = Math.min(Math.round((elapsed / duration) * target), target);
+      bar.style.width = pct + '%';
+      label.textContent = pct + '%';
+      if (pct < target) requestAnimationFrame(raf);
+    };
+    requestAnimationFrame(raf);
+  }
+
+  function animNum(id, target, duration) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    var start = Date.now();
+    var raf = function() {
+      var elapsed = Date.now() - start;
+      var val = Math.min(Math.round((elapsed / duration) * target), target);
+      el.textContent = val.toLocaleString();
+      if (val < target) requestAnimationFrame(raf);
+    };
+    requestAnimationFrame(raf);
+  }
+
+  function animSeoKeywords() {
+    var el = document.getElementById('seoKeywords');
+    if (!el) return;
+    seoKeywords.forEach(function(kw, i) {
+      setTimeout(function() {
+        var span = document.createElement('span');
+        span.className = 'seo-kw-tag';
+        span.textContent = kw;
+        el.appendChild(span);
+      }, i * 400);
+    });
+  }
+
+  var mktPostIdx = 0;
+  function typeMktPost(idx) {
+    var el = document.getElementById('mktPostText');
+    if (!el) return;
+    var text = mktPosts[idx % mktPosts.length];
+    el.textContent = '';
+    var i = 0;
+    var t = setInterval(function() {
+      el.textContent += text[i]; i++;
+      if (i >= text.length) {
+        clearInterval(t);
+        setTimeout(function() { typeMktPost(idx + 1); }, 5000);
+      }
+    }, 20);
+  }
+
+  var feedEvents = [
+    { agent: 'Alex AI', color: '#3b82f6', icon: '⚡', msg: 'Hoàn thành Hero component' },
+    { agent: 'Nova AI', color: '#a78bfa', icon: '✅', msg: 'API /services deployed' },
+    { agent: 'Sage AI', color: '#34d399', icon: '📈', msg: 'Tìm thấy 12 từ khóa tiềm năng' },
+    { agent: 'Max AI', color: '#fbbf24', icon: '🚀', msg: 'Post đạt 284 lượt thích' },
+    { agent: 'Alex AI', color: '#3b82f6', icon: '🎨', msg: 'Responsive mobile hoàn chỉnh' },
+    { agent: 'Nova AI', color: '#a78bfa', icon: '🔒', msg: 'Security audit passed' },
+    { agent: 'Sage AI', color: '#34d399', icon: '🔍', msg: 'Core Web Vitals: 98/100' },
+    { agent: 'Max AI', color: '#fbbf24', icon: '📊', msg: 'CTR tăng 34% so với tuần trước' },
+    { agent: 'Alex AI', color: '#3b82f6', icon: '💡', msg: 'Dark mode implemented' },
+    { agent: 'Nova AI', color: '#a78bfa', icon: '⚙️', msg: 'Database optimized: -40% query time' }
+  ];
+  var feedIdx = 0;
+  function startActivityFeed() {
+    var el = document.getElementById('teamFeed');
+    if (!el) return;
+    function addFeedItem() {
+      var ev = feedEvents[feedIdx % feedEvents.length];
+      feedIdx++;
+      var item = document.createElement('div');
+      item.className = 'atf-item';
+      item.innerHTML =
+        '<span class="atf-icon">' + ev.icon + '</span>' +
+        '<span class="atf-agent" style="color:' + ev.color + '">' + ev.agent + '</span>' +
+        '<span class="atf-msg">' + ev.msg + '</span>' +
+        '<span class="atf-time">vừa xong</span>';
+      el.insertBefore(item, el.firstChild);
+      if (el.children.length > 6) el.removeChild(el.lastChild);
+      setTimeout(addFeedItem, 2500 + Math.random() * 1500);
+    }
+    addFeedItem();
+  }
+})();

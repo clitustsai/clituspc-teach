@@ -2150,3 +2150,121 @@ body {
   transition: opacity 0.2s;
 }
 .app-predict-cta:hover { opacity: 0.9; }
+
+/* ══════════════════════════════════════
+   AI CODER TEAM
+══════════════════════════════════════ */
+.ai-team-section { background: var(--dark2); }
+.ai-team-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; margin-bottom: 24px; }
+
+.ai-agent-card {
+  background: var(--dark); border: 1px solid var(--border);
+  border-radius: 16px; padding: 20px;
+  position: relative; overflow: hidden;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.ai-agent-card:hover { transform: translateY(-3px); border-color: rgba(59,130,246,0.3); }
+.ai-agent-glow {
+  position: absolute; top: -30px; right: -30px;
+  width: 100px; height: 100px; border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--gc) 20%, transparent), transparent 70%);
+  pointer-events: none;
+}
+
+.ai-agent-header { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; }
+.ai-agent-avatar {
+  width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 800; color: #fff;
+  position: relative;
+  box-shadow: 0 0 16px rgba(59,130,246,0.3);
+}
+.ai-agent-status-dot {
+  position: absolute; bottom: 1px; right: 1px;
+  width: 10px; height: 10px; border-radius: 50%;
+  background: #22c55e; border: 2px solid var(--dark);
+  animation: aiPulse 1.5s infinite;
+}
+.ai-agent-header > div:nth-child(2) { flex: 1; min-width: 0; }
+.ai-agent-header strong { display: block; font-size: 13px; font-weight: 700; }
+.ai-agent-role { font-size: 11px; font-weight: 600; }
+.ai-agent-busy {
+  display: flex; align-items: center; gap: 5px;
+  font-size: 10px; color: rgba(255,255,255,0.5);
+  background: rgba(34,197,94,0.08); border: 1px solid rgba(34,197,94,0.2);
+  padding: 3px 8px; border-radius: 100px; white-space: nowrap;
+}
+.ai-busy-dot { width: 6px; height: 6px; border-radius: 50%; animation: aiPulse 1s infinite; flex-shrink: 0; }
+
+/* Code editor */
+.ai-agent-screen { margin-bottom: 14px; }
+.ai-code-editor {
+  background: #0d1117; border-radius: 8px; overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.06); min-height: 120px;
+}
+.ace-bar {
+  background: #161b22; padding: 6px 10px;
+  display: flex; align-items: center; gap: 5px;
+}
+.ace-dot { width: 10px; height: 10px; border-radius: 50%; }
+.ace-dot.r{background:#ef4444} .ace-dot.y{background:#f59e0b} .ace-dot.g{background:#22c55e}
+.ace-file { font-size: 11px; color: rgba(255,255,255,0.4); margin-left: 6px; font-family: monospace; }
+.ace-code { padding: 8px 10px; font-family: monospace; font-size: 11px; line-height: 1.6; }
+.ace-line { display: flex; gap: 10px; animation: fadeInLine 0.3s ease; }
+.ace-ln { color: rgba(255,255,255,0.2); min-width: 16px; text-align: right; user-select: none; }
+
+/* SEO panel */
+.ai-seo-panel { background: #0d1117; border-radius: 8px; padding: 12px; border: 1px solid rgba(255,255,255,0.06); min-height: 120px; }
+.seo-metric { display: flex; justify-content: space-between; align-items: center; padding: 4px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.seo-metric span { font-size: 11px; color: rgba(255,255,255,0.5); }
+.seo-metric strong { font-size: 14px; font-weight: 700; color: #34d399; font-family: monospace; }
+.seo-keywords { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px; }
+.seo-kw-tag {
+  background: rgba(5,150,105,0.15); border: 1px solid rgba(5,150,105,0.3);
+  color: #34d399; font-size: 10px; padding: 2px 8px; border-radius: 4px;
+  animation: fadeInLine 0.3s ease;
+}
+
+/* Marketing panel */
+.ai-mkt-panel { background: #0d1117; border-radius: 8px; padding: 12px; border: 1px solid rgba(255,255,255,0.06); min-height: 120px; }
+.mkt-post-header { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.mkt-fb-icon { width: 20px; height: 20px; background: #1877f2; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; color: #fff; }
+.mkt-post-header span:nth-child(2) { font-size: 11px; color: rgba(255,255,255,0.5); flex: 1; }
+.mkt-live-badge { background: rgba(239,68,68,0.2); border: 1px solid rgba(239,68,68,0.4); color: #ef4444; font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 4px; letter-spacing: 1px; }
+.mkt-post p { font-size: 11px; color: rgba(255,255,255,0.7); line-height: 1.5; margin-bottom: 8px; min-height: 48px; }
+.mkt-stats { display: flex; gap: 12px; font-size: 11px; color: rgba(255,255,255,0.4); }
+
+/* Skills */
+.ai-agent-skills { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 12px; }
+.ai-agent-skills span {
+  background: rgba(26,86,219,0.1); border: 1px solid rgba(26,86,219,0.2);
+  color: var(--blue-light); font-size: 10px; font-weight: 600;
+  padding: 2px 8px; border-radius: 4px;
+}
+
+/* Progress */
+.ai-agent-progress {}
+.aap-label { display: flex; justify-content: space-between; font-size: 11px; color: rgba(255,255,255,0.5); margin-bottom: 5px; }
+.aap-bar { height: 5px; background: rgba(255,255,255,0.06); border-radius: 3px; overflow: hidden; }
+.aap-fill { height: 100%; border-radius: 3px; transition: width 0.1s linear; }
+
+/* Activity Feed */
+.ai-team-feed {
+  background: var(--dark); border: 1px solid var(--border);
+  border-radius: 14px; padding: 18px;
+}
+.atf-header { display: flex; align-items: center; gap: 8px; margin-bottom: 14px; font-size: 14px; font-weight: 700; }
+.atf-list { display: flex; flex-direction: column; gap: 8px; }
+.atf-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 12px; background: rgba(255,255,255,0.03);
+  border-radius: 8px; font-size: 12px;
+  animation: fadeInLine 0.4s ease;
+}
+.atf-icon { font-size: 14px; flex-shrink: 0; }
+.atf-agent { font-weight: 700; flex-shrink: 0; }
+.atf-msg { flex: 1; color: rgba(255,255,255,0.65); }
+.atf-time { color: var(--gray); font-size: 10px; flex-shrink: 0; }
+
+@media (max-width: 1024px) { .ai-team-grid { grid-template-columns: repeat(2,1fr); } }
+@media (max-width: 640px) { .ai-team-grid { grid-template-columns: 1fr; } }
