@@ -1256,6 +1256,8 @@
     }, 600);
   }
 
+  var bubbleMsgHistory = [];
+
   function bubbleSend(){
     var input = document.getElementById('bubbleInput');
     var text = input.value.trim();
@@ -1263,18 +1265,46 @@
     var qr = document.getElementById('bubbleQuick');
     if (qr) qr.remove();
     input.value = '';
+    input.disabled = true;
     addBubbleMsg('user', text);
-    setTimeout(function(){
-      var lower = text.toLowerCase();
-      var reply;
-      if (lower.includes('website') || lower.includes('web')) reply = 'Clitus PC thiết kế website doanh nghiệp, e-commerce, landing page chuẩn SEO. Liên hệ <a href="tel:0906857331" style="color:#3b82f6">0906 857 331</a> để báo giá!';
-      else if (lower.includes('app') || lower.includes('mobile')) reply = 'Chúng tôi phát triển app iOS & Android với Flutter và React Native. Thời gian 1-3 tháng. Liên hệ để tư vấn miễn phí!';
-      else if (lower.includes('giá') || lower.includes('bao nhiêu') || lower.includes('chi phí')) reply = 'Giá phụ thuộc vào yêu cầu cụ thể. Gọi <a href="tel:0906857331" style="color:#3b82f6">0906 857 331</a> để được báo giá miễn phí trong 24h!';
-      else if (lower.includes('ai') || lower.includes('chatbot')) reply = 'Clitus PC tích hợp AI chatbot, phân tích dữ liệu và tự động hóa quy trình. Liên hệ để demo miễn phí!';
-      else if (lower.includes('liên hệ') || lower.includes('tư vấn')) reply = 'Hotline: <a href="tel:0906857331" style="color:#3b82f6">0906 857 331</a> | Email: contact@clituspc.vn | Tư vấn miễn phí 24/7!';
-      else reply = 'Cảm ơn bạn đã liên hệ! Để được hỗ trợ tốt nhất, gọi ngay <a href="tel:0906857331" style="color:#3b82f6">0906 857 331</a> hoặc để lại thông tin trong form liên hệ.';
+    bubbleMsgHistory.push({ role: 'user', content: text });
+
+    // Show typing
+    var container = document.getElementById('bubbleMsgs');
+    var typing = document.createElement('div');
+    typing.className = 'bm bot'; typing.id = 'bubbleTypingIndicator';
+    typing.innerHTML = '<div class="bm-bubble bm-typing"><span></span><span></span><span></span></div>';
+    container.appendChild(typing);
+    container.scrollTop = container.scrollHeight;
+
+    fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ messages: bubbleMsgHistory })
+    })
+    .then(function(r) { return r.json(); })
+    .then(function(d) {
+      var t = document.getElementById('bubbleTypingIndicator');
+      if (t) t.remove();
+      var reply = d.reply || getFallbackReply(text);
+      bubbleMsgHistory.push({ role: 'assistant', content: reply });
       addBubbleMsg('bot', reply);
-    }, 700);
+    })
+    .catch(function() {
+      var t = document.getElementById('bubbleTypingIndicator');
+      if (t) t.remove();
+      addBubbleMsg('bot', getFallbackReply(text));
+    })
+    .finally(function() { input.disabled = false; input.focus(); });
+  }
+
+  function getFallbackReply(text) {
+    var lower = text.toLowerCase();
+    if (lower.includes('website') || lower.includes('web')) return 'Clitus PC thiết kế website doanh nghiệp, e-commerce, landing page chuẩn SEO. Liên hệ <a href="tel:0906857331" style="color:#3b82f6">0906 857 331</a> để báo giá!';
+    if (lower.includes('app') || lower.includes('mobile')) return 'Chúng tôi phát triển app iOS & Android với Flutter và React Native. Liên hệ để tư vấn miễn phí!';
+    if (lower.includes('giá') || lower.includes('bao nhiêu')) return 'Gọi <a href="tel:0906857331" style="color:#3b82f6">0906 857 331</a> để được báo giá miễn phí trong 24h!';
+    if (lower.includes('ai') || lower.includes('chatbot')) return 'Clitus PC tích hợp AI chatbot và tự động hóa quy trình. Liên hệ để demo miễn phí!';
+    return 'Hotline: <a href="tel:0906857331" style="color:#3b82f6">0906 857 331</a> | Email: contact@clituspc.vn | Tư vấn miễn phí 24/7!';
   }
 
   function addBubbleMsg(role, html){

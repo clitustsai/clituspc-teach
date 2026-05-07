@@ -1,18 +1,13 @@
 {
   "version": 2,
   "outputDirectory": ".",
+  "buildCommand": "echo done",
+  "installCommand": "npm install",
+  "framework": null,
   "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "/api/$1"
-    },
-    {
-      "handle": "filesystem"
-    },
-    {
-      "src": "/(.*)",
-      "status": 404,
-      "dest": "/404.html"
-    }
+    { "src": "/api/chat", "dest": "/api/chat.js" },
+    { "src": "/api/contact", "dest": "/api/contact.js" },
+    { "handle": "filesystem" },
+    { "src": "/(.*)", "status": 404, "dest": "/404.html" }
   ]
 }
