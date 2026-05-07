@@ -1,12 +1,36 @@
+const https = require('https');
+
+function httpsPost(url, data, headers) {
+  return new Promise((resolve, reject) => {
+    const body = JSON.stringify(data);
+    const urlObj = new URL(url);
+    const options = {
+      hostname: urlObj.hostname,
+      path: urlObj.pathname,
+      method: 'POST',
+      headers: { ...headers, 'Content-Length': Buffer.byteLength(body) },
+    };
+    const req = https.request(options, (res) => {
+      let raw = '';
+      res.on('data', (chunk) => { raw += chunk; });
+      res.on('end', () => {
+        try { resolve({ status: res.statusCode, body: JSON.parse(raw) }); }
+        catch (e) { reject(new Error('JSON parse error: ' + raw)); }
+      });
+    });
+    req.on('error', reject);
+    req.write(body);
+    req.end();
+  });
+}
+
 module.exports = async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
   if (req.method === 'OPTIONS') return res.status(200).end();
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
-  }
+  if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
   const { messages } = req.body;
   if (!messages || !Array.isArray(messages)) {
@@ -43,34 +67,33 @@ Khi khách hỏi về giá hoặc muốn tư vấn chi tiết, hãy mời họ l
 Trả lời tối đa 3-4 câu, đúng trọng tâm.`;
 
   try {
-    const response = await fetch('https://api.openai.com/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${apiKey}`,
-      },
-      body: JSON.stringify({
+    const result = await httpsPost(
+      'https://api.openai.com/v1/chat/completions',
+      {
         model: 'gpt-4o-mini',
         messages: [
           { role: 'system', content: systemPrompt },
-          ...messages.slice(-10), // giữ 10 tin nhắn gần nhất
+          ...messages.slice(-10),
         ],
-        max_tokens: 300,
+        max_tokens: 400,
         temperature: 0.7,
-      }),
-    });
+      },
+      {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${apiKey}`,
+      }
+    );
 
-    if (!response.ok) {
-      const err = await response.json();
-      console.error('OpenAI error:', err);
-      return res.status(500).json({ error: 'AI service error' });
+    if (result.status !== 200) {
+      console.error('OpenAI error:', result.status, JSON.stringify(result.body));
+      const errMsg = result.body?.error?.message || 'AI service error';
+      return res.status(500).json({ error: errMsg });
     }
 
-    const data = await response.json();
-    const reply = data.choices[0]?.message?.content || 'Xin lỗi, tôi không thể trả lời lúc này.';
+    const reply = result.body?.choices?.[0]?.message?.content || 'Xin lỗi, tôi không thể trả lời lúc này.';
     return res.json({ reply });
   } catch (err) {
-    console.error('Chat error:', err);
-    return res.status(500).json({ error: 'Internal server error' });
+    console.error('Chat error:', err.message);
+    return res.status(500).json({ error: err.message });
   }
 };
