@@ -1,9 +1,6 @@
 {
   "name": "clituspc-portfolio",
   "version": "1.0.0",
-  "engines": {
-    "node": ">=18"
-  },
   "scripts": {
     "build": "echo 'No build needed'"
   },
