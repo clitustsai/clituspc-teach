@@ -2082,3 +2082,71 @@ body {
   .ai-showcase-grid { grid-template-columns: 1fr; }
   .hacker-metrics { grid-template-columns: 1fr 1fr; }
 }
+
+/* ══════════════════════════════════════
+   AI SMART PREDICTION POPUP
+══════════════════════════════════════ */
+.ai-predict-popup {
+  position: fixed;
+  bottom: 100px; right: 24px;
+  z-index: 8888;
+  animation: predictSlideIn 0.4s cubic-bezier(0.34,1.56,0.64,1);
+  transition: opacity 0.4s, transform 0.4s;
+  max-width: 300px;
+}
+.ai-predict-popup--exit {
+  bottom: 50%; right: 50%;
+  transform: translate(50%, 50%);
+  animation: predictFadeIn 0.3s ease;
+  max-width: 340px;
+}
+@keyframes predictSlideIn {
+  from { opacity:0; transform:translateY(20px) scale(0.95); }
+  to   { opacity:1; transform:translateY(0) scale(1); }
+}
+@keyframes predictFadeIn {
+  from { opacity:0; transform:translate(50%,50%) scale(0.9); }
+  to   { opacity:1; transform:translate(50%,50%) scale(1); }
+}
+
+.app-predict-inner {
+  background: var(--dark2);
+  border: 1px solid rgba(124,58,237,0.4);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(124,58,237,0.1);
+  position: relative;
+}
+.app-predict-ai-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(124,58,237,0.15);
+  border: 1px solid rgba(124,58,237,0.3);
+  color: #a78bfa; font-size: 10px; font-weight: 700;
+  letter-spacing: 1px; padding: 3px 10px; border-radius: 100px;
+  margin-bottom: 12px;
+}
+.app-predict-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: #a78bfa;
+  animation: aiPulse 1.5s infinite;
+}
+.app-predict-close {
+  position: absolute; top: 12px; right: 12px;
+  background: rgba(255,255,255,0.08); border: none;
+  color: rgba(255,255,255,0.5); width: 24px; height: 24px;
+  border-radius: 50%; cursor: pointer; font-size: 11px;
+  transition: background 0.2s;
+}
+.app-predict-close:hover { background: rgba(239,68,68,0.3); color: #fff; }
+.app-predict-icon { font-size: 28px; margin-bottom: 8px; }
+.app-predict-inner h4 { font-size: 14px; font-weight: 700; margin-bottom: 6px; line-height: 1.4; }
+.app-predict-inner p { font-size: 12px; color: rgba(255,255,255,0.6); line-height: 1.5; margin-bottom: 14px; }
+.app-predict-cta {
+  display: block; text-align: center;
+  background: linear-gradient(135deg,#7c3aed,#1a56db);
+  color: #fff; text-decoration: none;
+  padding: 9px 16px; border-radius: 10px;
+  font-size: 13px; font-weight: 700;
+  transition: opacity 0.2s;
+}
+.app-predict-cta:hover { opacity: 0.9; }

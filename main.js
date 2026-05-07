@@ -642,3 +642,179 @@ function typewriterEffect(el, text, speed = 18) {
     container.appendChild(p);
   }
 })();
+
+// ── AI SMART PREDICTION ──
+(function() {
+  var sectionTime = {};
+  var shownPopups = {};
+  var lastSection = null;
+  var mouseIdleTimer = null;
+  var mouseX = 0, mouseY = 0;
+
+  // Định nghĩa popup theo section
+  var predictions = {
+    'services': {
+      minTime: 5000,
+      icon: '🛠️',
+      title: 'Bạn đang tìm dịch vụ phù hợp?',
+      desc: 'Để lại thông tin — chúng tôi tư vấn miễn phí trong 30 phút!',
+      cta: 'Nhận tư vấn ngay',
+      link: '#contact'
+    },
+    'projects': {
+      minTime: 6000,
+      icon: '🚀',
+      title: 'Ấn tượng với các dự án?',
+      desc: 'Chúng tôi có thể xây dựng sản phẩm tương tự cho bạn.',
+      cta: 'Bắt đầu dự án',
+      link: '#contact'
+    },
+    'blog': {
+      minTime: 8000,
+      icon: '📈',
+      title: 'Bạn muốn tăng top Google?',
+      desc: 'Dịch vụ SEO của Clitus PC giúp website lên top trong 3 tháng.',
+      cta: 'Xem dịch vụ SEO',
+      link: '#services'
+    },
+    'ai-generator': {
+      minTime: 4000,
+      icon: '✦',
+      title: 'Muốn có website AI ngay hôm nay?',
+      desc: 'Clitus PC làm website thật chỉ từ 5 triệu, bàn giao trong 7 ngày.',
+      cta: 'Báo giá ngay',
+      link: '#contact'
+    },
+    'ai-avatar': {
+      minTime: 5000,
+      icon: '🤖',
+      title: 'Muốn tích hợp AI vào website của bạn?',
+      desc: 'Chatbot AI, avatar tư vấn và phân tích dữ liệu — tất cả trong một gói.',
+      cta: 'Tìm hiểu thêm',
+      link: '#services'
+    },
+    'techstack': {
+      minTime: 6000,
+      icon: '⚡',
+      title: 'Bạn cần đội ngũ kỹ thuật mạnh?',
+      desc: 'Clitus PC có đầy đủ tech stack từ Frontend đến DevOps và AI.',
+      cta: 'Xem đội ngũ',
+      link: '#about'
+    },
+    'testimonials': {
+      minTime: 5000,
+      icon: '⭐',
+      title: 'Hàng trăm khách hàng tin tưởng!',
+      desc: 'Tham gia cùng 30+ doanh nghiệp đã chuyển đổi số thành công với Clitus PC.',
+      cta: 'Liên hệ ngay',
+      link: '#contact'
+    }
+  };
+
+  // Track thời gian xem từng section
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      var id = entry.target.id;
+      if (!id || !predictions[id]) return;
+      if (entry.isIntersecting) {
+        lastSection = id;
+        if (!sectionTime[id]) sectionTime[id] = 0;
+        sectionTime[id + '_start'] = Date.now();
+        // Start timer
+        sectionTime[id + '_timer'] = setTimeout(function() {
+          if (!shownPopups[id]) {
+            showPredictionPopup(id);
+          }
+        }, predictions[id].minTime);
+      } else {
+        // Accumulate time
+        if (sectionTime[id + '_start']) {
+          sectionTime[id] = (sectionTime[id] || 0) + (Date.now() - sectionTime[id + '_start']);
+          delete sectionTime[id + '_start'];
+        }
+        clearTimeout(sectionTime[id + '_timer']);
+      }
+    });
+  }, { threshold: 0.4 });
+
+  // Observe all relevant sections
+  Object.keys(predictions).forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) observer.observe(el);
+  });
+
+  // Mouse idle detection — hiện popup khi chuột dừng > 8s
+  document.addEventListener('mousemove', function(e) {
+    mouseX = e.clientX; mouseY = e.clientY;
+    clearTimeout(mouseIdleTimer);
+    mouseIdleTimer = setTimeout(function() {
+      if (lastSection && predictions[lastSection] && !shownPopups[lastSection + '_idle']) {
+        shownPopups[lastSection + '_idle'] = true;
+        showPredictionPopup(lastSection, mouseX, mouseY);
+      }
+    }, 8000);
+  });
+
+  // Exit intent — chuột ra khỏi viewport phía trên
+  document.addEventListener('mouseleave', function(e) {
+    if (e.clientY <= 0 && !shownPopups['exit']) {
+      shownPopups['exit'] = true;
+      showExitPopup();
+    }
+  });
+
+  function showPredictionPopup(sectionId, x, y) {
+    if (shownPopups[sectionId]) return;
+    shownPopups[sectionId] = true;
+    var p = predictions[sectionId];
+    if (!p) return;
+
+    var popup = document.createElement('div');
+    popup.className = 'ai-predict-popup';
+    popup.id = 'predictPopup_' + sectionId;
+
+    // Position near mouse if provided, else bottom-right
+    if (x && y) {
+      var left = Math.min(x + 20, window.innerWidth - 320);
+      var top = Math.min(y - 60, window.innerHeight - 180);
+      popup.style.cssText = 'position:fixed;left:' + left + 'px;top:' + top + 'px;z-index:8888;';
+    }
+
+    popup.innerHTML =
+      '<div class="app-predict-inner">' +
+        '<div class="app-predict-ai-badge"><span class="app-predict-dot"></span>AI Prediction</div>' +
+        '<button class="app-predict-close" onclick="this.closest(\'.ai-predict-popup\').remove()">✕</button>' +
+        '<div class="app-predict-icon">' + p.icon + '</div>' +
+        '<h4>' + p.title + '</h4>' +
+        '<p>' + p.desc + '</p>' +
+        '<a href="' + p.link + '" class="app-predict-cta" onclick="this.closest(\'.ai-predict-popup\').remove()">' + p.cta + ' →</a>' +
+      '</div>';
+
+    document.body.appendChild(popup);
+
+    // Auto remove after 12s
+    setTimeout(function() {
+      if (popup.parentNode) {
+        popup.style.opacity = '0';
+        popup.style.transform = 'translateY(10px)';
+        setTimeout(function() { if (popup.parentNode) popup.remove(); }, 400);
+      }
+    }, 12000);
+  }
+
+  function showExitPopup() {
+    var popup = document.createElement('div');
+    popup.className = 'ai-predict-popup ai-predict-popup--exit';
+    popup.innerHTML =
+      '<div class="app-predict-inner">' +
+        '<div class="app-predict-ai-badge"><span class="app-predict-dot"></span>Khoan đã!</div>' +
+        '<button class="app-predict-close" onclick="this.closest(\'.ai-predict-popup\').remove()">✕</button>' +
+        '<div class="app-predict-icon">🎁</div>' +
+        '<h4>Nhận tư vấn miễn phí trước khi rời!</h4>' +
+        '<p>Để lại số điện thoại — chúng tôi gọi lại trong 15 phút.</p>' +
+        '<a href="#contact" class="app-predict-cta" onclick="this.closest(\'.ai-predict-popup\').remove()">Nhận tư vấn ngay →</a>' +
+      '</div>';
+    document.body.appendChild(popup);
+    setTimeout(function() { if (popup.parentNode) popup.remove(); }, 15000);
+  }
+})();
