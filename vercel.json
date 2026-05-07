@@ -11,6 +11,10 @@
       "dest": "/api/translate.js"
     },
     {
+      "src": "/api/test",
+      "dest": "/api/test.js"
+    },
+    {
       "src": "/api/(.*)",
       "dest": "/api/$1"
     },
