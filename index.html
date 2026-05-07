@@ -885,7 +885,144 @@
   </section>
 
   <!-- CONTACT -->
-  <section class="contact section" id="contact">
+  <!-- AI WEBSITE GENERATOR -->
+  <section class="ai-gen-section section" id="ai-generator">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-tag ai-glow-tag">&#10022; Generate Website by AI</p>
+        <h2>AI tạo website tự động</h2>
+        <p class="section-desc">Nhập thông tin — AI tạo layout, màu sắc và nội dung demo ngay lập tức.</p>
+      </div>
+      <div class="ai-gen-wrap">
+        <div class="ai-gen-form-panel">
+          <div class="ai-gen-form">
+            <div class="ai-gen-field">
+              <label>Tên công ty / thương hiệu</label>
+              <input type="text" id="genName" placeholder="VD: Clitus PC Technology" />
+            </div>
+            <div class="ai-gen-field">
+              <label>Ngành nghề</label>
+              <select id="genIndustry">
+                <option value="tech">Công nghệ / IT</option>
+                <option value="food">F&amp;B / Nhà hàng</option>
+                <option value="fashion">Thời trang / Bán lẻ</option>
+                <option value="edu">Giáo dục / Đào tạo</option>
+                <option value="health">Y tế / Sức khỏe</option>
+                <option value="realestate">Bất động sản</option>
+                <option value="finance">Tài chính / Ngân hàng</option>
+              </select>
+            </div>
+            <div class="ai-gen-field">
+              <label>Loại website</label>
+              <div class="ai-gen-types" id="genTypes">
+                <div class="ai-type-opt active" data-type="landing" onclick="selectType(this)">&#128640; Landing Page</div>
+                <div class="ai-type-opt" data-type="ecommerce" onclick="selectType(this)">&#128722; E-Commerce</div>
+                <div class="ai-type-opt" data-type="portfolio" onclick="selectType(this)">&#127912; Portfolio</div>
+                <div class="ai-type-opt" data-type="corporate" onclick="selectType(this)">&#127970; Doanh nghiệp</div>
+              </div>
+            </div>
+            <div class="ai-gen-field">
+              <label>Màu chủ đạo</label>
+              <div class="ai-color-picks" id="colorPicks">
+                <div class="ai-color-pick active" data-color="#1a56db" style="background:#1a56db" onclick="selectColor(this)"></div>
+                <div class="ai-color-pick" data-color="#7c3aed" style="background:#7c3aed" onclick="selectColor(this)"></div>
+                <div class="ai-color-pick" data-color="#059669" style="background:#059669" onclick="selectColor(this)"></div>
+                <div class="ai-color-pick" data-color="#dc2626" style="background:#dc2626" onclick="selectColor(this)"></div>
+                <div class="ai-color-pick" data-color="#d97706" style="background:#d97706" onclick="selectColor(this)"></div>
+                <div class="ai-color-pick" data-color="#0891b2" style="background:#0891b2" onclick="selectColor(this)"></div>
+                <div class="ai-color-pick" data-color="#be185d" style="background:#be185d" onclick="selectColor(this)"></div>
+              </div>
+            </div>
+            <button class="ai-gen-btn-main" id="genBtn" onclick="generateWebsite()">
+              <span>&#10022;</span> Generate Website by AI
+            </button>
+          </div>
+        </div>
+        <div class="ai-gen-preview-panel">
+          <div class="ai-gen-browser">
+            <div class="ai-gen-browser-bar">
+              <span class="gdb-dot r"></span><span class="gdb-dot y"></span><span class="gdb-dot g"></span>
+              <span class="gdb-url" id="genUrl">yourwebsite.vn</span>
+            </div>
+            <div class="ai-gen-preview" id="genPreview">
+              <div class="gen-placeholder">
+                <div class="gen-ph-icon">&#10022;</div>
+                <p>Nhập thông tin và nhấn Generate<br>để xem preview website</p>
+              </div>
+            </div>
+          </div>
+          <div class="ai-gen-actions" id="genActions" style="display:none">
+            <button class="ai-gen-action-btn" onclick="generateWebsite()">&#128260; Tạo lại</button>
+            <a href="#contact" class="ai-gen-action-btn ai-gen-action-btn--cta">&#128222; Làm website thật</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI AVATAR -->
+  <section class="ai-avatar-section section" id="ai-avatar">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-tag ai-glow-tag">&#10022; AI Avatar</p>
+        <h2>Trợ lý AI 3D của Clitus PC</h2>
+        <p class="section-desc">Nova AI — nhân vật trợ lý tương tác, giới thiệu công ty và tư vấn dịch vụ.</p>
+      </div>
+      <div class="ai-avatar-wrap">
+        <div class="ai-avatar-stage">
+          <div class="ai-avatar-hologram">
+            <div class="hologram-ring hologram-ring--1"></div>
+            <div class="hologram-ring hologram-ring--2"></div>
+            <div class="hologram-ring hologram-ring--3"></div>
+            <div class="hologram-scan"></div>
+            <div class="ai-avatar-body">
+              <div class="ai-avatar-head">
+                <div class="ai-avatar-face">
+                  <div class="ai-avatar-eyes">
+                    <div class="ai-eye" id="eyeL"><div class="ai-pupil"></div></div>
+                    <div class="ai-eye" id="eyeR"><div class="ai-pupil"></div></div>
+                  </div>
+                  <div class="ai-avatar-mouth" id="avatarMouth"></div>
+                </div>
+                <div class="ai-avatar-hair"></div>
+              </div>
+              <div class="ai-avatar-neck"></div>
+              <div class="ai-avatar-suit">
+                <div class="ai-suit-lines"><span></span><span></span><span></span></div>
+                <div class="ai-suit-badge">AI</div>
+              </div>
+            </div>
+            <div class="hologram-base"></div>
+          </div>
+          <div class="ai-avatar-name">
+            <span class="ai-status-dot"></span> Nova AI · Đang hoạt động
+          </div>
+        </div>
+        <div class="ai-avatar-interact">
+          <div class="ai-avatar-speech-box" id="avatarSpeechBox">
+            <div class="speech-wave" id="speechWave">
+              <span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <p id="avatarSpeechText">Xin chào! Tôi là Nova, trợ lý AI của Clitus PC. Nhấn vào các chủ đề bên dưới để tôi giới thiệu nhé!</p>
+          </div>
+          <div class="ai-topic-btns">
+            <button onclick="avatarSpeak('intro')">&#127970; Giới thiệu</button>
+            <button onclick="avatarSpeak('services')">&#128736;&#65039; Dịch vụ</button>
+            <button onclick="avatarSpeak('ai')">&#129302; Giải pháp AI</button>
+            <button onclick="avatarSpeak('process')">&#128203; Quy trình</button>
+            <button onclick="avatarSpeak('contact')">&#128222; Liên hệ</button>
+          </div>
+          <div class="ai-avatar-stats">
+            <div><span>&#129504;</span><div><strong>Nova AI v2.0</strong><small>Powered by Clitus PC</small></div></div>
+            <div><span>&#127760;</span><div><strong>Đa ngôn ngữ</strong><small>VI &amp; EN</small></div></div>
+            <div><span>&#9889;</span><div><strong>Phản hồi tức thì</strong><small>Dưới 1 giây</small></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <section class="contact section" id="contact">
     <div class="container contact-grid">
       <div class="contact-cta">
           <p class="section-tag">Liên hệ</p>
@@ -1158,6 +1295,111 @@
   }
 
   function addBubbleMsg(role,html){var c=document.getElementById('bubbleMsgs'),div=document.createElement('div');div.className='bm '+role;div.innerHTML='<div class="bm-bubble">'+html+'</div>';c.appendChild(div);c.scrollTop=c.scrollHeight;}
+
+  // ── AI WEBSITE GENERATOR ──
+  var selectedColor='#1a56db', selectedType='landing';
+  function selectColor(el){document.querySelectorAll('.ai-color-pick').forEach(function(e){e.classList.remove('active');});el.classList.add('active');selectedColor=el.dataset.color;}
+  function selectType(el){document.querySelectorAll('.ai-type-opt').forEach(function(e){e.classList.remove('active');});el.classList.add('active');selectedType=el.dataset.type;}
+
+  var industryData={
+    tech:{hero:'Giải pháp công nghệ toàn diện',sub:'Phần mềm · Website · App · AI',services:['Thiết kế Website','App Di Động','Phần mềm ERP','AI & Chatbot'],about:'Chúng tôi cung cấp giải pháp công nghệ hiện đại giúp doanh nghiệp số hóa và tăng trưởng bền vững.'},
+    food:{hero:'Ẩm thực đỉnh cao · Trải nghiệm tuyệt vời',sub:'Nhà hàng · Cafe · Delivery',services:['Thực đơn đặc biệt','Đặt bàn online','Giao hàng tận nơi','Combo ưu đãi'],about:'Chúng tôi mang đến những món ăn ngon với nguyên liệu tươi sạch và không gian ấm cúng.'},
+    fashion:{hero:'Phong cách của bạn · Đẳng cấp của chúng tôi',sub:'Thời trang · Phụ kiện · Lifestyle',services:['Bộ sưu tập mới','Thiết kế riêng','Giao hàng toàn quốc','Đổi trả dễ dàng'],about:'Thương hiệu thời trang hiện đại với thiết kế độc đáo, chất liệu cao cấp và giá cả hợp lý.'},
+    edu:{hero:'Kiến thức là sức mạnh · Học để thành công',sub:'Đào tạo · Chứng chỉ · Kỹ năng',services:['Khóa học online','Lớp học trực tiếp','Chứng chỉ quốc tế','Mentoring 1-1'],about:'Trung tâm đào tạo hàng đầu với đội ngũ giảng viên giàu kinh nghiệm và chương trình học thực tiễn.'},
+    health:{hero:'Sức khỏe là vàng · Chăm sóc tận tâm',sub:'Khám bệnh · Tư vấn · Điều trị',services:['Khám tổng quát','Tư vấn sức khỏe','Xét nghiệm nhanh','Điều trị chuyên sâu'],about:'Phòng khám hiện đại với trang thiết bị tiên tiến và đội ngũ bác sĩ chuyên nghiệp, tận tâm.'},
+    realestate:{hero:'Ngôi nhà mơ ước · Đầu tư sinh lời',sub:'Mua bán · Cho thuê · Đầu tư',services:['Căn hộ cao cấp','Nhà phố thương mại','Đất nền dự án','Tư vấn đầu tư'],about:'Đơn vị bất động sản uy tín với hàng nghìn giao dịch thành công và đội ngũ môi giới chuyên nghiệp.'},
+    finance:{hero:'Tài chính vững mạnh · Tương lai an toàn',sub:'Đầu tư · Bảo hiểm · Tín dụng',services:['Tư vấn đầu tư','Bảo hiểm nhân thọ','Vay vốn ưu đãi','Quản lý tài sản'],about:'Công ty tài chính hàng đầu với các giải pháp đầu tư an toàn, sinh lời bền vững cho mọi khách hàng.'}
+  };
+
+  var typeLayouts={
+    landing:['hero-big','features','cta'],
+    ecommerce:['hero-shop','products','promo','cart'],
+    portfolio:['hero-creative','works','skills','hire'],
+    corporate:['hero-corp','about','services','team','contact']
+  };
+
+  function generateWebsite(){
+    var name=document.getElementById('genName').value.trim()||'Your Company';
+    var industry=document.getElementById('genIndustry').value;
+    var btn=document.getElementById('genBtn');
+    btn.disabled=true; btn.innerHTML='<span class="gen-spin">&#10022;</span> Đang tạo...';
+    setTimeout(function(){
+      var data=industryData[industry]||industryData.tech;
+      var preview=document.getElementById('genPreview');
+      var url=name.toLowerCase().replace(/\s+/g,'')+'.vn';
+      document.getElementById('genUrl').textContent=url;
+      var c2=selectedColor, c2light=selectedColor+'33';
+      preview.innerHTML=buildPreview(name,data,c2,c2light);
+      document.getElementById('genActions').style.display='flex';
+      btn.disabled=false; btn.innerHTML='<span>&#10022;</span> Generate Website by AI';
+    },1200);
+  }
+
+  function buildPreview(name,data,color,colorLight){
+    var svcs=data.services.map(function(s){return '<div class="gp-svc-card"><div class="gp-svc-icon" style="background:'+colorLight+';color:'+color+'">&#9670;</div><span>'+s+'</span></div>';}).join('');
+    return '<div class="gp-wrap">'+
+      '<div class="gp-hero" style="background:linear-gradient(135deg,'+color+','+color+'99)">'+
+        '<div class="gp-hero-tag" style="border-color:rgba(255,255,255,0.4)">&#10022; AI Generated</div>'+
+        '<h2>'+name+'</h2>'+
+        '<p>'+data.hero+'</p>'+
+        '<span class="gp-sub">'+data.sub+'</span>'+
+        '<div class="gp-hero-btns"><button style="background:#fff;color:'+color+'">Khám phá ngay</button><button style="border:1.5px solid #fff;color:#fff;background:transparent">Liên hệ</button></div>'+
+      '</div>'+
+      '<div class="gp-about"><p>'+data.about+'</p></div>'+
+      '<div class="gp-services"><p class="gp-sec-title" style="color:'+color+'">Dịch vụ nổi bật</p><div class="gp-svc-grid">'+svcs+'</div></div>'+
+      '<div class="gp-footer" style="background:'+color+'"><span>© 2025 '+name+'</span><span>infoclituspc@gmail.com</span></div>'+
+    '</div>';
+  }
+
+  // ── AI AVATAR ──
+  var avatarScripts={
+    intro:'Xin chào! Tôi là Nova, trợ lý AI của Công ty TNHH Công Nghệ Clitus PC. Chúng tôi được thành lập với sứ mệnh giúp doanh nghiệp Việt Nam chuyển đổi số nhanh chóng và hiệu quả. Với 5 năm kinh nghiệm và hơn 50 dự án thành công, chúng tôi tự hào là đối tác công nghệ tin cậy.',
+    services:'Clitus PC cung cấp đầy đủ các dịch vụ công nghệ: Thiết kế website chuyên nghiệp, phát triển app iOS và Android, phần mềm quản lý ERP và CRM, giải pháp Cloud và DevOps, tích hợp AI và chatbot, cho thuê VPS và hosting. Tất cả đều được thực hiện bởi đội ngũ kỹ sư giàu kinh nghiệm.',
+    ai:'Clitus PC tiên phong trong ứng dụng AI vào sản phẩm công nghệ. Chúng tôi tích hợp chatbot AI tư vấn 24/7, phân tích dữ liệu thông minh, tự động hóa quy trình kinh doanh và tạo nội dung bằng AI. Đây là lợi thế cạnh tranh giúp doanh nghiệp của bạn vượt trội trong kỷ nguyên số.',
+    process:'Quy trình làm việc của Clitus PC gồm 4 bước: Bước 1 - Tiếp nhận và phân tích yêu cầu. Bước 2 - Tư vấn giải pháp và báo giá minh bạch. Bước 3 - Triển khai theo phương pháp Agile với cập nhật tiến độ định kỳ. Bước 4 - Bàn giao, đào tạo và bảo trì lâu dài.',
+    contact:'Bạn có thể liên hệ với Clitus PC qua nhiều kênh: Hotline 0906 857 331 để được tư vấn ngay, email infoclituspc@gmail.com, hoặc điền form liên hệ trên website. Chúng tôi cam kết phản hồi trong vòng 2 giờ làm việc và tư vấn hoàn toàn miễn phí!'
+  };
+
+  var avatarSpeaking=false;
+  function avatarSpeak(topic){
+    if(avatarSpeaking) return;
+    avatarSpeaking=true;
+    var text=avatarScripts[topic]||avatarScripts.intro;
+    var el=document.getElementById('avatarSpeechText');
+    var wave=document.getElementById('speechWave');
+    var mouth=document.getElementById('avatarMouth');
+    wave.classList.add('active');
+    if(mouth) mouth.classList.add('talking');
+    el.textContent='';
+    var i=0;
+    var t=setInterval(function(){
+      el.textContent+=text[i]; i++;
+      if(i>=text.length){
+        clearInterval(t);
+        wave.classList.remove('active');
+        if(mouth) mouth.classList.remove('talking');
+        avatarSpeaking=false;
+      }
+    },22);
+    // Web Speech API
+    if(window.speechSynthesis){
+      window.speechSynthesis.cancel();
+      var utter=new SpeechSynthesisUtterance(text);
+      utter.lang='vi-VN'; utter.rate=1.0; utter.pitch=1.1;
+      var voices=window.speechSynthesis.getVoices();
+      var viVoice=voices.find(function(v){return v.lang==='vi-VN';});
+      if(viVoice) utter.voice=viVoice;
+      window.speechSynthesis.speak(utter);
+    }
+  }
+
+  // Blink eyes
+  setInterval(function(){
+    var eyes=document.querySelectorAll('.ai-eye');
+    eyes.forEach(function(e){e.style.transform='scaleY(0.1)';});
+    setTimeout(function(){eyes.forEach(function(e){e.style.transform='scaleY(1)';});},120);
+  },3500);
+
   </script>
 
 </body>
