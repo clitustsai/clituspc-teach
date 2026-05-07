@@ -1025,7 +1025,6 @@
   </button>
 
   <script src="main.js"></script>
-
   <!-- AI CHATBOT BUBBLE -->
   <div class="ai-bubble-wrap" id="aiBubbleWrap">
     <div class="ai-bubble-chat" id="aiBubbleChat">
@@ -1038,16 +1037,16 @@
           <strong>Clitus AI</strong>
           <span>Trực tuyến 24/7</span>
         </div>
-        <button onclick="closeBubbleChat()">✕</button>
+        <button onclick="closeBubbleChat()">&#x2715;</button>
       </div>
       <div class="ai-bubble-messages" id="bubbleMsgs">
         <div class="bm bot">
-          <div class="bm-bubble">Xin chào! 👋 Tôi là AI của <strong>Clitus PC</strong>. Bạn cần tư vấn gì?</div>
+          <div class="bm-bubble">Xin chào! &#128075; Tôi là AI của <strong>Clitus PC</strong>. Bạn cần tư vấn gì?</div>
         </div>
         <div class="bm-quick" id="bubbleQuick">
-          <button onclick="bubbleAsk('Clitus PC làm dịch vụ gì?')">🏢 Dịch vụ</button>
-          <button onclick="bubbleAsk('Quy trình làm việc?')">📋 Quy trình</button>
-          <button onclick="bubbleAsk('Liên hệ tư vấn')">📞 Liên hệ</button>
+          <button onclick="bubbleAsk('Clitus PC làm dịch vụ gì?')">&#127970; Dịch vụ</button>
+          <button onclick="bubbleAsk('Quy trình làm việc?')">&#128203; Quy trình</button>
+          <button onclick="bubbleAsk('Liên hệ tư vấn')">&#128222; Liên hệ</button>
         </div>
       </div>
       <div class="ai-bubble-input">
@@ -1060,7 +1059,9 @@
       <div class="ai-bubble-ring ai-bubble-ring--2"></div>
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" id="bubbleIconOpen">
         <path d="M12 2C6.48 2 2 6.03 2 11c0 2.7 1.22 5.12 3.17 6.83L4 22l4.62-1.54C9.97 20.8 10.97 21 12 21c5.52 0 10-4.03 10-9S17.52 2 12 2z" fill="white"/>
-        <circle cx="8.5" cy="11" r="1.2" fill="#1a56db"/><circle cx="12" cy="11" r="1.2" fill="#1a56db"/><circle cx="15.5" cy="11" r="1.2" fill="#1a56db"/>
+        <circle cx="8.5" cy="11" r="1.2" fill="#1a56db"/>
+        <circle cx="12" cy="11" r="1.2" fill="#1a56db"/>
+        <circle cx="15.5" cy="11" r="1.2" fill="#1a56db"/>
       </svg>
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" id="bubbleIconClose" style="display:none">
         <path d="M18 6L6 18M6 6l12 12" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
@@ -1070,7 +1071,7 @@
   </div>
 
   <script>
-  // ── HERO PARTICLES ──
+  // HERO PARTICLES
   (function(){
     var canvas = document.getElementById('heroParticles');
     if (!canvas) return;
@@ -1080,258 +1081,138 @@
     resize();
     window.addEventListener('resize', resize);
     for (var i = 0; i < 60; i++) {
-      particles.push({
-        x: Math.random()*1920, y: Math.random()*1080,
-        vx: (Math.random()-0.5)*0.4, vy: (Math.random()-0.5)*0.4,
-        r: Math.random()*2+0.5,
-        color: Math.random() > 0.5 ? 'rgba(59,130,246,' : 'rgba(124,58,237,'
-      });
+      particles.push({ x:Math.random()*1920, y:Math.random()*1080, vx:(Math.random()-0.5)*0.4, vy:(Math.random()-0.5)*0.4, r:Math.random()*2+0.5, c:Math.random()>0.5?'59,130,246':'124,58,237' });
     }
     function draw(){
       ctx.clearRect(0,0,W,H);
       particles.forEach(function(p){
-        p.x += p.vx; p.y += p.vy;
-        if (p.x < 0) p.x = W; if (p.x > W) p.x = 0;
-        if (p.y < 0) p.y = H; if (p.y > H) p.y = 0;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
-        ctx.fillStyle = p.color + (0.4+Math.random()*0.3) + ')';
-        ctx.fill();
+        p.x+=p.vx; p.y+=p.vy;
+        if(p.x<0)p.x=W; if(p.x>W)p.x=0; if(p.y<0)p.y=H; if(p.y>H)p.y=0;
+        ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+        ctx.fillStyle='rgba('+p.c+',0.5)'; ctx.fill();
       });
-      // Draw connections
-      for (var i = 0; i < particles.length; i++) {
-        for (var j = i+1; j < particles.length; j++) {
-          var dx = particles[i].x - particles[j].x;
-          var dy = particles[i].y - particles[j].y;
-          var dist = Math.sqrt(dx*dx+dy*dy);
-          if (dist < 120) {
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = 'rgba(59,130,246,' + (0.15*(1-dist/120)) + ')';
-            ctx.lineWidth = 0.5;
-            ctx.stroke();
-          }
-        }
+      for(var i=0;i<particles.length;i++) for(var j=i+1;j<particles.length;j++){
+        var dx=particles[i].x-particles[j].x, dy=particles[i].y-particles[j].y, d=Math.sqrt(dx*dx+dy*dy);
+        if(d<120){ ctx.beginPath(); ctx.moveTo(particles[i].x,particles[i].y); ctx.lineTo(particles[j].x,particles[j].y); ctx.strokeStyle='rgba(59,130,246,'+(0.12*(1-d/120))+')'; ctx.lineWidth=0.5; ctx.stroke(); }
       }
       requestAnimationFrame(draw);
     }
     draw();
   })();
 
-  // ── HERO TYPING ──
+  // HERO TYPING
   (function(){
     var el = document.getElementById('heroTyping');
     if (!el) return;
-    var texts = ['toàn diện & chuyên nghiệp', 'thông minh với AI', 'nhanh chóng & hiệu quả', 'cho doanh nghiệp Việt'];
-    var ti = 0, ci = 0, deleting = false;
+    var texts = ['toàn diện & chuyên nghiệp','thông minh với AI','nhanh chóng & hiệu quả','cho doanh nghiệp Việt'];
+    var ti=0, ci=0, del=false;
     function type(){
-      var current = texts[ti];
-      if (!deleting) {
-        el.textContent = current.substring(0, ci+1);
-        ci++;
-        if (ci === current.length) { deleting = true; setTimeout(type, 2000); return; }
-      } else {
-        el.textContent = current.substring(0, ci-1);
-        ci--;
-        if (ci === 0) { deleting = false; ti = (ti+1) % texts.length; }
-      }
-      setTimeout(type, deleting ? 40 : 80);
+      var cur=texts[ti];
+      if(!del){ el.textContent=cur.substring(0,ci+1); ci++; if(ci===cur.length){del=true;setTimeout(type,2000);return;} }
+      else{ el.textContent=cur.substring(0,ci-1); ci--; if(ci===0){del=false;ti=(ti+1)%texts.length;} }
+      setTimeout(type,del?40:80);
     }
     type();
   })();
 
-  // ── AI ANALYTICS ANIMATION ──
+  // AI ANALYTICS
   (function(){
-    var data = [85, 68, 72, 45, 38];
-    var container = document.getElementById('aaBars');
-    if (!container) return;
-    data.forEach(function(v, i){
-      var bar = document.createElement('div');
-      bar.className = 'aa-bar' + (i === 0 ? ' aa-bar--top' : '');
-      bar.innerHTML = '<div class="aa-bar-fill" style="height:0%" data-val="'+v+'"></div><span>'+v+'%</span>';
+    var data=[85,68,72,45,38];
+    var container=document.getElementById('aaBars');
+    if(!container) return;
+    data.forEach(function(v,i){
+      var bar=document.createElement('div'); bar.className='aa-bar'+(i===0?' aa-bar--top':'');
+      bar.innerHTML='<div class="aa-bar-fill" style="height:0%" data-val="'+v+'"></div><span>'+v+'%</span>';
       container.appendChild(bar);
     });
-    setTimeout(function(){
-      document.querySelectorAll('.aa-bar-fill').forEach(function(b){
-        b.style.height = b.dataset.val + '%';
-      });
-    }, 500);
-    // Animate counters
-    function animCount(el, target, suffix){
-      var start = 0, step = Math.ceil(target/40);
-      var t = setInterval(function(){
-        start = Math.min(start+step, target);
-        el.textContent = start + suffix;
-        if (start >= target) clearInterval(t);
-      }, 40);
-    }
-    var obs = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if (e.isIntersecting) {
-          animCount(document.getElementById('aaVisitors'), 1284, '');
-          animCount(document.getElementById('aaTime'), 142, 's');
-          animCount(document.getElementById('aaBounce'), 34, '%');
-          obs.disconnect();
-        }
-      });
-    }, {threshold: 0.3});
-    var sec = document.getElementById('ai-analytics');
-    if (sec) obs.observe(sec);
+    setTimeout(function(){ document.querySelectorAll('.aa-bar-fill').forEach(function(b){ b.style.height=b.dataset.val+'%'; }); },500);
+    function animCount(el,target,suffix){ var s=0,step=Math.ceil(target/40); var t=setInterval(function(){ s=Math.min(s+step,target); el.textContent=s+suffix; if(s>=target)clearInterval(t); },40); }
+    var obs=new IntersectionObserver(function(entries){ entries.forEach(function(e){ if(e.isIntersecting){ animCount(document.getElementById('aaVisitors'),1284,''); animCount(document.getElementById('aaTime'),142,'s'); animCount(document.getElementById('aaBounce'),34,'%'); obs.disconnect(); } }); },{threshold:0.3});
+    var sec=document.getElementById('ai-analytics'); if(sec) obs.observe(sec);
   })();
 
-  // ── AI DEMO SLIDES ──
-  var slideIdx = 0;
-  var slideTexts = [
-    'Website của bạn là bộ mặt số. Clitus PC xây dựng website đẹp, nhanh và chuẩn SEO để thu hút khách hàng 24/7.',
-    'AI không còn là tương lai — đó là hiện tại. Chúng tôi tích hợp AI vào mọi sản phẩm để tạo lợi thế cạnh tranh.',
-    'App di động giúp bạn tiếp cận khách hàng mọi lúc mọi nơi. Flutter & React Native cho hiệu năng native thực sự.',
-    'Hạ tầng cloud linh hoạt, tự động scale theo nhu cầu. Không lo downtime, không lo chi phí dư thừa.'
-  ];
+  // AI DEMO SLIDES
+  var slideIdx=0;
+  var slideTexts=['Website của bạn là bộ mặt số. Clitus PC xây dựng website đẹp, nhanh và chuẩn SEO để thu hút khách hàng 24/7.','AI không còn là tương lai — đó là hiện tại. Chúng tôi tích hợp AI vào mọi sản phẩm để tạo lợi thế cạnh tranh.','App di động giúp bạn tiếp cận khách hàng mọi lúc mọi nơi. Flutter & React Native cho hiệu năng native thực sự.','Hạ tầng cloud linh hoạt, tự động scale theo nhu cầu. Không lo downtime, không lo chi phí dư thừa.'];
   (function initDots(){
-    var dots = document.getElementById('demoDots');
-    if (!dots) return;
-    for (var i = 0; i < 4; i++) {
-      var d = document.createElement('span');
-      d.className = 'demo-dot' + (i===0?' active':'');
-      d.setAttribute('data-i', i);
-      d.onclick = function(){ goSlide(+this.dataset.i); };
-      dots.appendChild(d);
-    }
+    var dots=document.getElementById('demoDots'); if(!dots) return;
+    for(var i=0;i<4;i++){ var d=document.createElement('span'); d.className='demo-dot'+(i===0?' active':''); d.setAttribute('data-i',i); d.onclick=function(){ goSlide(+this.dataset.i); }; dots.appendChild(d); }
     startSpeech(0);
-    setInterval(function(){ nextSlide(); }, 4000);
+    setInterval(function(){ nextSlide(); },4000);
   })();
-
-  function goSlide(n){
-    var slides = document.querySelectorAll('.ai-demo-slide');
-    var dots = document.querySelectorAll('.demo-dot');
-    slides[slideIdx].classList.remove('active');
-    dots[slideIdx].classList.remove('active');
-    slideIdx = (n + slides.length) % slides.length;
-    slides[slideIdx].classList.add('active');
-    dots[slideIdx].classList.add('active');
-    startSpeech(slideIdx);
-  }
+  function goSlide(n){ var slides=document.querySelectorAll('.ai-demo-slide'),dots=document.querySelectorAll('.demo-dot'); slides[slideIdx].classList.remove('active'); dots[slideIdx].classList.remove('active'); slideIdx=(n+slides.length)%slides.length; slides[slideIdx].classList.add('active'); dots[slideIdx].classList.add('active'); startSpeech(slideIdx); }
   function nextSlide(){ goSlide(slideIdx+1); }
   function prevSlide(){ goSlide(slideIdx-1); }
+  function startSpeech(i){ var el=document.getElementById('aiSpeechText'); if(!el) return; el.textContent=''; var text=slideTexts[i],ci=0; var t=setInterval(function(){ el.textContent+=text[ci]; ci++; if(ci>=text.length)clearInterval(t); },25); }
 
-  function startSpeech(i){
-    var el = document.getElementById('aiSpeechText');
-    if (!el) return;
-    el.textContent = '';
-    var text = slideTexts[i], ci = 0;
-    var t = setInterval(function(){
-      el.textContent += text[ci]; ci++;
-      if (ci >= text.length) clearInterval(t);
-    }, 25);
-  }
-
-  // ── AI BUBBLE CHAT ──
-  var bubbleOpen = false;
-  var bubbleAnswers = {
-    'Clitus PC làm dịch vụ gì?': 'Clitus PC cung cấp: Thiết kế Website, App Di Động, Phần mềm ERP/CRM, Cloud & DevOps, AI & Chatbot, VPS & Hosting. Bạn quan tâm dịch vụ nào?',
-    'Quy trình làm việc?': 'Quy trình 4 bước: 1️⃣ Tiếp nhận yêu cầu → 2️⃣ Tư vấn & báo giá → 3️⃣ Triển khai Agile → 4️⃣ Bàn giao & bảo trì. Thời gian từ 3-90 ngày tùy dự án.',
-    'Liên hệ tư vấn': 'Bạn có thể liên hệ ngay qua Hotline: <a href="tel:0906857331" style="color:#3b82f6">0906 857 331</a> hoặc Email: contact@clituspc.vn. Tư vấn miễn phí!'
-  };
+  // BUBBLE CHAT
+  var bubbleOpen=false;
+  var bubbleMsgHistory=[];
 
   function toggleBubbleChat(){
-    bubbleOpen = !bubbleOpen;
-    document.getElementById('aiBubbleChat').classList.toggle('open', bubbleOpen);
-    document.getElementById('bubbleIconOpen').style.display = bubbleOpen ? 'none' : 'block';
-    document.getElementById('bubbleIconClose').style.display = bubbleOpen ? 'block' : 'none';
-    document.getElementById('ai-bubble-badge') && (document.getElementById('ai-bubble-badge').style.display = 'none');
-    var badge = document.querySelector('.ai-bubble-badge');
-    if (badge) badge.style.display = 'none';
-    if (bubbleOpen) document.getElementById('bubbleInput').focus();
+    bubbleOpen=!bubbleOpen;
+    document.getElementById('aiBubbleChat').classList.toggle('open',bubbleOpen);
+    document.getElementById('bubbleIconOpen').style.display=bubbleOpen?'none':'block';
+    document.getElementById('bubbleIconClose').style.display=bubbleOpen?'block':'none';
+    var badge=document.querySelector('.ai-bubble-badge'); if(badge) badge.style.display='none';
+    if(bubbleOpen) document.getElementById('bubbleInput').focus();
   }
-  function closeBubbleChat(){ bubbleOpen = false; document.getElementById('aiBubbleChat').classList.remove('open'); document.getElementById('bubbleIconOpen').style.display='block'; document.getElementById('bubbleIconClose').style.display='none'; }
+  function closeBubbleChat(){ bubbleOpen=false; document.getElementById('aiBubbleChat').classList.remove('open'); document.getElementById('bubbleIconOpen').style.display='block'; document.getElementById('bubbleIconClose').style.display='none'; }
+
+  var bubbleAnswers={
+    'Clitus PC làm dịch vụ gì?':'Clitus PC cung cấp: Thiết kế Website, App Di Động, Phần mềm ERP/CRM, Cloud & DevOps, AI & Chatbot, VPS & Hosting. Bạn quan tâm dịch vụ nào?',
+    'Quy trình làm việc?':'Quy trình 4 bước: 1 Tiếp nhận yêu cầu, 2 Tư vấn & báo giá, 3 Triển khai Agile, 4 Bàn giao & bảo trì. Thời gian từ 3-90 ngày tùy dự án.',
+    'Liên hệ tư vấn':'Hotline: <a href="tel:0906857331" style="color:#3b82f6">0906 857 331</a> | Email: contact@clituspc.vn | Tư vấn miễn phí 24/7!'
+  };
 
   function bubbleAsk(text){
-    var qr = document.getElementById('bubbleQuick');
-    if (qr) qr.remove();
-    addBubbleMsg('user', text);
-    setTimeout(function(){
-      var answer = bubbleAnswers[text] || 'Cảm ơn bạn! Để được tư vấn chi tiết, vui lòng gọi <a href="tel:0906857331" style="color:#3b82f6">0906 857 331</a>.';
-      addBubbleMsg('bot', answer);
-    }, 600);
+    var qr=document.getElementById('bubbleQuick'); if(qr) qr.remove();
+    addBubbleMsg('user',text);
+    var answer=bubbleAnswers[text]||getFallbackReply(text);
+    setTimeout(function(){ addBubbleMsg('bot',answer); },600);
   }
-
-  var bubbleMsgHistory = [];
 
   function bubbleSend(){
-    var input = document.getElementById('bubbleInput');
-    var text = input.value.trim();
-    if (!text) return;
-    var qr = document.getElementById('bubbleQuick');
-    if (qr) qr.remove();
-    input.value = '';
-    input.disabled = true;
-    addBubbleMsg('user', text);
-    bubbleMsgHistory.push({ role: 'user', content: text });
-
-    // Show typing
-    var container = document.getElementById('bubbleMsgs');
-    var typing = document.createElement('div');
-    typing.className = 'bm bot'; typing.id = 'bubbleTypingIndicator';
-    typing.innerHTML = '<div class="bm-bubble bm-typing"><span></span><span></span><span></span></div>';
-    container.appendChild(typing);
-    container.scrollTop = container.scrollHeight;
-
-    fetch('/api/chat', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ messages: bubbleMsgHistory })
+    var input=document.getElementById('bubbleInput');
+    var text=input.value.trim(); if(!text) return;
+    var qr=document.getElementById('bubbleQuick'); if(qr) qr.remove();
+    input.value=''; input.disabled=true;
+    addBubbleMsg('user',text);
+    bubbleMsgHistory.push({role:'user',content:text});
+    var container=document.getElementById('bubbleMsgs');
+    var typing=document.createElement('div'); typing.className='bm bot'; typing.id='bubbleTypingIndicator';
+    typing.innerHTML='<div class="bm-bubble bm-typing"><span></span><span></span><span></span></div>';
+    container.appendChild(typing); container.scrollTop=container.scrollHeight;
+    fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:bubbleMsgHistory})})
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      var t=document.getElementById('bubbleTypingIndicator'); if(t) t.remove();
+      var reply=d.reply||getFallbackReply(text);
+      bubbleMsgHistory.push({role:'assistant',content:reply});
+      addBubbleMsg('bot',reply);
     })
-    .then(function(r) { return r.json(); })
-    .then(function(d) {
-      var t = document.getElementById('bubbleTypingIndicator');
-      if (t) t.remove();
-      var reply = d.reply || getFallbackReply(text);
-      bubbleMsgHistory.push({ role: 'assistant', content: reply });
-      addBubbleMsg('bot', reply);
+    .catch(function(){
+      var t=document.getElementById('bubbleTypingIndicator'); if(t) t.remove();
+      addBubbleMsg('bot',getFallbackReply(text));
     })
-    .catch(function() {
-      var t = document.getElementById('bubbleTypingIndicator');
-      if (t) t.remove();
-      addBubbleMsg('bot', getFallbackReply(text));
-    })
-    .finally(function() { input.disabled = false; input.focus(); });
+    .finally(function(){ input.disabled=false; input.focus(); });
   }
 
-  function getFallbackReply(text) {
-    var lower = text.toLowerCase();
-    if (lower.includes('website') || lower.includes('web')) return 'Clitus PC thiết kế website doanh nghiệp, e-commerce, landing page chuẩn SEO. Liên hệ <a href="tel:0906857331" style="color:#3b82f6">0906 857 331</a> để báo giá!';
-    if (lower.includes('app') || lower.includes('mobile')) return 'Chúng tôi phát triển app iOS & Android với Flutter và React Native. Liên hệ để tư vấn miễn phí!';
-    if (lower.includes('giá') || lower.includes('bao nhiêu')) return 'Gọi <a href="tel:0906857331" style="color:#3b82f6">0906 857 331</a> để được báo giá miễn phí trong 24h!';
-    if (lower.includes('ai') || lower.includes('chatbot')) return 'Clitus PC tích hợp AI chatbot và tự động hóa quy trình. Liên hệ để demo miễn phí!';
+  function getFallbackReply(text){
+    var l=text.toLowerCase();
+    if(l.includes('website')||l.includes('web')) return 'Clitus PC thiết kế website doanh nghiệp, e-commerce, landing page chuẩn SEO. Gọi <a href="tel:0906857331" style="color:#3b82f6">0906 857 331</a> để báo giá!';
+    if(l.includes('app')||l.includes('mobile')) return 'Chúng tôi phát triển app iOS & Android với Flutter và React Native. Liên hệ để tư vấn miễn phí!';
+    if(l.includes('giá')||l.includes('bao nhiêu')) return 'Gọi <a href="tel:0906857331" style="color:#3b82f6">0906 857 331</a> để được báo giá miễn phí trong 24h!';
+    if(l.includes('ai')||l.includes('chatbot')) return 'Clitus PC tích hợp AI chatbot và tự động hóa quy trình. Liên hệ để demo miễn phí!';
+    if(l.includes('vps')||l.includes('hosting')||l.includes('server')) return 'Dịch vụ VPS & Hosting tốc độ cao, uptime 99.9%. Liên hệ <a href="tel:0906857331" style="color:#3b82f6">0906 857 331</a>!';
     return 'Hotline: <a href="tel:0906857331" style="color:#3b82f6">0906 857 331</a> | Email: contact@clituspc.vn | Tư vấn miễn phí 24/7!';
   }
 
-  function addBubbleMsg(role, html){
-    var container = document.getElementById('bubbleMsgs');
-    // Show typing for bot
-    if (role === 'bot') {
-      var typing = document.createElement('div');
-      typing.className = 'bm bot'; typing.id = 'bubbleTyping';
-      typing.innerHTML = '<div class="bm-bubble bm-typing"><span></span><span></span><span></span></div>';
-      container.appendChild(typing);
-      container.scrollTop = container.scrollHeight;
-      setTimeout(function(){
-        var t = document.getElementById('bubbleTyping');
-        if (t) t.remove();
-        var div = document.createElement('div');
-        div.className = 'bm ' + role;
-        div.innerHTML = '<div class="bm-bubble">' + html + '</div>';
-        container.appendChild(div);
-        container.scrollTop = container.scrollHeight;
-      }, 600);
-    } else {
-      var div = document.createElement('div');
-      div.className = 'bm ' + role;
-      div.innerHTML = '<div class="bm-bubble">' + html + '</div>';
-      container.appendChild(div);
-      container.scrollTop = container.scrollHeight;
-    }
+  function addBubbleMsg(role,html){
+    var container=document.getElementById('bubbleMsgs');
+    var div=document.createElement('div'); div.className='bm '+role;
+    div.innerHTML='<div class="bm-bubble">'+html+'</div>';
+    container.appendChild(div); container.scrollTop=container.scrollHeight;
   }
   </script>
 
