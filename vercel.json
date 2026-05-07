@@ -3,6 +3,14 @@
   "outputDirectory": ".",
   "routes": [
     {
+      "src": "/api/chat",
+      "dest": "/api/chat.js"
+    },
+    {
+      "src": "/api/translate",
+      "dest": "/api/translate.js"
+    },
+    {
       "src": "/api/(.*)",
       "dest": "/api/$1"
     },

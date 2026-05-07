@@ -518,3 +518,127 @@ document.addEventListener('DOMContentLoaded', () => {
     trackEvent('time_on_page', { seconds: timeSpent });
   });
 });
+
+// ── LANGUAGE SWITCHER ──
+let currentLang = 'vi';
+
+function toggleLanguage() {
+  currentLang = currentLang === 'vi' ? 'en' : 'vi';
+  document.getElementById('langLabel').textContent = currentLang === 'vi' ? 'EN' : 'VI';
+  document.documentElement.lang = currentLang;
+  applyLanguage(currentLang);
+}
+
+function applyLanguage(lang) {
+  document.querySelectorAll('[data-vi][data-en]').forEach(el => {
+    el.textContent = el.getAttribute('data-' + lang);
+  });
+  // Update placeholders
+  const specInput = document.getElementById('aiSpecInput');
+  const transInput = document.getElementById('aiTransInput');
+  if (specInput) specInput.placeholder = lang === 'en'
+    ? 'E.g: Laptop Core i7, 16GB RAM, 512GB SSD, 15.6 inch FHD...'
+    : 'VD: Laptop Core i7, RAM 16GB, SSD 512GB, màn 15.6 inch FHD...';
+  if (transInput) transInput.placeholder = lang === 'en'
+    ? 'Enter text to translate...'
+    : 'Nhập văn bản cần dịch...';
+  // Update chatbot input
+  const chatInput = document.getElementById('chatbotInput');
+  if (chatInput) chatInput.placeholder = lang === 'en' ? 'Type your question...' : 'Nhập câu hỏi của bạn...';
+}
+
+// ── AI CONTENT GENERATOR ──
+async function generateDescription() {
+  const input = document.getElementById('aiSpecInput');
+  const btn = document.getElementById('aiGenBtn');
+  const output = document.getElementById('aiOutput');
+  const outputText = document.getElementById('aiOutputText');
+  const text = input.value.trim();
+  if (!text) { input.focus(); return; }
+
+  btn.disabled = true;
+  btn.innerHTML = '<span class="ai-btn-icon">⏳</span><span>' + (currentLang === 'en' ? 'Generating...' : 'Đang tạo...') + '</span>';
+  output.style.display = 'block';
+  outputText.textContent = '';
+
+  // Typewriter effect
+  const prompt = currentLang === 'en'
+    ? `Write a professional, SEO-optimized product description in English based on these specs: ${text}. Max 3 sentences.`
+    : `Viết mô tả sản phẩm chuyên nghiệp, chuẩn SEO bằng tiếng Việt dựa trên thông số: ${text}. Tối đa 3 câu.`;
+
+  try {
+    const res = await fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ messages: [{ role: 'user', content: prompt }] })
+    });
+    const data = await res.json();
+    const result = data.reply || (currentLang === 'en' ? 'Could not generate. Please try again.' : 'Không thể tạo. Vui lòng thử lại.');
+    typewriterEffect(outputText, result);
+  } catch {
+    outputText.textContent = currentLang === 'en' ? 'Connection error. Please try again.' : 'Lỗi kết nối. Vui lòng thử lại.';
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = '<span class="ai-btn-icon">✦</span><span>' + (currentLang === 'en' ? 'Generate with AI' : 'Tạo mô tả AI') + '</span>';
+  }
+}
+
+// ── AI TRANSLATOR ──
+async function translateText(targetLang) {
+  const input = document.getElementById('aiTransInput');
+  const output = document.getElementById('aiTransOutput');
+  const outputText = document.getElementById('aiTransText');
+  const text = input.value.trim();
+  if (!text) { input.focus(); return; }
+
+  document.getElementById('transToEn').classList.toggle('active', targetLang === 'en');
+  document.getElementById('transToVi').classList.toggle('active', targetLang === 'vi');
+
+  output.style.display = 'block';
+  outputText.textContent = currentLang === 'en' ? 'Translating...' : 'Đang dịch...';
+
+  try {
+    const res = await fetch('/api/translate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ text, targetLang })
+    });
+    const data = await res.json();
+    typewriterEffect(outputText, data.translated || text);
+  } catch {
+    outputText.textContent = currentLang === 'en' ? 'Translation failed.' : 'Dịch thất bại.';
+  }
+}
+
+// ── TYPEWRITER EFFECT ──
+function typewriterEffect(el, text, speed = 18) {
+  el.textContent = '';
+  let i = 0;
+  const timer = setInterval(() => {
+    el.textContent += text[i];
+    i++;
+    if (i >= text.length) clearInterval(timer);
+  }, speed);
+}
+
+// ── AI PARTICLES ──
+(function initParticles() {
+  const section = document.querySelector('.ai-features');
+  if (!section) return;
+  const container = document.createElement('div');
+  container.className = 'ai-particles';
+  section.appendChild(container);
+  for (let i = 0; i < 12; i++) {
+    const p = document.createElement('div');
+    p.className = 'ai-particle';
+    p.style.cssText = `
+      left: ${Math.random() * 100}%;
+      animation-duration: ${6 + Math.random() * 8}s;
+      animation-delay: ${Math.random() * 6}s;
+      opacity: ${0.3 + Math.random() * 0.4};
+      width: ${2 + Math.random() * 3}px;
+      height: ${2 + Math.random() * 3}px;
+    `;
+    container.appendChild(p);
+  }
+})();
