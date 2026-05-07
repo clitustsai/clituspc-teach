@@ -1663,8 +1663,8 @@ body {
    AI BUBBLE CHAT
 ══════════════════════════════════════ */
 .ai-bubble-wrap {
-  position: fixed; bottom: 24px; right: 24px;
-  z-index: 9999; display: flex; flex-direction: column; align-items: flex-end; gap: 12px;
+  position: fixed; bottom: 24px; left: 24px;
+  z-index: 9999; display: flex; flex-direction: column; align-items: flex-start; gap: 12px;
 }
 .ai-bubble-btn {
   width: 60px; height: 60px; border-radius: 50%;
@@ -1698,7 +1698,6 @@ body {
 }
 .ai-bubble-chat.open { display: flex; animation: bubbleOpen 0.25s ease; }
 @keyframes bubbleOpen { from{opacity:0;transform:scale(0.95) translateY(10px)} to{opacity:1;transform:scale(1) translateY(0)} }
-
 .ai-bubble-header {
   display: flex; align-items: center; gap: 10px;
   padding: 14px 16px;
