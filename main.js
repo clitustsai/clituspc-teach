@@ -1239,3 +1239,126 @@ function typewriterEffect(el, text, speed = 18) {
     setTimeout(function() { eyes.forEach(function(e) { e.style.transform = 'scaleY(1)'; }); }, 100);
   }, 4000);
 })();
+
+// ── VOICE RECOGNITION (MIC) ──
+var micActive = false;
+var recognition = null;
+
+function toggleMic() {
+  var btn = document.getElementById('bubbleMicBtn');
+  if (!btn) return;
+
+  // Check support
+  var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) {
+    addBubbleMsg('bot', 'Trình duyệt của bạn chưa hỗ trợ nhận dạng giọng nói. Vui lòng dùng Chrome.');
+    return;
+  }
+
+  if (micActive) {
+    // Stop
+    if (recognition) recognition.stop();
+    micActive = false;
+    btn.style.background = '';
+    btn.style.color = '';
+    btn.title = 'Nói chuyện';
+    return;
+  }
+
+  // Start
+  recognition = new SpeechRecognition();
+  recognition.lang = 'vi-VN';          // Tiếng Việt
+  recognition.continuous = false;
+  recognition.interimResults = true;   // Hiển thị kết quả tạm thời
+  recognition.maxAlternatives = 5;     // Lấy nhiều kết quả để chọn tốt nhất
+
+  micActive = true;
+  btn.style.background = '#ef4444';
+  btn.style.color = '#fff';
+  btn.title = 'Đang nghe... (click để dừng)';
+
+  var input = document.getElementById('bubbleInput');
+  if (input) input.placeholder = '🎤 Đang nghe...';
+
+  // Bảng sửa lỗi nhận dạng tiếng Việt phổ biến
+  var viCorrections = {
+    'cho tôi biết': 'cho tôi biết',
+    'giá bao nhiêu': 'giá bao nhiêu',
+    'liên hệ': 'liên hệ',
+    'dịch vụ': 'dịch vụ',
+    'website': 'website',
+    'ứng dụng': 'ứng dụng',
+    'phần mềm': 'phần mềm',
+    'báo giá': 'báo giá',
+    'hỗ trợ': 'hỗ trợ',
+    'công ty': 'công ty',
+    'clitus': 'Clitus',
+    'clituspc': 'Clitus PC',
+    'clitus pc': 'Clitus PC',
+  };
+
+  function correctViText(text) {
+    var result = text.trim();
+    // Viết hoa chữ đầu câu
+    result = result.charAt(0).toUpperCase() + result.slice(1);
+    // Áp dụng bảng sửa lỗi
+    Object.keys(viCorrections).forEach(function(wrong) {
+      var re = new RegExp(wrong, 'gi');
+      result = result.replace(re, viCorrections[wrong]);
+    });
+    return result;
+  }
+
+  recognition.onresult = function(event) {
+    var interim = '';
+    var final = '';
+    for (var i = event.resultIndex; i < event.results.length; i++) {
+      if (event.results[i].isFinal) {
+        // Lấy kết quả có confidence cao nhất trong các alternatives
+        var best = '';
+        var bestConf = 0;
+        for (var j = 0; j < event.results[i].length; j++) {
+          var alt = event.results[i][j];
+          if (alt.confidence > bestConf) {
+            bestConf = alt.confidence;
+            best = alt.transcript;
+          }
+        }
+        final += correctViText(best);
+      } else {
+        interim += event.results[i][0].transcript;
+      }
+    }
+    if (input) {
+      input.value = final || interim;
+      if (final) input.focus();
+    }
+  };
+
+  recognition.onerror = function(e) {
+    micActive = false;
+    btn.style.background = '';
+    btn.style.color = '';
+    if (input) input.placeholder = 'Nhập câu hỏi...';
+    if (e.error === 'not-allowed') {
+      addBubbleMsg('bot', 'Vui lòng cho phép truy cập microphone trong cài đặt trình duyệt.');
+    } else if (e.error === 'no-speech') {
+      if (input) input.placeholder = 'Không nghe thấy, thử lại...';
+      setTimeout(function() { if (input) input.placeholder = 'Nhập câu hỏi...'; }, 2000);
+    }
+  };
+
+  recognition.onend = function() {
+    micActive = false;
+    btn.style.background = '';
+    btn.style.color = '';
+    btn.title = 'Nói chuyện';
+    if (input) input.placeholder = 'Nhập câu hỏi...';
+    // Auto send nếu có text
+    if (input && input.value.trim()) {
+      setTimeout(function() { bubbleSend(); }, 300);
+    }
+  };
+
+  recognition.start();
+}
