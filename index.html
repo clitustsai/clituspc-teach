@@ -66,10 +66,15 @@
 
   <!-- HERO -->
   <section class="hero" id="home">
+    <canvas id="heroParticles"></canvas>
     <div class="hero-bg"></div>
     <div class="container hero-content">
+      <div class="hero-ai-badge">
+        <span class="hero-ai-dot"></span>
+        ✦ Powered by AI Technology
+      </div>
       <p class="hero-tag">CÔNG TY TNHH CÔNG NGHỆ CLITUS PC</p>
-      <h1 class="hero-title">Giải pháp công nghệ<br /><span>toàn diện & chuyên nghiệp</span></h1>
+      <h1 class="hero-title">Giải pháp công nghệ<br /><span id="heroTyping"></span></h1>
       <p class="hero-desc">Chúng tôi xây dựng phần mềm, website và hệ thống số giúp doanh nghiệp tăng trưởng bền vững trong kỷ nguyên số.</p>
       <div class="hero-btns">
         <a href="#projects" class="btn btn-primary">Xem dự án</a>
@@ -81,9 +86,7 @@
         <div class="stat"><span class="stat-num">5+</span><span class="stat-label">Năm kinh nghiệm</span></div>
       </div>
     </div>
-    <div class="hero-scroll">
-      <span></span>
-    </div>
+    <div class="hero-scroll"><span></span></div>
   </section>
 
   <!-- ABOUT -->
@@ -1023,376 +1026,282 @@
 
   <script src="main.js"></script>
 
-  <!-- AI CHATBOT WIDGET -->
-  <div class="chatbot-bubble" id="chatbotBubble" onclick="toggleChatbot()" title="Chat với AI">
-    <svg id="chatbotIconOpen" width="28" height="28" viewBox="0 0 24 24" fill="none">
-      <path d="M12 2C6.48 2 2 6.03 2 11c0 2.7 1.22 5.12 3.17 6.83L4 22l4.62-1.54C9.97 20.8 10.97 21 12 21c5.52 0 10-4.03 10-9S17.52 2 12 2z" fill="white"/>
-      <circle cx="8.5" cy="11" r="1.2" fill="#1a56db"/>
-      <circle cx="12" cy="11" r="1.2" fill="#1a56db"/>
-      <circle cx="15.5" cy="11" r="1.2" fill="#1a56db"/>
-    </svg>
-    <svg id="chatbotIconClose" width="24" height="24" viewBox="0 0 24 24" fill="none" style="display:none">
-      <path d="M18 6L6 18M6 6l12 12" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
-    </svg>
-    <span class="chatbot-badge" id="chatbotBadge">1</span>
-  </div>
-
-  <div class="chatbot-window" id="chatbotWindow">
-    <!-- Header -->
-    <div class="chatbot-header">
-      <div class="chatbot-header-info">
-        <div class="chatbot-avatar-wrap">
-          <div class="chatbot-avatar">AI</div>
-          <span class="chatbot-online-dot"></span>
+  <!-- AI CHATBOT BUBBLE -->
+  <div class="ai-bubble-wrap" id="aiBubbleWrap">
+    <div class="ai-bubble-chat" id="aiBubbleChat">
+      <div class="ai-bubble-header">
+        <div class="ai-bubble-avatar-wrap">
+          <div class="ai-bubble-avatar"><span>AI</span></div>
+          <span class="ai-bubble-online"></span>
         </div>
         <div>
-          <strong>Clitus PC Assistant</strong>
-          <span class="chatbot-status">● Trực tuyến • Phản hồi ngay</span>
+          <strong>Clitus AI</strong>
+          <span>Trực tuyến 24/7</span>
+        </div>
+        <button onclick="closeBubbleChat()">✕</button>
+      </div>
+      <div class="ai-bubble-messages" id="bubbleMsgs">
+        <div class="bm bot">
+          <div class="bm-bubble">Xin chào! 👋 Tôi là AI của <strong>Clitus PC</strong>. Bạn cần tư vấn gì?</div>
+        </div>
+        <div class="bm-quick" id="bubbleQuick">
+          <button onclick="bubbleAsk('Clitus PC làm dịch vụ gì?')">🏢 Dịch vụ</button>
+          <button onclick="bubbleAsk('Quy trình làm việc?')">📋 Quy trình</button>
+          <button onclick="bubbleAsk('Liên hệ tư vấn')">📞 Liên hệ</button>
         </div>
       </div>
-      <div class="chatbot-header-actions">
-        <button class="chatbot-voice-toggle" id="voiceToggle" onclick="toggleVoice()" title="Bật/tắt giọng nói">🔊</button>
-        <button class="chatbot-close-btn" onclick="toggleChatbot()">✕</button>
-      </div>
-    </div>
-
-    <!-- Tab bar -->
-    <div class="chatbot-tabs">
-      <button class="chatbot-tab active" onclick="switchTab('chat')" id="tabChat">💬 Tư vấn</button>
-      <button class="chatbot-tab" onclick="switchTab('services')" id="tabServices">🛠️ Dịch vụ</button>
-      <button class="chatbot-tab" onclick="switchTab('content')" id="tabContent">✦ AI Viết</button>
-    </div>
-
-    <!-- TAB: CHAT -->
-    <div class="chatbot-tab-panel" id="panelChat">
-      <div class="chatbot-messages" id="chatbotMessages">
-        <div class="chatbot-msg bot">
-          <div class="chatbot-msg-bubble">
-            Xin chào! 👋 Tôi là <strong>AI Assistant</strong> của <strong>Clitus PC</strong>.<br>
-            Tôi có thể giúp bạn tìm hiểu dịch vụ, báo giá, quy trình làm việc hoặc tư vấn giải pháp phù hợp. Bạn cần hỗ trợ gì?
-          </div>
-        </div>
-        <div class="chatbot-quick-replies" id="quickReplies">
-          <button onclick="sendQuick('Clitus PC làm những dịch vụ gì?')">🏢 Công ty làm gì?</button>
-          <button onclick="sendQuick('Báo giá làm website bán hàng')">💰 Báo giá nhanh</button>
-          <button onclick="sendQuick('Quy trình làm website như thế nào?')">📋 Quy trình làm web</button>
-          <button onclick="sendQuick('Dịch vụ SEO và AI của Clitus PC')">🤖 SEO / AI</button>
-          <button onclick="sendQuick('Tôi muốn tư vấn miễn phí')">🤝 Tư vấn miễn phí</button>
-        </div>
-      </div>
-      <div class="chatbot-input-area">
-        <input type="text" id="chatbotInput" placeholder="Nhập câu hỏi của bạn..." maxlength="500"
-          onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendChatMessage()}" />
-        <button class="chatbot-send-btn" onclick="sendChatMessage()" id="chatbotSendBtn">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-            <path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
+      <div class="ai-bubble-input">
+        <input id="bubbleInput" placeholder="Nhập câu hỏi..." onkeydown="if(event.key==='Enter')bubbleSend()" />
+        <button onclick="bubbleSend()">&#10148;</button>
       </div>
     </div>
-
-    <!-- TAB: SERVICES -->
-    <div class="chatbot-tab-panel" id="panelServices" style="display:none">
-      <div class="chatbot-services-list">
-        <p class="chatbot-services-title">Chọn dịch vụ bạn quan tâm:</p>
-        <div class="chatbot-service-cards">
-          <div class="chatbot-svc-card" onclick="consultService('website-ban-hang')">
-            <span class="svc-icon">🛒</span>
-            <strong>Website bán hàng</strong>
-            
-          </div>
-          <div class="chatbot-svc-card" onclick="consultService('portfolio')">
-            <span class="svc-icon">🎨</span>
-            <strong>Portfolio / Giới thiệu</strong>
-            
-          </div>
-          <div class="chatbot-svc-card" onclick="consultService('landing-page')">
-            <span class="svc-icon">🚀</span>
-            <strong>Landing Page</strong>
-            
-          </div>
-          <div class="chatbot-svc-card" onclick="consultService('app-di-dong')">
-            <span class="svc-icon">📱</span>
-            <strong>App Di Động</strong>
-            
-          </div>
-          <div class="chatbot-svc-card" onclick="consultService('ai-chatbot')">
-            <span class="svc-icon">🤖</span>
-            <strong>AI Chatbot</strong>
-            
-          </div>
-          <div class="chatbot-svc-card" onclick="consultService('erp-crm')">
-            <span class="svc-icon">⚙️</span>
-            <strong>ERP / CRM</strong>
-            <span>Báo giá theo yêu cầu</span>
-          </div>
-          <div class="chatbot-svc-card" onclick="consultService('vps-hosting')">
-            <span class="svc-icon">☁️</span>
-            <strong>VPS & Hosting</strong>
-            
-          </div>
-          <div class="chatbot-svc-card" onclick="consultService('seo')">
-            <span class="svc-icon">📈</span>
-            <strong>SEO & Marketing</strong>
-            
-          </div>
-        </div>
-        <div id="svcResult" class="chatbot-svc-result" style="display:none"></div>
-      </div>
-    </div>
-
-    <!-- TAB: AI CONTENT -->
-    <div class="chatbot-tab-panel" id="panelContent" style="display:none">
-      <div class="chatbot-content-gen">
-        <p class="chatbot-services-title">✦ AI tạo nội dung cho bạn</p>
-        <div class="content-gen-form">
-          <input type="text" id="cgCompany" placeholder="Tên công ty / thương hiệu" />
-          <input type="text" id="cgIndustry" placeholder="Ngành nghề (VD: bán lẻ, F&B, giáo dục...)" />
-          <input type="text" id="cgKeywords" placeholder="Từ khóa nổi bật (VD: uy tín, nhanh, rẻ)" />
-          <div class="content-type-btns">
-            <button class="ctype-btn active" data-type="intro" onclick="selectContentType(this)">📝 Giới thiệu</button>
-            <button class="ctype-btn" data-type="slogan" onclick="selectContentType(this)">✨ Slogan</button>
-            <button class="ctype-btn" data-type="seo" onclick="selectContentType(this)">🔍 SEO</button>
-            <button class="ctype-btn" data-type="facebook" onclick="selectContentType(this)">📘 Facebook</button>
-          </div>
-          <button class="ai-gen-btn" onclick="generateContent()" id="cgBtn" style="width:100%">
-            <span>✦</span> Tạo nội dung AI
-          </button>
-        </div>
-        <div id="cgOutput" class="chatbot-cg-output" style="display:none">
-          <div class="cg-output-header">
-            <span class="ai-pulse"></span>
-            <span id="cgOutputLabel">Kết quả:</span>
-            <button class="cg-copy-btn" onclick="copyContent()" title="Sao chép">📋</button>
-          </div>
-          <p id="cgOutputText"></p>
-        </div>
-      </div>
+    <div class="ai-bubble-btn" id="aiBubbleBtn" onclick="toggleBubbleChat()">
+      <div class="ai-bubble-ring"></div>
+      <div class="ai-bubble-ring ai-bubble-ring--2"></div>
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" id="bubbleIconOpen">
+        <path d="M12 2C6.48 2 2 6.03 2 11c0 2.7 1.22 5.12 3.17 6.83L4 22l4.62-1.54C9.97 20.8 10.97 21 12 21c5.52 0 10-4.03 10-9S17.52 2 12 2z" fill="white"/>
+        <circle cx="8.5" cy="11" r="1.2" fill="#1a56db"/><circle cx="12" cy="11" r="1.2" fill="#1a56db"/><circle cx="15.5" cy="11" r="1.2" fill="#1a56db"/>
+      </svg>
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" id="bubbleIconClose" style="display:none">
+        <path d="M18 6L6 18M6 6l12 12" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+      </svg>
+      <span class="ai-bubble-badge">1</span>
     </div>
   </div>
 
   <script>
-  // ── CHATBOT STATE ──
-  var chatMessages = [];
-  var chatbotOpen = false;
-  var voiceEnabled = false;
-  var activeTab = 'chat';
-  var selectedContentType = 'intro';
-
-  // ── TOGGLE ──
-  function toggleChatbot() {
-    chatbotOpen = !chatbotOpen;
-    document.getElementById('chatbotWindow').classList.toggle('open', chatbotOpen);
-    document.getElementById('chatbotIconOpen').style.display = chatbotOpen ? 'none' : 'block';
-    document.getElementById('chatbotIconClose').style.display = chatbotOpen ? 'block' : 'none';
-    document.getElementById('chatbotBadge').style.display = 'none';
-    if (chatbotOpen) {
-      document.getElementById('chatbotInput').focus();
-      if (voiceEnabled) speakText('Xin chào! Tôi là AI của Clitus PC. Tôi có thể giúp gì cho bạn?');
+  // ── HERO PARTICLES ──
+  (function(){
+    var canvas = document.getElementById('heroParticles');
+    if (!canvas) return;
+    var ctx = canvas.getContext('2d');
+    var W, H, particles = [];
+    function resize(){ W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+    resize();
+    window.addEventListener('resize', resize);
+    for (var i = 0; i < 60; i++) {
+      particles.push({
+        x: Math.random()*1920, y: Math.random()*1080,
+        vx: (Math.random()-0.5)*0.4, vy: (Math.random()-0.5)*0.4,
+        r: Math.random()*2+0.5,
+        color: Math.random() > 0.5 ? 'rgba(59,130,246,' : 'rgba(124,58,237,'
+      });
     }
-  }
-
-  // ── TABS ──
-  function switchTab(tab) {
-    activeTab = tab;
-    ['chat','services','content'].forEach(function(t) {
-      document.getElementById('panel' + t.charAt(0).toUpperCase() + t.slice(1)).style.display = t === tab ? 'flex' : 'none';
-      document.getElementById('tab' + t.charAt(0).toUpperCase() + t.slice(1)).classList.toggle('active', t === tab);
-    });
-  }
-
-  // ── MESSAGES ──
-  function appendMessage(role, html) {
-    var container = document.getElementById('chatbotMessages');
-    var div = document.createElement('div');
-    div.className = 'chatbot-msg ' + role;
-    var bubble = document.createElement('div');
-    bubble.className = 'chatbot-msg-bubble';
-    bubble.innerHTML = html;
-    div.appendChild(bubble);
-    container.appendChild(div);
-    container.scrollTop = container.scrollHeight;
-    if (role === 'bot' && voiceEnabled) {
-      var plain = bubble.textContent.replace(/\s+/g,' ').trim().substring(0, 150);
-      speakText(plain);
-    }
-  }
-
-  function showTyping() {
-    var container = document.getElementById('chatbotMessages');
-    var div = document.createElement('div');
-    div.className = 'chatbot-msg bot'; div.id = 'chatbotTyping';
-    div.innerHTML = '<div class="chatbot-msg-bubble chatbot-typing"><span></span><span></span><span></span></div>';
-    container.appendChild(div);
-    container.scrollTop = container.scrollHeight;
-  }
-  function removeTyping() { var el = document.getElementById('chatbotTyping'); if (el) el.remove(); }
-
-  function sendQuick(text) {
-    var qr = document.getElementById('quickReplies');
-    if (qr) qr.remove();
-    document.getElementById('chatbotInput').value = text;
-    sendChatMessage();
-  }
-
-  function sendChatMessage() {
-    var input = document.getElementById('chatbotInput');
-    var text = input.value.trim();
-    if (!text) return;
-    var qr = document.getElementById('quickReplies');
-    if (qr) qr.remove();
-    input.value = '';
-    appendMessage('user', text);
-    chatMessages.push({ role: 'user', content: text });
-    var btn = document.getElementById('chatbotSendBtn');
-    btn.disabled = true; input.disabled = true;
-    showTyping();
-    fetch('/api/chat', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ messages: chatMessages })
-    })
-    .then(function(r){
-      if (!r.ok) throw new Error('HTTP ' + r.status);
-      return r.text();
-    })
-    .then(function(text){
-      removeTyping();
-      try {
-        var d = JSON.parse(text);
-        var reply = d.reply || 'Xin lỗi, tôi không thể trả lời lúc này.';
-        appendMessage('bot', reply);
-        chatMessages.push({ role: 'assistant', content: reply });
-      } catch(e) {
-        appendMessage('bot', 'Lỗi xử lý phản hồi. Vui lòng thử lại hoặc liên hệ <a href="tel:0906857331" style="color:#3b82f6">0906 857 331</a>.');
+    function draw(){
+      ctx.clearRect(0,0,W,H);
+      particles.forEach(function(p){
+        p.x += p.vx; p.y += p.vy;
+        if (p.x < 0) p.x = W; if (p.x > W) p.x = 0;
+        if (p.y < 0) p.y = H; if (p.y > H) p.y = 0;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+        ctx.fillStyle = p.color + (0.4+Math.random()*0.3) + ')';
+        ctx.fill();
+      });
+      // Draw connections
+      for (var i = 0; i < particles.length; i++) {
+        for (var j = i+1; j < particles.length; j++) {
+          var dx = particles[i].x - particles[j].x;
+          var dy = particles[i].y - particles[j].y;
+          var dist = Math.sqrt(dx*dx+dy*dy);
+          if (dist < 120) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = 'rgba(59,130,246,' + (0.15*(1-dist/120)) + ')';
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          }
+        }
       }
-    })
-    .catch(function(e){
-      removeTyping();
-      appendMessage('bot', 'Không thể kết nối. Vui lòng thử lại hoặc liên hệ <a href="tel:0906857331" style="color:#3b82f6">0906 857 331</a>.');
-    })
-    .finally(function(){ btn.disabled = false; input.disabled = false; input.focus(); });
+      requestAnimationFrame(draw);
+    }
+    draw();
+  })();
+
+  // ── HERO TYPING ──
+  (function(){
+    var el = document.getElementById('heroTyping');
+    if (!el) return;
+    var texts = ['toàn diện & chuyên nghiệp', 'thông minh với AI', 'nhanh chóng & hiệu quả', 'cho doanh nghiệp Việt'];
+    var ti = 0, ci = 0, deleting = false;
+    function type(){
+      var current = texts[ti];
+      if (!deleting) {
+        el.textContent = current.substring(0, ci+1);
+        ci++;
+        if (ci === current.length) { deleting = true; setTimeout(type, 2000); return; }
+      } else {
+        el.textContent = current.substring(0, ci-1);
+        ci--;
+        if (ci === 0) { deleting = false; ti = (ti+1) % texts.length; }
+      }
+      setTimeout(type, deleting ? 40 : 80);
+    }
+    type();
+  })();
+
+  // ── AI ANALYTICS ANIMATION ──
+  (function(){
+    var data = [85, 68, 72, 45, 38];
+    var container = document.getElementById('aaBars');
+    if (!container) return;
+    data.forEach(function(v, i){
+      var bar = document.createElement('div');
+      bar.className = 'aa-bar' + (i === 0 ? ' aa-bar--top' : '');
+      bar.innerHTML = '<div class="aa-bar-fill" style="height:0%" data-val="'+v+'"></div><span>'+v+'%</span>';
+      container.appendChild(bar);
+    });
+    setTimeout(function(){
+      document.querySelectorAll('.aa-bar-fill').forEach(function(b){
+        b.style.height = b.dataset.val + '%';
+      });
+    }, 500);
+    // Animate counters
+    function animCount(el, target, suffix){
+      var start = 0, step = Math.ceil(target/40);
+      var t = setInterval(function(){
+        start = Math.min(start+step, target);
+        el.textContent = start + suffix;
+        if (start >= target) clearInterval(t);
+      }, 40);
+    }
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) {
+          animCount(document.getElementById('aaVisitors'), 1284, '');
+          animCount(document.getElementById('aaTime'), 142, 's');
+          animCount(document.getElementById('aaBounce'), 34, '%');
+          obs.disconnect();
+        }
+      });
+    }, {threshold: 0.3});
+    var sec = document.getElementById('ai-analytics');
+    if (sec) obs.observe(sec);
+  })();
+
+  // ── AI DEMO SLIDES ──
+  var slideIdx = 0;
+  var slideTexts = [
+    'Website của bạn là bộ mặt số. Clitus PC xây dựng website đẹp, nhanh và chuẩn SEO để thu hút khách hàng 24/7.',
+    'AI không còn là tương lai — đó là hiện tại. Chúng tôi tích hợp AI vào mọi sản phẩm để tạo lợi thế cạnh tranh.',
+    'App di động giúp bạn tiếp cận khách hàng mọi lúc mọi nơi. Flutter & React Native cho hiệu năng native thực sự.',
+    'Hạ tầng cloud linh hoạt, tự động scale theo nhu cầu. Không lo downtime, không lo chi phí dư thừa.'
+  ];
+  (function initDots(){
+    var dots = document.getElementById('demoDots');
+    if (!dots) return;
+    for (var i = 0; i < 4; i++) {
+      var d = document.createElement('span');
+      d.className = 'demo-dot' + (i===0?' active':'');
+      d.setAttribute('data-i', i);
+      d.onclick = function(){ goSlide(+this.dataset.i); };
+      dots.appendChild(d);
+    }
+    startSpeech(0);
+    setInterval(function(){ nextSlide(); }, 4000);
+  })();
+
+  function goSlide(n){
+    var slides = document.querySelectorAll('.ai-demo-slide');
+    var dots = document.querySelectorAll('.demo-dot');
+    slides[slideIdx].classList.remove('active');
+    dots[slideIdx].classList.remove('active');
+    slideIdx = (n + slides.length) % slides.length;
+    slides[slideIdx].classList.add('active');
+    dots[slideIdx].classList.add('active');
+    startSpeech(slideIdx);
+  }
+  function nextSlide(){ goSlide(slideIdx+1); }
+  function prevSlide(){ goSlide(slideIdx-1); }
+
+  function startSpeech(i){
+    var el = document.getElementById('aiSpeechText');
+    if (!el) return;
+    el.textContent = '';
+    var text = slideTexts[i], ci = 0;
+    var t = setInterval(function(){
+      el.textContent += text[ci]; ci++;
+      if (ci >= text.length) clearInterval(t);
+    }, 25);
   }
 
-  // ── SERVICE CONSULTANT ──
-  var serviceInfo = {
-    'website-ban-hang': { name: 'Website bán hàng', prompt: 'Tư vấn gói website bán hàng online cho khách hàng. Nêu các tính năng chính, thời gian, giá từ 8 triệu, và hỏi thêm về quy mô sản phẩm.' },
-    'portfolio': { name: 'Portfolio / Giới thiệu', prompt: 'Tư vấn gói website portfolio/giới thiệu công ty. Nêu tính năng, thời gian 7-14 ngày, giá từ 5 triệu.' },
-    'landing-page': { name: 'Landing Page', prompt: 'Tư vấn gói landing page chuyển đổi cao. Nêu tính năng tối ưu CRO, thời gian 3-5 ngày, giá từ 3 triệu.' },
-    'app-di-dong': { name: 'App Di Động', prompt: 'Tư vấn phát triển app iOS/Android. Nêu công nghệ Flutter/React Native, thời gian 1-3 tháng, giá từ 15 triệu.' },
-    'ai-chatbot': { name: 'AI Chatbot', prompt: 'Tư vấn tích hợp AI chatbot cho doanh nghiệp. Nêu tính năng, tích hợp website/Zalo/Facebook, báo giá theo yêu cầu.' },
-    'erp-crm': { name: 'ERP / CRM', prompt: 'Tư vấn phần mềm quản lý ERP/CRM. Nêu module chính, tùy chỉnh theo yêu cầu, báo giá dựa trên quy mô.' },
-    'vps-hosting': { name: 'VPS & Hosting', prompt: 'Tư vấn dịch vụ VPS và hosting. Nêu các gói từ 300k/tháng, uptime 99.9%, hỗ trợ cài đặt.' },
-    'seo': { name: 'SEO & Marketing', prompt: 'Tư vấn dịch vụ SEO và digital marketing. Nêu quy trình, kết quả kỳ vọng, giá từ 3 triệu/tháng.' }
+  // ── AI BUBBLE CHAT ──
+  var bubbleOpen = false;
+  var bubbleAnswers = {
+    'Clitus PC làm dịch vụ gì?': 'Clitus PC cung cấp: Thiết kế Website, App Di Động, Phần mềm ERP/CRM, Cloud & DevOps, AI & Chatbot, VPS & Hosting. Bạn quan tâm dịch vụ nào?',
+    'Quy trình làm việc?': 'Quy trình 4 bước: 1️⃣ Tiếp nhận yêu cầu → 2️⃣ Tư vấn & báo giá → 3️⃣ Triển khai Agile → 4️⃣ Bàn giao & bảo trì. Thời gian từ 3-90 ngày tùy dự án.',
+    'Liên hệ tư vấn': 'Bạn có thể liên hệ ngay qua Hotline: <a href="tel:0906857331" style="color:#3b82f6">0906 857 331</a> hoặc Email: contact@clituspc.vn. Tư vấn miễn phí!'
   };
 
-  function consultService(key) {
-    var svc = serviceInfo[key];
-    if (!svc) return;
-    var result = document.getElementById('svcResult');
-    result.style.display = 'block';
-    result.innerHTML = '<div class="chatbot-typing" style="padding:12px"><span></span><span></span><span></span></div>';
-    fetch('/api/chat', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ messages: [{ role: 'user', content: svc.prompt }] })
-    })
-    .then(function(r){ return r.json(); })
-    .then(function(d){
-      var reply = d.reply || 'Vui lòng liên hệ 0906 857 331 để được tư vấn.';
-      result.innerHTML = '<div class="svc-result-content"><strong>' + svc.name + '</strong><p>' + reply + '</p><a href="#contact" onclick="toggleChatbot()" class="svc-contact-btn">📞 Liên hệ tư vấn</a></div>';
-      if (voiceEnabled) speakText(reply.substring(0, 150));
-    })
-    .catch(function(){
-      result.innerHTML = '<p style="color:#ef4444">Lỗi kết nối. Gọi 0906 857 331.</p>';
-    });
+  function toggleBubbleChat(){
+    bubbleOpen = !bubbleOpen;
+    document.getElementById('aiBubbleChat').classList.toggle('open', bubbleOpen);
+    document.getElementById('bubbleIconOpen').style.display = bubbleOpen ? 'none' : 'block';
+    document.getElementById('bubbleIconClose').style.display = bubbleOpen ? 'block' : 'none';
+    document.getElementById('ai-bubble-badge') && (document.getElementById('ai-bubble-badge').style.display = 'none');
+    var badge = document.querySelector('.ai-bubble-badge');
+    if (badge) badge.style.display = 'none';
+    if (bubbleOpen) document.getElementById('bubbleInput').focus();
+  }
+  function closeBubbleChat(){ bubbleOpen = false; document.getElementById('aiBubbleChat').classList.remove('open'); document.getElementById('bubbleIconOpen').style.display='block'; document.getElementById('bubbleIconClose').style.display='none'; }
+
+  function bubbleAsk(text){
+    var qr = document.getElementById('bubbleQuick');
+    if (qr) qr.remove();
+    addBubbleMsg('user', text);
+    setTimeout(function(){
+      var answer = bubbleAnswers[text] || 'Cảm ơn bạn! Để được tư vấn chi tiết, vui lòng gọi <a href="tel:0906857331" style="color:#3b82f6">0906 857 331</a>.';
+      addBubbleMsg('bot', answer);
+    }, 600);
   }
 
-  // ── AI CONTENT GENERATOR ──
-  var contentTypeLabels = { intro: 'Giới thiệu công ty', slogan: 'Slogan', seo: 'Nội dung SEO', facebook: 'Bài đăng Facebook' };
-
-  function selectContentType(btn) {
-    document.querySelectorAll('.ctype-btn').forEach(function(b){ b.classList.remove('active'); });
-    btn.classList.add('active');
-    selectedContentType = btn.dataset.type;
-  }
-
-  function generateContent() {
-    var company = document.getElementById('cgCompany').value.trim();
-    var industry = document.getElementById('cgIndustry').value.trim();
-    var keywords = document.getElementById('cgKeywords').value.trim();
-    if (!company) { document.getElementById('cgCompany').focus(); return; }
-    var btn = document.getElementById('cgBtn');
-    var output = document.getElementById('cgOutput');
-    var outputText = document.getElementById('cgOutputText');
-    var label = document.getElementById('cgOutputLabel');
-    btn.disabled = true;
-    btn.innerHTML = '<span>⏳</span> Đang tạo...';
-    output.style.display = 'block';
-    outputText.textContent = '';
-    label.textContent = contentTypeLabels[selectedContentType] + ':';
-    var prompts = {
-      intro: 'Viết đoạn giới thiệu công ty chuyên nghiệp (3-4 câu) cho: Tên: ' + company + ', Ngành: ' + (industry||'công nghệ') + ', Điểm nổi bật: ' + (keywords||'uy tín, chất lượng') + '. Bằng tiếng Việt.',
-      slogan: 'Tạo 3 slogan ngắn gọn, ấn tượng cho: ' + company + ' - ' + (industry||'công nghệ') + '. Từ khóa: ' + (keywords||'') + '. Bằng tiếng Việt.',
-      seo: 'Viết meta description chuẩn SEO (150-160 ký tự) và 1 đoạn nội dung SEO (100 từ) cho: ' + company + ' - ' + (industry||'') + '. Từ khóa: ' + (keywords||'') + '. Bằng tiếng Việt.',
-      facebook: 'Viết bài đăng Facebook hấp dẫn, có emoji, kêu gọi hành động cho: ' + company + ' - ' + (industry||'') + '. Điểm nổi bật: ' + (keywords||'') + '. Bằng tiếng Việt.'
-    };
-    fetch('/api/chat', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ messages: [{ role: 'user', content: prompts[selectedContentType] }] })
-    })
-    .then(function(r){ return r.json(); })
-    .then(function(d){
-      var result = d.reply || 'Không thể tạo nội dung. Vui lòng thử lại.';
-      chatbotTypewriter(outputText, result);
-    })
-    .catch(function(){ outputText.textContent = 'Lỗi kết nối. Vui lòng thử lại.'; })
-    .finally(function(){ btn.disabled = false; btn.innerHTML = '<span>✦</span> Tạo nội dung AI'; });
-  }
-
-  function chatbotTypewriter(el, text, speed) {
-    speed = speed || 15;
-    el.textContent = '';
-    var i = 0;
-    var timer = setInterval(function(){
-      el.textContent += text[i]; i++;
-      if (i >= text.length) clearInterval(timer);
-    }, speed);
-  }
-
-  function copyContent() {
-    var text = document.getElementById('cgOutputText').textContent;
+  function bubbleSend(){
+    var input = document.getElementById('bubbleInput');
+    var text = input.value.trim();
     if (!text) return;
-    navigator.clipboard.writeText(text).then(function(){
-      var btn = document.querySelector('.cg-copy-btn');
-      btn.textContent = '✅'; setTimeout(function(){ btn.textContent = '📋'; }, 2000);
-    });
+    var qr = document.getElementById('bubbleQuick');
+    if (qr) qr.remove();
+    input.value = '';
+    addBubbleMsg('user', text);
+    setTimeout(function(){
+      var lower = text.toLowerCase();
+      var reply;
+      if (lower.includes('website') || lower.includes('web')) reply = 'Clitus PC thiết kế website doanh nghiệp, e-commerce, landing page chuẩn SEO. Liên hệ <a href="tel:0906857331" style="color:#3b82f6">0906 857 331</a> để báo giá!';
+      else if (lower.includes('app') || lower.includes('mobile')) reply = 'Chúng tôi phát triển app iOS & Android với Flutter và React Native. Thời gian 1-3 tháng. Liên hệ để tư vấn miễn phí!';
+      else if (lower.includes('giá') || lower.includes('bao nhiêu') || lower.includes('chi phí')) reply = 'Giá phụ thuộc vào yêu cầu cụ thể. Gọi <a href="tel:0906857331" style="color:#3b82f6">0906 857 331</a> để được báo giá miễn phí trong 24h!';
+      else if (lower.includes('ai') || lower.includes('chatbot')) reply = 'Clitus PC tích hợp AI chatbot, phân tích dữ liệu và tự động hóa quy trình. Liên hệ để demo miễn phí!';
+      else if (lower.includes('liên hệ') || lower.includes('tư vấn')) reply = 'Hotline: <a href="tel:0906857331" style="color:#3b82f6">0906 857 331</a> | Email: contact@clituspc.vn | Tư vấn miễn phí 24/7!';
+      else reply = 'Cảm ơn bạn đã liên hệ! Để được hỗ trợ tốt nhất, gọi ngay <a href="tel:0906857331" style="color:#3b82f6">0906 857 331</a> hoặc để lại thông tin trong form liên hệ.';
+      addBubbleMsg('bot', reply);
+    }, 700);
   }
 
-  // ── VOICE ──
-  function toggleVoice() {
-    voiceEnabled = !voiceEnabled;
-    document.getElementById('voiceToggle').textContent = voiceEnabled ? '🔊' : '🔇';
-    if (voiceEnabled) speakText('Xin chào! Tôi là trợ lý AI của Công ty TNHH Công Nghệ Clitus PC. Tôi có thể giúp gì cho bạn?');
-    else if (window.speechSynthesis) window.speechSynthesis.cancel();
-  }
-
-  function speakText(text) {
-    if (!voiceEnabled || !window.speechSynthesis) return;
-    window.speechSynthesis.cancel();
-    var utter = new SpeechSynthesisUtterance(text);
-    utter.lang = 'vi-VN';
-    utter.rate = 1.0; utter.pitch = 1.0; utter.volume = 0.9;
-    var voices = window.speechSynthesis.getVoices();
-    var viVoice = voices.find(function(v){ return v.lang === 'vi-VN'; });
-    if (viVoice) utter.voice = viVoice;
-    window.speechSynthesis.speak(utter);
-  }
-
-  // Load voices on ready
-  if (window.speechSynthesis) {
-    window.speechSynthesis.onvoiceschanged = function() { window.speechSynthesis.getVoices(); };
+  function addBubbleMsg(role, html){
+    var container = document.getElementById('bubbleMsgs');
+    // Show typing for bot
+    if (role === 'bot') {
+      var typing = document.createElement('div');
+      typing.className = 'bm bot'; typing.id = 'bubbleTyping';
+      typing.innerHTML = '<div class="bm-bubble bm-typing"><span></span><span></span><span></span></div>';
+      container.appendChild(typing);
+      container.scrollTop = container.scrollHeight;
+      setTimeout(function(){
+        var t = document.getElementById('bubbleTyping');
+        if (t) t.remove();
+        var div = document.createElement('div');
+        div.className = 'bm ' + role;
+        div.innerHTML = '<div class="bm-bubble">' + html + '</div>';
+        container.appendChild(div);
+        container.scrollTop = container.scrollHeight;
+      }, 600);
+    } else {
+      var div = document.createElement('div');
+      div.className = 'bm ' + role;
+      div.innerHTML = '<div class="bm-bubble">' + html + '</div>';
+      container.appendChild(div);
+      container.scrollTop = container.scrollHeight;
+    }
   }
   </script>
 
