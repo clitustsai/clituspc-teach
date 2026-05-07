@@ -3,7 +3,7 @@ const https = require('https');
 function geminiRequest(apiKey, payload) {
   return new Promise((resolve, reject) => {
     const body = JSON.stringify(payload);
-    const path = `/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+    const path = `/v1/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
     const options = {
       hostname: 'generativelanguage.googleapis.com',
       path,
