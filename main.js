@@ -1362,3 +1362,47 @@ function toggleMic() {
 
   recognition.start();
 }
+
+// ── COUNTER ANIMATION (số đếm khi vào trang) ──
+(function() {
+  function animateCounter(el) {
+    var text = el.textContent.trim();
+    // Tách số và suffix (VD: "50+" → num=50, suffix="+")
+    var match = text.match(/^(\d+)(.*)$/);
+    if (!match) return;
+    var target = parseInt(match[1]);
+    var suffix = match[2] || '';
+    var duration = 1800;
+    var start = null;
+
+    function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
+
+    function step(timestamp) {
+      if (!start) start = timestamp;
+      var progress = Math.min((timestamp - start) / duration, 1);
+      var current = Math.floor(easeOut(progress) * target);
+      el.textContent = current + suffix;
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      } else {
+        el.textContent = target + suffix;
+      }
+    }
+    requestAnimationFrame(step);
+  }
+
+  // Chạy khi phần tử vào viewport
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        animateCounter(entry.target);
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  // Áp dụng cho tất cả stat numbers
+  document.querySelectorAll('.stat-num, .globe-num, .tkw-stat strong, .about-stats-mini strong').forEach(function(el) {
+    io.observe(el);
+  });
+})();
