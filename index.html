@@ -1900,15 +1900,41 @@
         avatarSpeaking=false;
       }
     },22);
-    // Web Speech API
+    // Web Speech API — fixed for mobile
     if(window.speechSynthesis){
       window.speechSynthesis.cancel();
-      var utter=new SpeechSynthesisUtterance(text);
-      utter.lang='vi-VN'; utter.rate=1.0; utter.pitch=1.1;
+      function doSpeak(voices){
+        var utter=new SpeechSynthesisUtterance(text);
+        var viVoice=voices.find(function(v){return v.lang==='vi-VN';})
+          ||voices.find(function(v){return v.lang.startsWith('vi');})
+          ||null;
+        if(viVoice){
+          utter.voice=viVoice;
+          utter.lang='vi-VN';
+          utter.rate=0.88;
+          utter.pitch=1.05;
+        } else {
+          utter.lang='vi-VN';
+          utter.rate=0.82;
+          utter.pitch=1.0;
+        }
+        utter.onend=function(){ avatarSpeaking=false; };
+        utter.onerror=function(){ avatarSpeaking=false; };
+        window.speechSynthesis.speak(utter);
+      }
       var voices=window.speechSynthesis.getVoices();
-      var viVoice=voices.find(function(v){return v.lang==='vi-VN';});
-      if(viVoice) utter.voice=viVoice;
-      window.speechSynthesis.speak(utter);
+      if(voices && voices.length>0){
+        doSpeak(voices);
+      } else {
+        window.speechSynthesis.addEventListener('voiceschanged',function handler(){
+          window.speechSynthesis.removeEventListener('voiceschanged',handler);
+          doSpeak(window.speechSynthesis.getVoices());
+        });
+        setTimeout(function(){
+          var v=window.speechSynthesis.getVoices();
+          if(v.length>0) doSpeak(v);
+        },500);
+      }
     }
   }
 
