@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8" />
@@ -165,8 +165,11 @@
         <li><a href="/#projects">Dự án</a></li>
         <li><a href="/#contact">Liên hệ</a></li>
       </ul>
+      <button class="hamburger" id="hamburger">&#9776;</button>
     </div>
   </nav>
+  <script>
+  (function(){var hb=document.getElementById('hamburger'),nl=document.querySelector('.nav-links');if(!hb||!nl)return;hb.addEventListener('click',function(){var open=nl.classList.toggle('open');hb.innerHTML=open?'&#x2715;':'&#9776;';document.body.style.overflow=open?'hidden':'';});nl.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){nl.classList.remove('open');hb.innerHTML='&#9776;';document.body.style.overflow='';});});})();</script>
 
   <!-- HERO -->
   <section class="careers-hero">
@@ -436,6 +439,8 @@
           <li><a href="/#services">Cloud & DevOps</a></li>
           <li><a href="/#services">Hosting & Tên miền</a></li>
           <li><a href="/#services">Cho thuê Server / VPS</a></li>
+          <li><a href="/chinh-sach-bao-mat.html">Chinh sach bao mat</a></li>
+          <li><a href="/chinh-sach-khieu-nai.html">Chinh sach khieu nai</a></li>
         </ul>
       </div>
       <div class="footer-contact">
