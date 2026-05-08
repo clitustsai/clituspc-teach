@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chính sách khiếu nại — Clitus PC</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css" />
+  <style>
+    .policy-page { max-width: 800px; margin: 0 auto; padding: 120px 24px 80px; }
+    .policy-page h1 { font-size: clamp(28px,4vw,40px); font-weight: 800; margin-bottom: 8px; }
+    .policy-meta { color: var(--gray); font-size: 13px; margin-bottom: 40px; }
+    .policy-page h2 { font-size: 20px; font-weight: 700; color: var(--blue-light); margin: 36px 0 12px; }
+    .policy-page p, .policy-page li { color: rgba(255,255,255,0.7); font-size: 15px; line-height: 1.8; margin-bottom: 12px; }
+    .policy-page ul { padding-left: 20px; }
+    .policy-page li { margin-bottom: 8px; }
+    .policy-highlight { background: rgba(26,86,219,0.1); border: 1px solid rgba(26,86,219,0.25); border-radius: 12px; padding: 20px 24px; margin: 24px 0; }
+    .policy-highlight p { margin: 0 0 8px; color: rgba(255,255,255,0.8); }
+    .policy-highlight p:last-child { margin: 0; }
+    .back-btn { display: inline-flex; align-items: center; gap: 8px; color: var(--blue-light); text-decoration: none; font-size: 14px; font-weight: 600; margin-bottom: 32px; transition: gap 0.2s; }
+    .back-btn:hover { gap: 12px; }
+    .step-list { counter-reset: steps; list-style: none; padding: 0; }
+    .step-list li { counter-increment: steps; padding-left: 44px; position: relative; margin-bottom: 16px; }
+    .step-list li::before { content: counter(steps); position: absolute; left: 0; top: 0; width: 28px; height: 28px; background: var(--blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: #fff; }
+    .timeline { display: flex; flex-direction: column; gap: 0; margin: 20px 0; }
+    .tl-item { display: flex; gap: 16px; padding-bottom: 24px; position: relative; }
+    .tl-item:not(:last-child)::before { content: ''; position: absolute; left: 15px; top: 32px; bottom: 0; width: 2px; background: rgba(26,86,219,0.3); }
+    .tl-dot { width: 32px; height: 32px; border-radius: 50%; background: rgba(26,86,219,0.2); border: 2px solid var(--blue); display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
+    .tl-content strong { display: block; font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+    .tl-content span { font-size: 13px; color: var(--gray); }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar scrolled" style="background:rgba(15,23,42,0.98);backdrop-filter:blur(12px);box-shadow:0 1px 0 rgba(255,255,255,0.08);">
+    <div class="container nav-inner">
+      <a href="/" class="logo-wrap" style="text-decoration:none;">
+        <div class="logo-icon">
+          <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+            <path d="M22 6C13.16 6 6 13.16 6 22C6 30.84 13.16 38 22 38C25.5 38 28.7 36.9 31.3 35L27.8 31.5C26.1 32.7 24.1 33.4 22 33.4C15.7 33.4 10.6 28.3 10.6 22C10.6 15.7 15.7 10.6 22 10.6C24.1 10.6 26.1 11.3 27.8 12.5L31.3 9C28.7 7.1 25.5 6 22 6Z" fill="#1a56db"/>
+            <path d="M24 16H30C32.2 16 34 17.8 34 20V22C34 24.2 32.2 26 30 26H26V32H24V16ZM26 18V24H30C31.1 24 32 23.1 32 22V20C32 18.9 31.1 18 30 18H26Z" fill="#334155"/>
+          </svg>
+        </div>
+        <div class="logo-text">
+          <span class="logo-main">CLITUS PC</span>
+          <span class="logo-sub">Technology Company Limited</span>
+        </div>
+      </a>
+      <a href="/" class="btn btn-primary" style="font-size:13px;padding:10px 20px;">← Về trang chủ</a>
+    </div>
+  </nav>
+
+  <main class="policy-page">
+    <a href="/" class="back-btn">← Quay lại trang chủ</a>
+
+    <h1>Chính sách khiếu nại</h1>
+    <p class="policy-meta">Cập nhật lần cuối: 01/01/2025 &nbsp;|&nbsp; Công ty TNHH Công Nghệ Clitus PC</p>
+
+    <div class="policy-highlight">
+      <p>🤝 Clitus PC luôn đặt sự hài lòng của khách hàng lên hàng đầu. Chúng tôi cam kết xử lý mọi khiếu nại một cách công bằng, minh bạch và kịp thời.</p>
+    </div>
+
+    <h2>1. Phạm vi áp dụng</h2>
+    <p>Chính sách này áp dụng cho tất cả khách hàng đã và đang sử dụng dịch vụ của Công ty TNHH Công Nghệ Clitus PC, bao gồm:</p>
+    <ul>
+      <li>Dịch vụ thiết kế và phát triển website, ứng dụng di động.</li>
+      <li>Phần mềm quản lý doanh nghiệp (ERP, CRM, POS...).</li>
+      <li>Dịch vụ Cloud, DevOps, VPS và Hosting.</li>
+      <li>Dịch vụ bảo trì, hỗ trợ kỹ thuật và tư vấn công nghệ.</li>
+    </ul>
+
+    <h2>2. Các trường hợp được khiếu nại</h2>
+    <p>Khách hàng có quyền khiếu nại khi:</p>
+    <ul>
+      <li>Sản phẩm/dịch vụ không đúng với thỏa thuận trong hợp đồng hoặc báo giá.</li>
+      <li>Chất lượng sản phẩm không đạt yêu cầu đã cam kết.</li>
+      <li>Thời gian bàn giao bị trễ so với tiến độ đã thống nhất mà không có thông báo trước.</li>
+      <li>Phát sinh chi phí ngoài hợp đồng mà không được khách hàng đồng ý.</li>
+      <li>Thái độ phục vụ của nhân viên không chuyên nghiệp.</li>
+      <li>Các vấn đề kỹ thuật không được xử lý trong thời gian cam kết hỗ trợ.</li>
+    </ul>
+
+    <h2>3. Quy trình xử lý khiếu nại</h2>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot">📝</div>
+        <div class="tl-content">
+          <strong>Bước 1 — Tiếp nhận khiếu nại</strong>
+          <span>Khách hàng gửi khiếu nại qua email, hotline hoặc trực tiếp. Clitus PC xác nhận tiếp nhận trong vòng 2 giờ làm việc.</span>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">🔍</div>
+        <div class="tl-content">
+          <strong>Bước 2 — Xác minh và điều tra</strong>
+          <span>Đội ngũ kỹ thuật và quản lý xem xét nội dung khiếu nại, thu thập thông tin liên quan trong vòng 1–3 ngày làm việc.</span>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">💬</div>
+        <div class="tl-content">
+          <strong>Bước 3 — Phản hồi và đề xuất giải pháp</strong>
+          <span>Clitus PC phản hồi kết quả điều tra và đề xuất phương án giải quyết cụ thể trong vòng 5 ngày làm việc.</span>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">✅</div>
+        <div class="tl-content">
+          <strong>Bước 4 — Thực hiện giải pháp</strong>
+          <span>Sau khi hai bên đồng thuận, Clitus PC thực hiện khắc phục hoặc bồi thường theo thỏa thuận trong thời gian cam kết.</span>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">📋</div>
+        <div class="tl-content">
+          <strong>Bước 5 — Đóng khiếu nại</strong>
+          <span>Xác nhận khách hàng hài lòng với kết quả xử lý và lưu hồ sơ để cải thiện dịch vụ.</span>
+        </div>
+      </div>
+    </div>
+
+    <h2>4. Hình thức giải quyết</h2>
+    <p>Tùy theo tính chất và mức độ của khiếu nại, Clitus PC có thể áp dụng một hoặc nhiều hình thức sau:</p>
+    <ul>
+      <li><strong>Sửa chữa, hoàn thiện:</strong> Khắc phục lỗi kỹ thuật hoặc bổ sung tính năng còn thiếu theo đúng yêu cầu ban đầu.</li>
+      <li><strong>Gia hạn hỗ trợ:</strong> Kéo dài thời gian bảo hành hoặc hỗ trợ kỹ thuật miễn phí.</li>
+      <li><strong>Giảm giá dịch vụ:</strong> Áp dụng chiết khấu cho hóa đơn hiện tại hoặc dịch vụ tiếp theo.</li>
+      <li><strong>Hoàn tiền một phần hoặc toàn bộ:</strong> Trong trường hợp lỗi nghiêm trọng thuộc trách nhiệm của Clitus PC.</li>
+    </ul>
+
+    <h2>5. Thời hạn khiếu nại</h2>
+    <p>Khách hàng có thể gửi khiếu nại trong các thời hạn sau:</p>
+    <ul>
+      <li>Trong thời gian bảo hành theo hợp đồng (thông thường 3–12 tháng tùy dịch vụ).</li>
+      <li>Trong vòng <strong>30 ngày</strong> kể từ ngày bàn giao sản phẩm đối với các lỗi phát sinh sau bàn giao.</li>
+      <li>Không giới hạn thời gian đối với các vi phạm nghĩa vụ bảo mật thông tin.</li>
+    </ul>
+
+    <h2>6. Trường hợp không được khiếu nại</h2>
+    <ul>
+      <li>Yêu cầu thay đổi tính năng ngoài phạm vi hợp đồng ban đầu (được xử lý như yêu cầu phát sinh mới).</li>
+      <li>Sự cố do khách hàng tự ý chỉnh sửa hệ thống mà không thông báo cho Clitus PC.</li>
+      <li>Sự cố do bên thứ ba (nhà cung cấp hosting, domain, API bên ngoài) gây ra ngoài tầm kiểm soát của Clitus PC.</li>
+      <li>Khiếu nại gửi sau thời hạn quy định mà không có lý do chính đáng.</li>
+    </ul>
+
+    <h2>7. Kênh tiếp nhận khiếu nại</h2>
+    <div class="policy-highlight">
+      <p>📧 Email: <a href="mailto:infoclituspc@gmail.com" style="color:var(--blue-light)">infoclituspc@gmail.com</a> — Phản hồi trong 2 giờ làm việc</p>
+      <p>📞 Hotline: <a href="tel:0906857331" style="color:var(--blue-light)">0906 857 331</a> — Hỗ trợ 8:00–22:00 hàng ngày</p>
+      <p>📍 Trực tiếp: 200/15 Thái Phiên, P.Bình Thới, Q.11, TP.HCM</p>
+      <p>💬 Fanpage: <a href="https://www.facebook.com/share/1Cd3Ka81Ro/" target="_blank" style="color:var(--blue-light)">Clitus PC - Full Stack Developer</a></p>
+    </div>
+
+    <h2>8. Cam kết của Clitus PC</h2>
+    <p>Chúng tôi cam kết xử lý mọi khiếu nại một cách <strong style="color:var(--blue-light)">công bằng, minh bạch và kịp thời</strong>. Mọi thông tin khiếu nại được bảo mật tuyệt đối và chỉ sử dụng cho mục đích giải quyết tranh chấp.</p>
+    <p>Trong trường hợp hai bên không đạt được thỏa thuận, tranh chấp sẽ được giải quyết theo quy định của pháp luật Việt Nam tại Tòa án nhân dân có thẩm quyền tại TP.HCM.</p>
+  </main>
+
+  <footer class="footer" style="margin-top:0;">
+    <div class="footer-bottom">
+      <p>© 2026 Công ty TNHH Công Nghệ Clitus PC. All rights reserved. &nbsp;|&nbsp;
+        <a href="/chinh-sach-bao-mat.html" style="color:var(--gray)">Chính sách bảo mật</a> &nbsp;|&nbsp;
+        <a href="/chinh-sach-khieu-nai.html" style="color:var(--gray)">Chính sách khiếu nại</a>
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>
