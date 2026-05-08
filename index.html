@@ -1903,8 +1903,48 @@
     // Web Speech API — fixed for mobile
     if(window.speechSynthesis){
       window.speechSynthesis.cancel();
+      function cleanTextForSpeech(t){
+        // Clitus PC → Clai-tớt Pê Xê
+        t=t.replace(/Clitus PC/gi,'Clai-tớt Pê Xê');
+        t=t.replace(/Clitus/gi,'Clai-tớt');
+        // AI terms
+        t=t.replace(/\bAI\b/g,'Ây Ai');
+        t=t.replace(/chatbot/gi,'chét bót');
+        t=t.replace(/ERP/gi,'Ê Rờ Pê');
+        t=t.replace(/CRM/gi,'Xê Rờ Em');
+        t=t.replace(/VPS/gi,'Vê Pê Ét');
+        t=t.replace(/SEO/gi,'Ét Ê Ô');
+        t=t.replace(/API/gi,'Ây Pê Ai');
+        t=t.replace(/DevOps/gi,'Đép Óp');
+        t=t.replace(/Cloud/gi,'Clao');
+        t=t.replace(/hosting/gi,'hốt-ting');
+        t=t.replace(/website/gi,'wép-sai');
+        t=t.replace(/app\b/gi,'áp');
+        t=t.replace(/\bIT\b/g,'Ai Tê');
+        t=t.replace(/NDA/gi,'En Đê Ây');
+        t=t.replace(/SSL/gi,'Ét Ét Eo');
+        t=t.replace(/CI\/CD/gi,'Xê Ai Xê Đê');
+        // Email — đọc từng phần
+        t=t.replace(/infoclituspc@gmail\.com/gi,'in-phô Clai-tớt Pê Xê a còm meo');
+        t=t.replace(/@gmail\.com/gi,'a gờ-meo chấm com');
+        t=t.replace(/gmail/gi,'gờ-meo');
+        // Hotline — thêm khoảng cách để đọc từng số
+        t=t.replace(/0906\s*857\s*331/g,'không chín không sáu, tám năm bảy, ba ba một');
+        t=t.replace(/(\d{4})\s*(\d{3})\s*(\d{3})/g,'function doSpeak(voices){, var utter=new SpeechSynthesisUtterance(text);, $3');
+        // Số thường — tách ra
+        t=t.replace(/(\d+)/g,function(m){return m.split('').join(' ');});
+        // Ký tự đặc biệt
+        t=t.replace(/24\/7/g,'hai mươi bốn trên bảy');
+        t=t.replace(/1-1/g,'một kèm một');
+        t=t.replace(/&/g,' và ');
+        t=t.replace(/\//g,' hoặc ');
+        t=t.replace(/\.\.\./g,'. ');
+        t=t.replace(/—/g,', ');
+        return t;
+      }
+      var spokenText=cleanTextForSpeech(text);
       function doSpeak(voices){
-        var utter=new SpeechSynthesisUtterance(text);
+        var utter=new SpeechSynthesisUtterance(spokenText);
         var viVoice=voices.find(function(v){return v.lang==='vi-VN';})
           ||voices.find(function(v){return v.lang.startsWith('vi');})
           ||null;
