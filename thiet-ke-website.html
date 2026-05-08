@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thiết Kế Website Theo Yêu Cầu — Clitus PC</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css" />
+  <style>
+    /* ── PAGE SPECIFIC ── */
+    .tkw-hero {
+      padding: 140px 0 80px;
+      text-align: center;
+      background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(26,86,219,0.22) 0%, transparent 70%),
+                  linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+      position: relative; overflow: hidden;
+    }
+    .tkw-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: radial-gradient(rgba(26,86,219,0.12) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+    .tkw-hero-tag {
+      display: inline-block;
+      background: rgba(26,86,219,0.15);
+      border: 1px solid rgba(26,86,219,0.4);
+      color: #3b82f6; font-size: 12px; font-weight: 700;
+      letter-spacing: 2px; padding: 6px 18px; border-radius: 100px;
+      margin-bottom: 20px; position: relative;
+    }
+    .tkw-hero h1 {
+      font-size: clamp(32px, 5vw, 56px); font-weight: 800;
+      line-height: 1.2; margin-bottom: 16px; position: relative;
+    }
+    .tkw-hero h1 span { color: #3b82f6; }
+    .tkw-hero p {
+      color: rgba(255,255,255,0.6); font-size: 17px;
+      max-width: 520px; margin: 0 auto 40px; position: relative;
+    }
+    .tkw-hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; position: relative; }
+    .tkw-stats {
+      display: flex; gap: 40px; justify-content: center; flex-wrap: wrap;
+      margin-top: 56px; position: relative;
+    }
+    .tkw-stat { text-align: center; }
+    .tkw-stat strong { display: block; font-size: 32px; font-weight: 800; color: #3b82f6; }
+    .tkw-stat span { font-size: 13px; color: #64748b; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="navbar scrolled" style="background:rgba(15,23,42,0.98);backdrop-filter:blur(12px);box-shadow:0 1px 0 rgba(255,255,255,0.08);">
+    <div class="container nav-inner">
+      <a href="/" class="logo-wrap" style="text-decoration:none;">
+        <div class="logo-icon">
+          <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+            <path d="M22 6C13.16 6 6 13.16 6 22C6 30.84 13.16 38 22 38C25.5 38 28.7 36.9 31.3 35L27.8 31.5C26.1 32.7 24.1 33.4 22 33.4C15.7 33.4 10.6 28.3 10.6 22C10.6 15.7 15.7 10.6 22 10.6C24.1 10.6 26.1 11.3 27.8 12.5L31.3 9C28.7 7.1 25.5 6 22 6Z" fill="#1a56db"/>
+            <path d="M24 16H30C32.2 16 34 17.8 34 20V22C34 24.2 32.2 26 30 26H26V32H24V16ZM26 18V24H30C31.1 24 32 23.1 32 22V20C32 18.9 31.1 18 30 18H26Z" fill="#334155"/>
+            <rect x="33" y="7" width="3" height="3" fill="#1a56db"/>
+            <rect x="37" y="7" width="3" height="3" fill="#475569"/>
+            <rect x="33" y="11" width="3" height="3" fill="#1a56db"/>
+            <rect x="37" y="11" width="3" height="3" fill="#1a56db"/>
+          </svg>
+        </div>
+        <div class="logo-text">
+          <span class="logo-main">CLITUS PC</span>
+          <span class="logo-sub">Technology Company Limited</span>
+        </div>
+      </a>
+      <div style="display:flex;gap:12px;align-items:center;">
+        <a href="/#services" style="color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;font-weight:500;">Dịch vụ</a>
+        <a href="/#contact" class="btn btn-primary" style="font-size:13px;padding:10px 20px;">Liên hệ ngay</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="tkw-hero">
+    <div class="container">
+      <div class="tkw-hero-tag">✦ Clitus PC · Web Design</div>
+      <h1>Thiết Kế <span>Website</span><br/>Theo Yêu Cầu</h1>
+      <p>Các website được thiết kế riêng theo yêu cầu của khách hàng — đẹp, nhanh, chuẩn SEO và tối ưu chuyển đổi.</p>
+      <div class="tkw-hero-btns">
+        <a href="/#contact" class="btn btn-primary">📞 Báo giá miễn phí</a>
+        <a href="#portfolio" class="btn btn-outline">Xem dự án thực tế</a>
+      </div>
+      <div class="tkw-stats">
+        <div class="tkw-stat"><strong>50+</strong><span>Website đã bàn giao</span></div>
+        <div class="tkw-stat"><strong>100%</strong><span>Khách hàng hài lòng</span></div>
+        <div class="tkw-stat"><strong>7–14</strong><span>Ngày hoàn thành</span></div>
+        <div class="tkw-stat"><strong>24/7</strong><span>Hỗ trợ sau bàn giao</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO GRID -->
+  <section class="section" id="portfolio" style="background:var(--dark2);">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-tag">Dự án thực tế</p>
+        <h2>Website đã triển khai</h2>
+        <p style="color:rgba(255,255,255,0.55);font-size:15px;margin-top:8px;">Mỗi dự án là một giải pháp riêng biệt, được thiết kế tối ưu cho từng ngành nghề</p>
+      </div>
+
+      <!-- Filter -->
+      <div class="filter-bar" style="margin-bottom:40px;">
+        <button class="filter-btn active" data-filter="all">Tất cả</button>
+        <button class="filter-btn" data-filter="web">Website</button>
+        <button class="filter-btn" data-filter="ecom">Thương mại điện tử</button>
+        <button class="filter-btn" data-filter="corp">Doanh nghiệp</button>
+        <button class="filter-btn" data-filter="land">Landing Page</button>
+      </div>
+
+      <!-- Grid -->
+      <div class="tkw-grid" id="tkwGrid">
+
+        <!-- Card 1 -->
+        <div class="tkw-card" data-cat="ecom">
+          <div class="tkw-card-img">
+            <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&q=80" alt="Website thương mại điện tử" loading="lazy" />
+            <div class="tkw-card-overlay">
+              <span class="tkw-badge">Thương mại điện tử</span>
+              <a href="/#contact" class="tkw-overlay-btn">Làm website tương tự</a>
+            </div>
+          </div>
+          <div class="tkw-card-info">
+            <h3>Website bán hàng điện tử</h3>
+            <p>Sàn thương mại đa vendor, thanh toán online, quản lý đơn hàng realtime.</p>
+            <div class="tkw-tags"><span>React</span><span>Node.js</span><span>Stripe</span></div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="tkw-card" data-cat="corp">
+          <div class="tkw-card-img">
+            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80" alt="Website doanh nghiệp" loading="lazy" />
+            <div class="tkw-card-overlay">
+              <span class="tkw-badge">Doanh nghiệp</span>
+              <a href="/#contact" class="tkw-overlay-btn">Làm website tương tự</a>
+            </div>
+          </div>
+          <div class="tkw-card-info">
+            <h3>Website công ty công nghệ</h3>
+            <p>Giới thiệu dịch vụ, đội ngũ, dự án và tích hợp form liên hệ tự động.</p>
+            <div class="tkw-tags"><span>Next.js</span><span>Tailwind</span><span>EmailJS</span></div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="tkw-card" data-cat="land">
+          <div class="tkw-card-img">
+            <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=600&q=80" alt="Landing page bất động sản" loading="lazy" />
+            <div class="tkw-card-overlay">
+              <span class="tkw-badge">Landing Page</span>
+              <a href="/#contact" class="tkw-overlay-btn">Làm website tương tự</a>
+            </div>
+          </div>
+          <div class="tkw-card-info">
+            <h3>Landing page bất động sản</h3>
+            <p>Trang giới thiệu dự án BĐS, bản đồ tương tác, form đăng ký tư vấn.</p>
+            <div class="tkw-tags"><span>Vue.js</span><span>Mapbox</span><span>Laravel</span></div>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="tkw-card" data-cat="web">
+          <div class="tkw-card-img">
+            <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&q=80" alt="Website phòng khám" loading="lazy" />
+            <div class="tkw-card-overlay">
+              <span class="tkw-badge">Y tế</span>
+              <a href="/#contact" class="tkw-overlay-btn">Làm website tương tự</a>
+            </div>
+          </div>
+          <div class="tkw-card-info">
+            <h3>Website phòng khám & bệnh viện</h3>
+            <p>Đặt lịch khám online, hồ sơ bệnh nhân, tích hợp thanh toán viện phí.</p>
+            <div class="tkw-tags"><span>Angular</span><span>Spring Boot</span><span>MySQL</span></div>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="tkw-card" data-cat="ecom">
+          <div class="tkw-card-img">
+            <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80" alt="Website nhà hàng" loading="lazy" />
+            <div class="tkw-card-overlay">
+              <span class="tkw-badge">F&B</span>
+              <a href="/#contact" class="tkw-overlay-btn">Làm website tương tự</a>
+            </div>
+          </div>
+          <div class="tkw-card-info">
+            <h3>Website nhà hàng & đặt món</h3>
+            <p>Menu online, đặt bàn, giao hàng tận nơi, tích hợp Zalo OA và Facebook.</p>
+            <div class="tkw-tags"><span>React Native</span><span>Firebase</span><span>Zalo API</span></div>
+          </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="tkw-card" data-cat="corp">
+          <div class="tkw-card-img">
+            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&q=80" alt="Website tài chính" loading="lazy" />
+            <div class="tkw-card-overlay">
+              <span class="tkw-badge">Tài chính</span>
+              <a href="/#contact" class="tkw-overlay-btn">Làm website tương tự</a>
+            </div>
+          </div>
+          <div class="tkw-card-info">
+            <h3>Website công ty tài chính</h3>
+            <p>Dashboard quản lý, báo cáo realtime, bảo mật 2FA và mã hóa dữ liệu.</p>
+            <div class="tkw-tags"><span>Vue.js</span><span>PostgreSQL</span><span>Redis</span></div>
+          </div>
+        </div>
+
+        <!-- Card 7 -->
+        <div class="tkw-card" data-cat="land">
+          <div class="tkw-card-img">
+            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80" alt="Landing page fitness" loading="lazy" />
+            <div class="tkw-card-overlay">
+              <span class="tkw-badge">Fitness & Spa</span>
+              <a href="/#contact" class="tkw-overlay-btn">Làm website tương tự</a>
+            </div>
+          </div>
+          <div class="tkw-card-info">
+            <h3>Landing page gym & spa</h3>
+            <p>Đăng ký gói tập, lịch lớp học, trainer profile và tích hợp thanh toán.</p>
+            <div class="tkw-tags"><span>WordPress</span><span>WooCommerce</span><span>SEO</span></div>
+          </div>
+        </div>
+
+        <!-- Card 8 -->
+        <div class="tkw-card" data-cat="web">
+          <div class="tkw-card-img">
+            <img src="https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=600&q=80" alt="Website giáo dục" loading="lazy" />
+            <div class="tkw-card-overlay">
+              <span class="tkw-badge">Giáo dục</span>
+              <a href="/#contact" class="tkw-overlay-btn">Làm website tương tự</a>
+            </div>
+          </div>
+          <div class="tkw-card-info">
+            <h3>Nền tảng học trực tuyến</h3>
+            <p>Video streaming, bài tập tương tác, chứng chỉ số và theo dõi tiến độ.</p>
+            <div class="tkw-tags"><span>Flutter</span><span>Django</span><span>AWS S3</span></div>
+          </div>
+        </div>
+
+      </div><!-- /tkwGrid -->
+    </div>
+  </section>
+
+  <!-- GÓI DỊCH VỤ -->
+  <section class="section" style="background:var(--dark);">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-tag">Bảng giá</p>
+        <h2>Gói thiết kế website</h2>
+        <p style="color:rgba(255,255,255,0.55);font-size:15px;margin-top:8px;">Báo giá minh bạch, không phát sinh chi phí ẩn</p>
+      </div>
+      <div class="tkw-pricing">
+
+        <div class="tkw-price-card">
+          <div class="tkw-price-icon">🌐</div>
+          <h3>Landing Page</h3>
+          <div class="tkw-price-val">3 – 7 triệu</div>
+          <ul class="tkw-price-list">
+            <li>✓ 1–3 trang nội dung</li>
+            <li>✓ Responsive mobile</li>
+            <li>✓ Chuẩn SEO cơ bản</li>
+            <li>✓ Form liên hệ</li>
+            <li>✓ Bàn giao 5–7 ngày</li>
+            <li>✓ Bảo hành 3 tháng</li>
+          </ul>
+          <a href="/#contact" class="btn btn-outline" style="width:100%;justify-content:center;margin-top:auto;">Tư vấn ngay</a>
+        </div>
+
+        <div class="tkw-price-card tkw-price-card--hot">
+          <div class="tkw-hot-badge">Phổ biến nhất</div>
+          <div class="tkw-price-icon">🏢</div>
+          <h3>Website Doanh Nghiệp</h3>
+          <div class="tkw-price-val">8 – 20 triệu</div>
+          <ul class="tkw-price-list">
+            <li>✓ 5–10 trang đầy đủ</li>
+            <li>✓ Responsive + PWA</li>
+            <li>✓ SEO nâng cao</li>
+            <li>✓ CMS quản lý nội dung</li>
+            <li>✓ Tích hợp Zalo / Facebook</li>
+            <li>✓ Bàn giao 10–14 ngày</li>
+            <li>✓ Bảo hành 6 tháng</li>
+          </ul>
+          <a href="/#contact" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:auto;">Tư vấn ngay</a>
+        </div>
+
+        <div class="tkw-price-card">
+          <div class="tkw-price-icon">🛒</div>
+          <h3>Website Bán Hàng</h3>
+          <div class="tkw-price-val">15 – 40 triệu</div>
+          <ul class="tkw-price-list">
+            <li>✓ Quản lý sản phẩm không giới hạn</li>
+            <li>✓ Thanh toán online đa kênh</li>
+            <li>✓ Quản lý đơn hàng & kho</li>
+            <li>✓ App mobile đi kèm</li>
+            <li>✓ Tích hợp VNPAY / MoMo</li>
+            <li>✓ Bàn giao 14–21 ngày</li>
+            <li>✓ Bảo hành 12 tháng</li>
+          </ul>
+          <a href="/#contact" class="btn btn-outline" style="width:100%;justify-content:center;margin-top:auto;">Tư vấn ngay</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- QUY TRÌNH -->
+  <section class="section" style="background:var(--dark2);">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-tag">Quy trình</p>
+        <h2>Từ ý tưởng đến website hoàn chỉnh</h2>
+      </div>
+      <div class="tkw-process">
+        <div class="tkw-step"><div class="tkw-step-num">01</div><div class="tkw-step-icon">💬</div><h4>Tư vấn & Báo giá</h4><p>Lắng nghe yêu cầu, phân tích ngành nghề và đề xuất giải pháp phù hợp nhất.</p></div>
+        <div class="tkw-arrow">→</div>
+        <div class="tkw-step"><div class="tkw-step-num">02</div><div class="tkw-step-icon">🎨</div><h4>Thiết kế UI/UX</h4><p>Thiết kế giao diện theo brand identity, trình bày mockup để khách hàng duyệt.</p></div>
+        <div class="tkw-arrow">→</div>
+        <div class="tkw-step"><div class="tkw-step-num">03</div><div class="tkw-step-icon">⚡</div><h4>Lập trình & Test</h4><p>Code sạch, responsive, tối ưu tốc độ và kiểm thử kỹ trên mọi thiết bị.</p></div>
+        <div class="tkw-arrow">→</div>
+        <div class="tkw-step"><div class="tkw-step-num">04</div><div class="tkw-step-icon">🚀</div><h4>Bàn giao & Hỗ trợ</h4><p>Deploy lên hosting, đào tạo sử dụng CMS và hỗ trợ kỹ thuật 24/7.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section style="background:linear-gradient(135deg,#0e3a8a,#1a56db);padding:80px 0;text-align:center;">
+    <div class="container">
+      <h2 style="font-size:clamp(28px,4vw,40px);font-weight:800;margin-bottom:16px;">Bắt đầu dự án website của bạn ngay hôm nay</h2>
+      <p style="color:rgba(255,255,255,0.8);font-size:16px;margin-bottom:36px;">Tư vấn miễn phí · Báo giá trong 24h · Không phát sinh chi phí ẩn</p>
+      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+        <a href="tel:0906857331" class="btn" style="background:#fff;color:#1a56db;font-weight:700;">📞 0906 857 331</a>
+        <a href="mailto:infoclituspc@gmail.com" class="btn" style="background:transparent;border:2px solid rgba(255,255,255,0.5);color:#fff;">✉️ infoclituspc@gmail.com</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer" style="margin-top:0;">
+    <div class="footer-bottom">
+      <p>© 2026 Công ty TNHH Công Nghệ Clitus PC &nbsp;|&nbsp;
+        <a href="/" style="color:var(--gray)">Trang chủ</a> &nbsp;|&nbsp;
+        <a href="/chinh-sach-bao-mat.html" style="color:var(--gray)">Chính sách bảo mật</a> &nbsp;|&nbsp;
+        <a href="/chinh-sach-khieu-nai.html" style="color:var(--gray)">Chính sách khiếu nại</a>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+  // Filter
+  document.querySelectorAll('.filter-btn').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      document.querySelectorAll('.filter-btn').forEach(function(b){b.classList.remove('active');});
+      btn.classList.add('active');
+      var f=btn.dataset.filter;
+      document.querySelectorAll('.tkw-card').forEach(function(c){
+        c.style.display=(f==='all'||c.dataset.cat===f)?'':'none';
+      });
+    });
+  });
+  // Scroll reveal
+  var io=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)';}});},{threshold:0.1});
+  document.querySelectorAll('.tkw-card,.tkw-price-card,.tkw-step').forEach(function(el,i){
+    el.style.opacity='0';el.style.transform='translateY(30px)';el.style.transition='opacity 0.6s ease '+(i%4*0.1)+'s, transform 0.6s ease '+(i%4*0.1)+'s';
+    io.observe(el);
+  });
+  </script>
+
+  <style>
+  /* ── PORTFOLIO GRID ── */
+  .tkw-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+  .tkw-card {
+    background: var(--dark);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px; overflow: hidden;
+    transition: transform 0.3s ease, border-color 0.2s, box-shadow 0.3s;
+  }
+  .tkw-card:hover { transform: translateY(-8px); border-color: rgba(26,86,219,0.5); box-shadow: 0 20px 60px rgba(26,86,219,0.2); }
+  .tkw-card-img { position: relative; overflow: hidden; height: 220px; }
+  .tkw-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; display: block; }
+  .tkw-card:hover .tkw-card-img img { transform: scale(1.06); }
+  .tkw-card-overlay {
+    position: absolute; inset: 0;
+    background: rgba(10,20,50,0.75);
+    backdrop-filter: blur(4px);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 14px;
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .tkw-card:hover .tkw-card-overlay { opacity: 1; }
+  .tkw-badge {
+    background: rgba(26,86,219,0.9);
+    color: #fff; font-size: 12px; font-weight: 700;
+    padding: 5px 14px; border-radius: 100px;
+    letter-spacing: 0.5px;
+  }
+  .tkw-overlay-btn {
+    background: #fff; color: #1a56db;
+    font-size: 13px; font-weight: 700;
+    padding: 10px 22px; border-radius: 8px;
+    text-decoration: none; transition: background 0.2s;
+  }
+  .tkw-overlay-btn:hover { background: #3b82f6; color: #fff; }
+  .tkw-card-info { padding: 20px; }
+  .tkw-card-info h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+  .tkw-card-info p { color: rgba(255,255,255,0.55); font-size: 13px; margin-bottom: 14px; line-height: 1.6; }
+  .tkw-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tkw-tags span { background: rgba(26,86,219,0.12); border: 1px solid rgba(26,86,219,0.25); color: #3b82f6; font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 6px; }
+
+  /* ── PRICING ── */
+  .tkw-pricing { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; align-items: start; }
+  .tkw-price-card {
+    background: var(--dark2); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 20px; padding: 32px 28px;
+    display: flex; flex-direction: column; gap: 16px;
+    position: relative; transition: transform 0.3s, border-color 0.2s;
+  }
+  .tkw-price-card:hover { transform: translateY(-6px); border-color: rgba(26,86,219,0.4); }
+  .tkw-price-card--hot { border-color: rgba(26,86,219,0.5); background: linear-gradient(135deg,rgba(26,86,219,0.1),var(--dark2)); }
+  .tkw-hot-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: #1a56db; color: #fff; font-size: 11px; font-weight: 700; padding: 4px 16px; border-radius: 100px; white-space: nowrap; }
+  .tkw-price-icon { font-size: 36px; }
+  .tkw-price-card h3 { font-size: 18px; font-weight: 700; }
+  .tkw-price-val { font-size: 26px; font-weight: 800; color: #3b82f6; }
+  .tkw-price-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+  .tkw-price-list li { font-size: 14px; color: rgba(255,255,255,0.7); }
+
+  /* ── PROCESS ── */
+  .tkw-process { display: flex; align-items: flex-start; gap: 0; }
+  .tkw-step { flex: 1; background: var(--dark); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 28px 20px; text-align: center; position: relative; transition: border-color 0.2s, transform 0.2s; }
+  .tkw-step:hover { border-color: #1a56db; transform: translateY(-4px); }
+  .tkw-step-num { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: #1a56db; color: #fff; font-size: 12px; font-weight: 800; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+  .tkw-step-icon { font-size: 32px; margin-bottom: 12px; }
+  .tkw-step h4 { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+  .tkw-step p { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.6; }
+  .tkw-arrow { font-size: 22px; color: #3b82f6; padding: 0 8px; margin-top: 55px; flex-shrink: 0; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1024px) {
+    .tkw-grid { grid-template-columns: repeat(2,1fr); }
+    .tkw-pricing { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+  }
+  @media (max-width: 768px) {
+    .tkw-grid { grid-template-columns: 1fr; }
+    .tkw-process { flex-direction: column; gap: 20px; }
+    .tkw-arrow { transform: rotate(90deg); margin: 0 auto; }
+    .tkw-card-img { height: 180px; }
+  }
+  </style>
+
+</body>
+</html>
