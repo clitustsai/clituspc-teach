@@ -1661,12 +1661,11 @@
   <script src="main.js"></script>
 
   <!-- AMBIENT MUSIC PLAYER -->
-  <div id="ytMusicWrap" style="position:fixed;bottom:-9999px;left:-9999px;width:1px;height:1px;overflow:hidden;pointer-events:none;">
-    <iframe id="ytMusicFrame"
-      src="https://www.youtube.com/embed/fuXfT4Rv_WM?autoplay=0&loop=1&playlist=fuXfT4Rv_WM&controls=0&mute=0&enablejsapi=1"
+  <div id="ytMusicWrap" style="position:absolute;width:0;height:0;overflow:hidden;opacity:0;pointer-events:none;z-index:-9999;">
+    <iframe id="ytMusicFrame" width="1" height="1"
+      src="https://www.youtube.com/embed/fuXfT4Rv_WM?autoplay=0&loop=1&playlist=fuXfT4Rv_WM&controls=0&mute=0&enablejsapi=1&origin=https://clituspc-tech.vercel.app"
       allow="autoplay; encrypted-media"
-      frameborder="0"
-      id="ytMusicFrame">
+      frameborder="0">
     </iframe>
   </div>
 
