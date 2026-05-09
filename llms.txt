@@ -1,0 +1,131 @@
+# Clitus PC Technology Company Limited
+
+> Công ty TNHH Công Nghệ Clitus PC — Giải pháp công nghệ toàn diện cho doanh nghiệp Việt Nam.
+
+## Thông tin công ty
+
+- **Tên:** Công ty TNHH Công Nghệ Clitus PC
+- **Tên tiếng Anh:** Clitus PC Technology Company Limited
+- **Website:** https://clituspc-tech.vercel.app
+- **Hotline:** 0906 857 331 / 0906 335 964 (Hỗ trợ 24/7)
+- **Email:** infoclituspc@gmail.com
+- **Địa chỉ:** 200/15 Thái Phiên, Phường Bình Thới, Quận 11, TP. Hồ Chí Minh, Việt Nam
+- **Năm thành lập:** 2019
+- **Kinh nghiệm:** 5+ năm trong ngành công nghệ
+- **Dự án:** 50+ dự án hoàn thành thành công
+- **Khách hàng:** 30+ khách hàng doanh nghiệp tin tưởng
+- **Đội ngũ:** 10+ kỹ sư phần mềm chuyên nghiệp
+
+## Dịch vụ chính
+
+### 1. Thiết kế Website
+- Website doanh nghiệp, landing page, e-commerce chuẩn SEO
+- Responsive trên mọi thiết bị (desktop, tablet, mobile)
+- Tối ưu tốc độ tải trang và trải nghiệm người dùng
+- Tích hợp CMS, thanh toán online, analytics
+- Giá: từ 5 triệu đồng, bàn giao 7-14 ngày
+
+### 2. Phát triển App Di Động
+- Ứng dụng iOS & Android native hoặc cross-platform
+- Công nghệ: Flutter, React Native
+- Tích hợp Firebase, push notification, in-app payment
+- Thiết kế UI/UX hiện đại, mượt mà
+
+### 3. Phần Mềm Quản Lý (ERP/CRM/POS)
+- Hệ thống ERP quản lý toàn diện doanh nghiệp
+- CRM quản lý khách hàng và bán hàng
+- Phần mềm quản lý kho, nhân sự, kế toán
+- POS bán hàng tại quầy
+- Phát triển theo yêu cầu riêng của doanh nghiệp
+
+### 4. Giải Pháp Cloud & DevOps
+- Triển khai hạ tầng trên AWS, Google Cloud, Azure
+- Thiết lập CI/CD pipeline tự động hóa
+- Docker, Kubernetes container orchestration
+- Monitoring, logging và bảo mật hệ thống
+- Tối ưu chi phí cloud
+
+### 5. Tích Hợp AI & Chatbot
+- Chatbot tư vấn khách hàng 24/7
+- Xử lý ngôn ngữ tự nhiên (NLP)
+- Tự động hóa quy trình nghiệp vụ
+- Machine learning và data analytics
+- Tích hợp OpenAI, Google AI, custom models
+
+### 6. Cho Thuê VPS & Hosting
+- VPS Linux/Windows hiệu năng cao
+- Dedicated Server riêng biệt
+- Web hosting tốc độ cao, uptime 99.9%
+- SSL bảo mật miễn phí
+- Backup tự động hàng ngày
+- Hỗ trợ kỹ thuật 24/7
+- Quản trị server từ xa
+
+### 7. Đăng Ký Tên Miền & Email Doanh Nghiệp
+- Đăng ký tên miền .vn, .com, .net, .org
+- Email theo tên miền doanh nghiệp
+- Chứng chỉ SSL bảo mật
+- Gia hạn và quản lý tên miền
+
+## Tại sao chọn Clitus PC?
+
+- ✅ **Tư vấn miễn phí:** Báo giá chi tiết trong 24h
+- ✅ **Minh bạch:** Không phát sinh chi phí ẩn, hợp đồng rõ ràng
+- ✅ **Bảo hành:** 6-12 tháng sau bàn giao
+- ✅ **Hỗ trợ 24/7:** Đội ngũ kỹ thuật sẵn sàng hỗ trợ mọi lúc
+- ✅ **Kinh nghiệm:** Đội ngũ kỹ sư 5+ năm kinh nghiệm
+- ✅ **Công nghệ mới:** Luôn cập nhật công nghệ tiên tiến nhất
+- ✅ **Bàn giao đúng hạn:** Cam kết tiến độ rõ ràng
+
+## Quy trình làm việc
+
+1. **Tiếp nhận yêu cầu:** Lắng nghe và ghi nhận đầy đủ nhu cầu khách hàng
+2. **Tư vấn giải pháp:** Phân tích, đề xuất giải pháp tối ưu và báo giá minh bạch
+3. **Triển khai:** Phát triển theo Agile, cập nhật tiến độ định kỳ, demo từng giai đoạn
+4. **Bảo trì & Hỗ trợ:** Hỗ trợ kỹ thuật 24/7, bảo trì định kỳ, nâng cấp tính năng
+
+## Công nghệ sử dụng
+
+**Frontend:** React, Vue.js, Next.js, Angular, HTML5/CSS3, TailwindCSS  
+**Backend:** Node.js, Laravel (PHP), Python (Django/Flask), Java (Spring Boot)  
+**Mobile:** Flutter, React Native, Swift (iOS), Kotlin (Android)  
+**Database:** MySQL, PostgreSQL, MongoDB, Redis, Oracle  
+**Cloud & DevOps:** AWS, Google Cloud, Azure, Docker, Kubernetes, CI/CD  
+**AI/ML:** OpenAI API, TensorFlow, PyTorch, NLP, Computer Vision
+
+## Dự án tiêu biểu
+
+- **Sàn thương mại điện tử:** Nền tảng mua sắm đa vendor với thanh toán online
+- **Phần mềm quản lý doanh nghiệp ERP:** Tích hợp quản lý kho, nhân sự, kế toán
+- **App giao đồ ăn:** Real-time tracking, tích hợp bản đồ, thanh toán đa kênh
+- **Cổng thông tin bất động sản:** Tìm kiếm nâng cao, bản đồ tương tác, CRM
+- **Phần mềm quản lý phòng khám:** Quản lý bệnh nhân, lịch hẹn, hồ sơ bệnh án điện tử
+- **App học trực tuyến:** Video streaming, bài tập tương tác, chứng chỉ số
+
+## Đối tác & Chứng nhận
+
+- Google Cloud Partner
+- AWS Certified Cloud Practitioner
+- ISO 9001:2015 (Quản lý chất lượng)
+- ISO 27001 (Bảo mật thông tin)
+- VNPT Partner (Đối tác chính thức)
+
+## Liên hệ
+
+- **Hotline:** 0906 857 331 / 0906 335 964 (Hỗ trợ 24/7)
+- **Email:** infoclituspc@gmail.com
+- **Website:** https://clituspc-tech.vercel.app
+- **Địa chỉ:** 200/15 Thái Phiên, P.Bình Thới, Q.11, TP.HCM
+- **Giờ làm việc:** Thứ 2 - Thứ 7, 8:00 - 18:00
+
+## Trang quan trọng
+
+- [Trang chủ](https://clituspc-tech.vercel.app/)
+- [Thiết kế Website](https://clituspc-tech.vercel.app/thiet-ke-website.html)
+- [Tuyển dụng](https://clituspc-tech.vercel.app/tuyen-dung.html)
+- [Chính sách bảo mật](https://clituspc-tech.vercel.app/chinh-sach-bao-mat.html)
+- [Chính sách khiếu nại](https://clituspc-tech.vercel.app/chinh-sach-khieu-nai.html)
+
+---
+
+**Clitus PC Technology** — Đối tác công nghệ đáng tin cậy của bạn.
