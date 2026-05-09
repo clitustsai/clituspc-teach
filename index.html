@@ -1660,6 +1660,62 @@
 
   <script src="main.js"></script>
 
+  <!-- AMBIENT MUSIC PLAYER -->
+  <audio id="bgMusic" loop preload="none">
+    <source src="https://cdn.pixabay.com/audio/2022/10/16/audio_12b6a2b9e2.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="music-player" id="musicPlayer" title="Nhạc nền">
+    <button class="music-btn" id="musicBtn" onclick="toggleMusic()">
+      <svg id="musicIconPlay" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+      <svg id="musicIconPause" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+    </button>
+    <div class="music-bars" id="musicBars">
+      <span></span><span></span><span></span><span></span>
+    </div>
+    <span class="music-label">Ambient</span>
+  </div>
+
+  <script>
+  var bgMusic = document.getElementById('bgMusic');
+  var musicPlaying = false, musicStarted = false;
+  bgMusic.volume = 0.18;
+
+  function startMusic() {
+    bgMusic.play().then(function(){
+      musicPlaying = true;
+      document.getElementById('musicIconPlay').style.display = 'none';
+      document.getElementById('musicIconPause').style.display = 'block';
+      document.getElementById('musicBars').classList.add('active');
+    }).catch(function(){});
+  }
+
+  function stopMusic() {
+    bgMusic.pause();
+    musicPlaying = false;
+    document.getElementById('musicIconPlay').style.display = 'block';
+    document.getElementById('musicIconPause').style.display = 'none';
+    document.getElementById('musicBars').classList.remove('active');
+  }
+
+  function toggleMusic() {
+    if (musicPlaying) { stopMusic(); } else { startMusic(); }
+  }
+
+  function onFirstInteraction() {
+    if (musicStarted) return;
+    musicStarted = true;
+    startMusic();
+    ['click','scroll','keydown','touchstart'].forEach(function(e){
+      document.removeEventListener(e, onFirstInteraction);
+    });
+  }
+  ['click','scroll','keydown','touchstart'].forEach(function(e){
+    document.addEventListener(e, onFirstInteraction, {passive:true});
+  });
+  </script>
+
+
   <!-- AI BUBBLE CHAT -->
   <div class="ai-bubble-wrap" id="aiBubbleWrap">
     <div class="ai-bubble-chat" id="aiBubbleChat">
