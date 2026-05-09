@@ -1661,9 +1661,14 @@
   <script src="main.js"></script>
 
   <!-- AMBIENT MUSIC PLAYER -->
-  <audio id="bgMusic" loop preload="none">
-    <source src="https://cdn.pixabay.com/audio/2022/10/16/audio_12b6a2b9e2.mp3" type="audio/mpeg">
-  </audio>
+  <div id="ytMusicWrap" style="position:fixed;bottom:-9999px;left:-9999px;width:1px;height:1px;overflow:hidden;pointer-events:none;">
+    <iframe id="ytMusicFrame"
+      src="https://www.youtube.com/embed/fuXfT4Rv_WM?autoplay=0&loop=1&playlist=fuXfT4Rv_WM&controls=0&mute=0&enablejsapi=1"
+      allow="autoplay; encrypted-media"
+      frameborder="0"
+      id="ytMusicFrame">
+    </iframe>
+  </div>
 
   <div class="music-player" id="musicPlayer" title="Nhạc nền">
     <button class="music-btn" id="musicBtn" onclick="toggleMusic()">
@@ -1677,21 +1682,40 @@
   </div>
 
   <script>
-  var bgMusic = document.getElementById('bgMusic');
-  var musicPlaying = false, musicStarted = false;
-  bgMusic.volume = 0.18;
+  // YouTube Music Player
+  var ytPlayer = null, musicPlaying = false, musicStarted = false;
+
+  function onYouTubeIframeAPIReady() {
+    ytPlayer = new YT.Player('ytMusicFrame', {
+      events: {
+        'onReady': function(e) {
+          e.target.setVolume(25);
+        }
+      }
+    });
+  }
+
+  // Load YouTube IFrame API
+  (function(){
+    var tag = document.createElement('script');
+    tag.src = 'https://www.youtube.com/iframe_api';
+    document.head.appendChild(tag);
+  })();
 
   function startMusic() {
-    bgMusic.play().then(function(){
+    if (ytPlayer && ytPlayer.playVideo) {
+      ytPlayer.playVideo();
       musicPlaying = true;
       document.getElementById('musicIconPlay').style.display = 'none';
       document.getElementById('musicIconPause').style.display = 'block';
       document.getElementById('musicBars').classList.add('active');
-    }).catch(function(){});
+    }
   }
 
   function stopMusic() {
-    bgMusic.pause();
+    if (ytPlayer && ytPlayer.pauseVideo) {
+      ytPlayer.pauseVideo();
+    }
     musicPlaying = false;
     document.getElementById('musicIconPlay').style.display = 'block';
     document.getElementById('musicIconPause').style.display = 'none';
@@ -1705,7 +1729,16 @@
   function onFirstInteraction() {
     if (musicStarted) return;
     musicStarted = true;
-    startMusic();
+    // Doi YouTube API san sang
+    var tries = 0;
+    var interval = setInterval(function(){
+      tries++;
+      if (ytPlayer && ytPlayer.playVideo) {
+        clearInterval(interval);
+        startMusic();
+      }
+      if (tries > 30) clearInterval(interval);
+    }, 300);
     ['click','scroll','keydown','touchstart'].forEach(function(e){
       document.removeEventListener(e, onFirstInteraction);
     });
