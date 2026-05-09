@@ -2770,3 +2770,21 @@ body {
 .ai-sum-line strong { display: block; color: #fff; font-size: 14px; margin-bottom: 4px; }
 .ai-sum-line p { color: #94a3b8; font-size: 13px; line-height: 1.6; margin: 0; }
 .ai-summary-footer { padding: 16px 24px; border-top: 1px solid rgba(255,255,255,0.07); text-align: center; }
+
+/* SYSTEM STATUS */
+.system-status {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 12px; color: rgba(255,255,255,0.45);
+  margin-top: 8px; justify-content: center;
+}
+.status-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 6px #22c55e;
+  animation: statusPulse 1.8s ease-in-out infinite;
+  flex-shrink: 0;
+}
+@keyframes statusPulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 6px #22c55e; }
+  50% { opacity: 0.4; box-shadow: 0 0 2px #22c55e; }
+}
