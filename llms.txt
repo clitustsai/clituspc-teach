@@ -1,11 +1,11 @@
-# Clitus PC Technology Company Limited
+# Clitus PC Software Development & Solutions
 
 > Nhà phát triển phần mềm Clitus PC — Giải pháp công nghệ toàn diện cho doanh nghiệp Việt Nam.
 
 ## Thông tin công ty
 
 - **Tên:** Nhà phát triển phần mềm Clitus PC
-- **Tên tiếng Anh:** Clitus PC Technology Company Limited
+- **Tên tiếng Anh:** Clitus PC Software Development & Solutions
 - **Website:** https://clituspc-tech.vercel.app
 - **Hotline:** 0906 857 331 / 0906 335 964 (Hỗ trợ 24/7)
 - **Email:** infoclituspc@gmail.com
