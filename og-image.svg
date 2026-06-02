@@ -79,7 +79,7 @@
   <text x="950" y="355" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#3b82f6" text-anchor="middle">AI · Web · App</text>
 
   <!-- URL bottom right -->
-  <text x="1100" y="600" font-family="Arial, sans-serif" font-size="18" fill="#475569" text-anchor="end">clituspc-tech.vercel.app</text>
+  <text x="1100" y="600" font-family="Arial, sans-serif" font-size="18" fill="#475569" text-anchor="end">clituspc-tech.io.vn</text>
 
   <!-- Border -->
   <rect x="1" y="1" width="1198" height="628" fill="none" stroke="#1a56db" stroke-width="2" stroke-opacity="0.3" rx="0"/>

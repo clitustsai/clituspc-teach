@@ -80,7 +80,7 @@ export default function handler() {
             type: 'div',
             props: {
               style: { position: 'absolute', bottom: '28px', right: '80px', fontSize: '18px', color: '#475569' },
-              children: 'clituspc-tech.vercel.app'
+              children: 'clituspc-tech.io.vn'
             }
           },
         ]

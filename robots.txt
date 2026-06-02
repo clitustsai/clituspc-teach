@@ -26,4 +26,4 @@ Allow: /
 User-agent: Bytespider
 Allow: /
 
-Sitemap: https://clituspc-tech.vercel.app/sitemap.xml
+Sitemap: https://clituspc-tech.io.vn/sitemap.xml
