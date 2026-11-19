@@ -7,7 +7,8 @@
   "routes": [
     { "src": "/api/chat", "dest": "/api/chat.js" },
     { "src": "/api/contact", "dest": "/api/contact.js" },
-    { "handle": "filesystem" },
-    { "src": "/(.*)", "status": 404, "dest": "/404.html" }
+    { "src": "/maintenance.html", "dest": "/maintenance.html" },
+    { "src": "/favicon.svg", "dest": "/favicon.svg" },
+    { "src": "/(.*)", "status": 302, "headers": { "Location": "/maintenance.html" } }
   ]
 }
