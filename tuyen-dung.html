@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Đang cập nhật hệ thống – Clitus PC</title>
+  <title>Đang cập nhật hệ thống</title>
   <meta name="robots" content="noindex, nofollow" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <style>
@@ -17,6 +17,8 @@
       font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
       color: #e2e8f0;
       overflow: hidden;
+      user-select: none;
+      -webkit-user-select: none;
     }
     body::before {
       content: '';
@@ -45,12 +47,6 @@
       from { opacity: 0; transform: translateY(30px); }
       to   { opacity: 1; transform: translateY(0); }
     }
-    .logo {
-      width: 56px;
-      height: 56px;
-      margin: 0 auto 1.5rem;
-      display: block;
-    }
     .icon-wrap {
       display: inline-flex;
       align-items: center;
@@ -78,14 +74,6 @@
       font-weight: 700;
       color: #f1f5f9;
       margin-bottom: 0.75rem;
-    }
-    .brand {
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: #1a56db;
-      margin-bottom: 1.25rem;
     }
     p.sub {
       font-size: 0.95rem;
@@ -119,8 +107,6 @@
 </head>
 <body>
   <div class="card">
-    <img class="logo" src="/favicon.svg" alt="Clitus PC" />
-    <p class="brand">Clitus PC</p>
     <div class="icon-wrap">
       <svg class="gear" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M19.14 12.94c.04-.3.06-.61.06-.94s-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.49.49 0 0 0-.59-.22l-2.39.96a7.03 7.03 0 0 0-1.62-.94l-.36-2.54A.484.484 0 0 0 14 2h-4a.484.484 0 0 0-.48.41l-.36 2.54a7.1 7.1 0 0 0-1.62.94l-2.39-.96a.48.48 0 0 0-.59.22L2.74 8.47a.47.47 0 0 0 .12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.36 1.04.67 1.62.94l.36 2.54c.05.24.27.41.48.41h4c.24 0 .44-.17.47-.41l.36-2.54a7.1 7.1 0 0 0 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32a.47.47 0 0 0-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/>
@@ -134,8 +120,22 @@
     </p>
     <div class="progress-wrap"><div class="progress-bar"></div></div>
     <hr />
-    <p class="contact-line">Cần hỗ trợ? Liên hệ: <a href="mailto:infoclituspc@gmail.com">infoclituspc@gmail.com</a></p>
+    <p class="contact-line">Cần hỗ trợ? Liên hệ: <a href="mailto:contact.clituspc@gmail.com">contact.clituspc@gmail.com</a></p>
   </div>
+
+  <script>
+    // Chặn chuột phải
+    document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+
+    // Chặn phím tắt xem source / DevTools
+    document.addEventListener('keydown', function(e) {
+      // F12
+      if (e.key === 'F12') { e.preventDefault(); return false; }
+      // Ctrl+U (view source), Ctrl+Shift+I/J/C (DevTools), Ctrl+S
+      if (e.ctrlKey && ['u','U','s','S'].includes(e.key)) { e.preventDefault(); return false; }
+      if (e.ctrlKey && e.shiftKey && ['i','I','j','J','c','C'].includes(e.key)) { e.preventDefault(); return false; }
+    });
+  </script>
 </body>
 </html>
 
