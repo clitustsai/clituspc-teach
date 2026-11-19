@@ -3,178 +3,139 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Chính sách bảo mật — Clitus PC</title>
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/style.css" />
+  <title>Đang cập nhật hệ thống – Clitus PC</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <style>
-    .policy-page { max-width: 800px; margin: 0 auto; padding: 120px 24px 80px; }
-    .policy-page h1 { font-size: clamp(28px,4vw,40px); font-weight: 800; margin-bottom: 8px; }
-    .policy-meta { color: var(--gray); font-size: 13px; margin-bottom: 40px; }
-    .policy-page h2 { font-size: 20px; font-weight: 700; color: var(--blue-light); margin: 36px 0 12px; }
-    .policy-page p, .policy-page li { color: rgba(255,255,255,0.7); font-size: 15px; line-height: 1.8; margin-bottom: 12px; }
-    .policy-page ul { padding-left: 20px; }
-    .policy-page li { margin-bottom: 8px; }
-    .policy-highlight { background: rgba(26,86,219,0.1); border: 1px solid rgba(26,86,219,0.25); border-radius: 12px; padding: 20px 24px; margin: 24px 0; }
-    .policy-highlight p { margin: 0; color: rgba(255,255,255,0.8); }
-    .back-btn { display: inline-flex; align-items: center; gap: 8px; color: var(--blue-light); text-decoration: none; font-size: 14px; font-weight: 600; margin-bottom: 32px; transition: gap 0.2s; }
-    .back-btn:hover { gap: 12px; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #0f172a;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      color: #e2e8f0;
+      overflow: hidden;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 20% 30%, rgba(26,86,219,0.18) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 80% 70%, rgba(99,102,241,0.12) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .card {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 3rem 2.5rem 2.5rem;
+      max-width: 500px;
+      width: 90%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 25px 60px rgba(0,0,0,0.4);
+      animation: fadeUp 0.7s ease both;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .logo {
+      width: 56px;
+      height: 56px;
+      margin: 0 auto 1.5rem;
+      display: block;
+    }
+    .icon-wrap {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 72px;
+      height: 72px;
+      background: rgba(26,86,219,0.15);
+      border-radius: 50%;
+      margin-bottom: 1.5rem;
+      border: 1px solid rgba(26,86,219,0.3);
+    }
+    .gear {
+      width: 40px;
+      height: 40px;
+      animation: spin 6s linear infinite;
+      fill: #1a56db;
+      filter: drop-shadow(0 0 8px rgba(26,86,219,0.6));
+    }
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #f1f5f9;
+      margin-bottom: 0.75rem;
+    }
+    .brand {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #1a56db;
+      margin-bottom: 1.25rem;
+    }
+    p.sub {
+      font-size: 0.95rem;
+      color: #94a3b8;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+    p.sub strong { color: #cbd5e1; font-weight: 600; }
+    .progress-wrap {
+      background: rgba(255,255,255,0.07);
+      border-radius: 999px;
+      height: 5px;
+      overflow: hidden;
+      margin-bottom: 2rem;
+    }
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #1a56db, #6366f1);
+      border-radius: 999px;
+      animation: progressAnim 3s ease-in-out infinite alternate;
+    }
+    @keyframes progressAnim {
+      from { width: 40%; }
+      to   { width: 82%; }
+    }
+    hr { border: none; border-top: 1px solid rgba(255,255,255,0.07); margin-bottom: 1.25rem; }
+    .contact-line { font-size: 0.85rem; color: #64748b; }
+    .contact-line a { color: #1a56db; text-decoration: none; font-weight: 500; }
+    .contact-line a:hover { color: #3b82f6; }
   </style>
 </head>
 <body>
-
-  <nav class="navbar scrolled" style="background:rgba(15,23,42,0.98);backdrop-filter:blur(12px);box-shadow:0 1px 0 rgba(255,255,255,0.08);">
-    <div class="container nav-inner">
-      <a href="/" class="logo-wrap" style="text-decoration:none;">
-        <div class="logo-icon">
-          <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
-            <path d="M22 6C13.16 6 6 13.16 6 22C6 30.84 13.16 38 22 38C25.5 38 28.7 36.9 31.3 35L27.8 31.5C26.1 32.7 24.1 33.4 22 33.4C15.7 33.4 10.6 28.3 10.6 22C10.6 15.7 15.7 10.6 22 10.6C24.1 10.6 26.1 11.3 27.8 12.5L31.3 9C28.7 7.1 25.5 6 22 6Z" fill="#1a56db"/>
-            <path d="M24 16H30C32.2 16 34 17.8 34 20V22C34 24.2 32.2 26 30 26H26V32H24V16ZM26 18V24H30C31.1 24 32 23.1 32 22V20C32 18.9 31.1 18 30 18H26Z" fill="#334155"/>
-          </svg>
-        </div>
-        <div class="logo-text">
-          <span class="logo-main">CLITUS PC</span>
-          <span class="logo-sub">Software Development & Solutions</span>
-        </div>
-      </a>
-      <a href="/" class="btn btn-primary" style="font-size:13px;padding:10px 20px;">← Về trang chủ</a>
+  <div class="card">
+    <img class="logo" src="/favicon.svg" alt="Clitus PC" />
+    <p class="brand">Clitus PC</p>
+    <div class="icon-wrap">
+      <svg class="gear" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M19.14 12.94c.04-.3.06-.61.06-.94s-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.49.49 0 0 0-.59-.22l-2.39.96a7.03 7.03 0 0 0-1.62-.94l-.36-2.54A.484.484 0 0 0 14 2h-4a.484.484 0 0 0-.48.41l-.36 2.54a7.1 7.1 0 0 0-1.62.94l-2.39-.96a.48.48 0 0 0-.59.22L2.74 8.47a.47.47 0 0 0 .12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.36 1.04.67 1.62.94l.36 2.54c.05.24.27.41.48.41h4c.24 0 .44-.17.47-.41l.36-2.54a7.1 7.1 0 0 0 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32a.47.47 0 0 0-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/>
+      </svg>
     </div>
-  </nav>
-
-  <main class="policy-page">
-    <a href="/" class="back-btn">← Quay lại trang chủ</a>
-
-    <h1>Chính sách bảo mật</h1>
-    <p class="policy-meta">Cập nhật lần cuối: 01/01/2025 &nbsp;|&nbsp; Nhà phát triển phần mềm Clitus PC</p>
-
-    <div class="policy-highlight">
-      <p>🔒 Clitus PC cam kết bảo vệ thông tin cá nhân của khách hàng. Chính sách này mô tả cách chúng tôi thu thập, sử dụng và bảo vệ dữ liệu của bạn.</p>
-    </div>
-
-    <h2>1. Thông tin chúng tôi thu thập</h2>
-    <p>Chúng tôi có thể thu thập các loại thông tin sau khi bạn sử dụng dịch vụ của Clitus PC:</p>
-    <ul>
-      <li>Họ tên, địa chỉ email, số điện thoại khi bạn liên hệ hoặc đăng ký dịch vụ.</li>
-      <li>Thông tin doanh nghiệp: tên công ty, lĩnh vực hoạt động, nhu cầu dự án.</li>
-      <li>Dữ liệu kỹ thuật: địa chỉ IP, loại trình duyệt, thời gian truy cập (thông qua cookie và analytics).</li>
-      <li>Nội dung trao đổi qua email, form liên hệ hoặc chatbot AI.</li>
-    </ul>
-
-    <h2>2. Mục đích sử dụng thông tin</h2>
-    <p>Thông tin thu thập được sử dụng cho các mục đích sau:</p>
-    <ul>
-      <li>Liên hệ tư vấn, báo giá và triển khai dịch vụ theo yêu cầu của bạn.</li>
-      <li>Gửi thông tin cập nhật về dịch vụ, khuyến mãi (nếu bạn đồng ý nhận).</li>
-      <li>Cải thiện chất lượng website và trải nghiệm người dùng.</li>
-      <li>Tuân thủ các nghĩa vụ pháp lý theo quy định của pháp luật Việt Nam.</li>
-    </ul>
-
-    <h2>3. Bảo mật thông tin</h2>
-    <p>Clitus PC áp dụng các biện pháp kỹ thuật và tổ chức phù hợp để bảo vệ thông tin của bạn:</p>
-    <ul>
-      <li>Mã hóa dữ liệu truyền tải bằng giao thức HTTPS/SSL.</li>
-      <li>Kiểm soát quyền truy cập nội bộ theo nguyên tắc tối thiểu đặc quyền.</li>
-      <li>Không bán, cho thuê hoặc chia sẻ thông tin cá nhân với bên thứ ba vì mục đích thương mại.</li>
-      <li>Chỉ chia sẻ thông tin khi có yêu cầu từ cơ quan nhà nước có thẩm quyền theo quy định pháp luật.</li>
-    </ul>
-
-    <h2>4. Cookie và công nghệ theo dõi</h2>
-    <p>Website sử dụng cookie và các công nghệ tương tự để cải thiện trải nghiệm duyệt web. Bạn có thể tắt cookie trong cài đặt trình duyệt, tuy nhiên một số tính năng có thể bị ảnh hưởng.</p>
-    <p>Chúng tôi sử dụng Google Analytics và Microsoft Clarity để phân tích hành vi người dùng nhằm cải thiện dịch vụ. Dữ liệu này được ẩn danh hóa và không liên kết với thông tin cá nhân.</p>
-
-    <h2>5. Quyền của bạn</h2>
-    <p>Bạn có quyền:</p>
-    <ul>
-      <li>Yêu cầu xem, chỉnh sửa hoặc xóa thông tin cá nhân của mình.</li>
-      <li>Từ chối nhận email marketing bất kỳ lúc nào.</li>
-      <li>Yêu cầu hạn chế xử lý dữ liệu trong một số trường hợp nhất định.</li>
-    </ul>
-
-    <h2>6. Thời gian lưu trữ</h2>
-    <p>Chúng tôi lưu trữ thông tin của bạn trong thời gian cần thiết để cung cấp dịch vụ hoặc theo yêu cầu pháp lý, thông thường không quá 5 năm kể từ lần tương tác cuối cùng.</p>
-
-    <h2>7. Liên hệ</h2>
-    <p>Nếu bạn có bất kỳ câu hỏi nào về chính sách bảo mật, vui lòng liên hệ:</p>
-    <div class="policy-highlight">
-      <p>📧 Email: <a href="mailto:infoclituspc@gmail.com" style="color:var(--blue-light)">infoclituspc@gmail.com</a></p>
-      <p>📞 Hotline: <a href="tel:0906857331" style="color:var(--blue-light)">0906 857 331</a> / <a href="tel:0908295050" style="color:var(--blue-light)">0908 295 050</a></p>
-      <p>📍 Địa chỉ: 200/15 Thái Phiên, P.Bình Thới, Q.11, TP.HCM</p>
-    </div>
-  </main>
-
-      <footer class="footer">
-    <div class="container footer-inner">
-      <div class="footer-brand">
-        <div class="logo-wrap">
-          <div class="logo-icon">
-            <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M22 6C13.16 6 6 13.16 6 22C6 30.84 13.16 38 22 38C25.5 38 28.7 36.9 31.3 35L27.8 31.5C26.1 32.7 24.1 33.4 22 33.4C15.7 33.4 10.6 28.3 10.6 22C10.6 15.7 15.7 10.6 22 10.6C24.1 10.6 26.1 11.3 27.8 12.5L31.3 9C28.7 7.1 25.5 6 22 6Z" fill="#1a56db"/>
-              <path d="M24 16H30C32.2 16 34 17.8 34 20V22C34 24.2 32.2 26 30 26H26V32H24V16ZM26 18V24H30C31.1 24 32 23.1 32 22V20C32 18.9 31.1 18 30 18H26Z" fill="#334155"/>
-              <rect x="33" y="7" width="3" height="3" fill="#1a56db"/>
-              <rect x="37" y="7" width="3" height="3" fill="#475569"/>
-              <rect x="33" y="11" width="3" height="3" fill="#1a56db"/>
-              <rect x="37" y="11" width="3" height="3" fill="#1a56db"/>
-            </svg>
-          </div>
-          <div class="logo-text">
-            <span class="logo-main">CLITUS PC</span>
-            <span class="logo-sub">Software Development & Solutions</span>
-          </div>
-        </div>
-        <p>Nhà phát triển phần mềm Clitus PC<br />Software Development & Solutions</p>
-        <!-- Newsletter -->
-        <div class="newsletter">
-          <h4>Đăng ký nhận tin</h4>
-          <p>Nhận thông tin công nghệ & ưu đãi mới nhất</p>
-          <form class="newsletter-form" id="newsletterForm">
-            <input type="email" placeholder="Email của bạn" required />
-            <button type="submit" class="btn-newsletter">Đăng ký</button>
-          </form>
-        </div>
-      </div>
-      <div class="footer-links">
-        <h4>Dịch vụ</h4>
-        <ul>
-          <li><a href="/thiet-ke-website.html">Thiết kế Website</a></li>
-          <li><a href="#services">App Di Động</a></li>
-          <li><a href="#services">Phần mềm quản lý</a></li>
-          <li><a href="#services">Cloud & DevOps</a></li>
-          <li><a href="#services">Hosting & Tên miền</a></li>
-          <li><a href="#services">Cho thu&#234; Server / VPS</a></li>
-          <li><a href="/chinh-sach-bao-mat.html">Ch&#237;nh s&#225;ch b&#7843;o m&#7853;t</a></li>
-          <li><a href="/dieu-khoan-su-dung.html">Điều khoản sử dụng</a></li>
-          <li><a href="/chinh-sach-khieu-nai.html">Ch&#237;nh s&#225;ch khi&#7871;u n&#7841;i</a></li>
-        </ul>
-      </div>
-      <div class="footer-contact">
-        <h4>Liên hệ</h4>
-        <p>📞 <a href="tel:0906857331">0906 857 331</a> / <a href="tel:0908295050">0908 295 050</a></p>
-        <p>✉️ <a href="mailto:infoclituspc@gmail.com">infoclituspc@gmail.com</a></p>
-        <p>
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="#1877F2" style="vertical-align:middle;margin-right:6px"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.235 2.686.235v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.269h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
-          <a href="https://www.facebook.com/profile.php?id=61590331903666" target="_blank" style="color:inherit">Clitus PC - Software Development</a>
-        </p>
-        <p>📍 200/15 Thái Phiên, P.Bình Thới, Q.11, TP.HCM</p>
-        
-        <a href="https://www.dmca.com/Protection/Status.aspx?ID=clituspc" title="DMCA Protected" target="_blank" rel="noopener" style="display:inline-block;margin-top:12px;">
-          <img src="https://images.dmca.com/Badges/dmca_protected_sml_120m.png?ID=clituspc" alt="DMCA Protected" style="height:28px;" />
-        </a>
-      </div>
-    </div>
-
-    <!-- Google Map -->
-    <div class="footer-map">
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.4486!2d106.6499!3d10.7569!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f1b7c3b3b3b%3A0x0!2s200%2F15+Th%C3%A1i+Phi%C3%AAn%2C+Ph%C6%B0%E1%BB%9Dng+B%C3%ACnh+Th%E1%BB%9Bi%2C+Qu%E1%BA%ADn+11%2C+Th%C3%A0nh+ph%E1%BB%91+H%E1%BB%93+Ch%C3%AD+Minh!5e0!3m2!1svi!2svn!4v1748000000000!5m2!1svi!2svn"
-        width="100%" height="220" style="border:0;border-radius:12px;filter:invert(90%) hue-rotate(180deg);"
-        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-      </iframe>
-    </div>
-
-    <div class="footer-bottom">
-      <p>© 2026 Nhà phát triển phần mềm Clitus PC. All rights reserved.</p>
-    </div>
-  </footer>
+    <h1>Đang cập nhật hệ thống</h1>
+    <p class="sub">
+      Website hiện đang được <strong>nâng cấp lên phiên bản mới</strong>.<br />
+      Chúng tôi sẽ trở lại trong thời gian sớm nhất.<br />
+      Xin lỗi vì sự bất tiện này!
+    </p>
+    <div class="progress-wrap"><div class="progress-bar"></div></div>
+    <hr />
+    <p class="contact-line">Cần hỗ trợ? Liên hệ: <a href="mailto:infoclituspc@gmail.com">infoclituspc@gmail.com</a></p>
+  </div>
 </body>
 </html>
+
